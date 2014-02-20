@@ -1,0 +1,13 @@
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe.config
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.pdb
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csprojResolveAssemblyReference.cache
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.baml
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.g.cs
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\App.g.cs
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_MarkupCompile.cache
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.g.resources
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.exe
+c:\users\bruce\documents\visual studio 2012\Projects\HerosAndMostersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.pdb
