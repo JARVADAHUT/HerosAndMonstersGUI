@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HerosAndMostersGUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,14 @@ namespace MazeTest
         //protected DungeonCharacter dc;
 
         private EnumDirection _lastMoveDirection;
-
+        protected static Inventory _creatureInventory;
 
         protected LivingCreature() : base(null)
         {
-
+            _creatureInventory = new Inventory();
         }
+
+        #region Abstract Methods
 
         public abstract void Die();
         public abstract void Exit();
@@ -27,6 +30,12 @@ namespace MazeTest
         public new abstract void Interact(LivingCreature lc);
         public new abstract string ToString();
 
+        #endregion
+
+        public void GiveGear(List<Gear> gear)
+        {
+            _creatureInventory.GearContained.Add(gear);
+        }
 
         public void Interact(EnumDirection dir)
         {

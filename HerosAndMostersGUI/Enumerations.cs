@@ -26,4 +26,14 @@ namespace MazeTest
         Key
     }
 
+    public enum EnumGearType
+    {
+        Head,
+        Shoulders,
+        Armer,
+        Chest,
+        Legs,
+        Feet
+    }
+
 }

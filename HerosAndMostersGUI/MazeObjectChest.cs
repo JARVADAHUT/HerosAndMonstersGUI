@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HerosAndMostersGUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,14 @@ namespace MazeTest
     public class MazeObjectChest : IInteractionType
     {
         private SolidColorBrush _myColor;
+        private Inventory _loot;
 
         public MazeObjectChest()
         {
             _myColor = Brushes.Gold;
+            _loot = new Inventory();
+
+            _loot.GearContained.Add(FGearFactory.GetGear());
         }
 
         public override string ToString()
@@ -24,6 +29,7 @@ namespace MazeTest
         public void Interact(LivingCreature creature)
         {
             _myColor = Brushes.BurlyWood;
+            creature.GiveGear(_loot.GearContained.GetContents());
         }
 
         public EnumMazeObject GetInteractionType()

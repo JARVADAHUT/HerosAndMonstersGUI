@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HerosAndMostersGUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,28 @@ namespace MazeTest
     public class Player : LivingCreature
     {
         private static Player _thisPlayer = null;
+        private EquippedGearInventory _myEquippedGear;
 
         private Player() : base()
         {
             SetInteraction(this);
-            //this.dc = new Hero();
+            _myEquippedGear = new EquippedGearInventory();
         }
 
         public static Player GetInstance()
         {
             return _thisPlayer ?? (_thisPlayer = new Player());
+        }
+
+        public void SwapGear(Gear swapMe)
+        {
+            Gear gearToUnequip;
+            _myEquippedGear.EquippedGear.TryGetValue(swapMe.GearType, out gearToUnequip);
+
+            _creatureInventory.GearContained.Add(gearToUnequip);
+            _myEquippedGear.EquippedGear.Remove(swapMe.GearType);
+
+            _myEquippedGear.EquippedGear.Add(swapMe.GearType, swapMe);
         }
 
         public override void Die()
