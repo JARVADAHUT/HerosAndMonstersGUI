@@ -12,12 +12,13 @@ namespace MazeTest
     {
         private SolidColorBrush _myColor;
         private Inventory _loot;
+        private bool _looted;
 
         public MazeObjectChest()
         {
             _myColor = Brushes.Gold;
             _loot = new Inventory();
-
+            _looted = false;
             _loot.GearContained.Add(FGearFactory.GetGear());
         }
 
@@ -28,8 +29,13 @@ namespace MazeTest
 
         public void Interact(LivingCreature creature)
         {
-            _myColor = Brushes.BurlyWood;
-            creature.GiveGear(_loot.GearContained.GetContents());
+            if (!_looted)
+            {
+                _myColor = Brushes.BurlyWood;
+                creature.GiveGear(_loot.GearContained.GetContents());
+                creature.GiveConsumables(_loot.ConsumablesContained.GetContents());
+                _looted = true;
+            }
         }
 
         public EnumMazeObject GetInteractionType()

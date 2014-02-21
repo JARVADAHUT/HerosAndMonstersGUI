@@ -8,13 +8,13 @@ namespace HerosAndMostersGUI
 {
     public class Inventory
     {
-        public GearInventory GearContained { private set; get; }
-        public ConsumablesInventory ConsumablesContained { private set; get; }
+        public InventoryContents<Gear> GearContained { private set; get; }
+        public InventoryContents<IConsumable> ConsumablesContained { private set; get; }
 
         public Inventory()
         {
-            GearContained = new GearInventory();
-            ConsumablesContained = new ConsumablesInventory();
+            GearContained = new InventoryContents<Gear>();
+            ConsumablesContained = new InventoryContents<IConsumable>();
         }
 
 

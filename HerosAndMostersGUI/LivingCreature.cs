@@ -37,6 +37,11 @@ namespace MazeTest
             _creatureInventory.GearContained.Add(gear);
         }
 
+        public void GiveConsumables(List<IConsumable> cons)
+        {
+            _creatureInventory.ConsumablesContained.Add(cons);
+        }
+
         public void Interact(EnumDirection dir)
         {
             this.SetLastMove(dir);

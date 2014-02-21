@@ -11,7 +11,18 @@ namespace HerosAndMostersGUI
     {
         public static Gear GetGear()
         {
-            return new Gear(new GearAugments(), EnumGearType.Chest);
+            GearAugments test = new GearAugments();
+            Random rnd = new Random();
+            
+            test.Agility = rnd.Next();
+            test.Health = rnd.Next();
+            test.Defence = rnd.Next();
+            test.Resource = rnd.Next();
+            test.Intelligence = rnd.Next();
+            test.Strength = rnd.Next();
+
+            return new Gear(test, EnumGearType.Chest);
+
         }
 
     }

@@ -53,15 +53,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConsumablesInventory.cs" />
     <Compile Include="EquippedGearInventory.cs" />
     <Compile Include="FGearFactory.cs" />
     <Compile Include="FMonsterFactory.cs" />
     <Compile Include="Gear.cs" />
     <Compile Include="GearAugments.cs" />
+    <Compile Include="IConsumable.cs" />
     <Compile Include="IMonsterType.cs" />
-    <Compile Include="GearInventory.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="InventoryContents.cs" />
     <Compile Include="MonsterEasy.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Surroundings.cs" />

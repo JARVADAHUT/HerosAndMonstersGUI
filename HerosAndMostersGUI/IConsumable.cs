@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI
 {
-    public class ConsumablesInventory
+    public interface IConsumable
     {
-        public ConsumablesInventory()
-        {
-
-        }
 
     }
 }

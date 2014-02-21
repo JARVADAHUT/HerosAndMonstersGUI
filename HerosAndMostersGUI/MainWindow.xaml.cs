@@ -78,6 +78,17 @@ namespace HerosAndMostersGUI
                 case Key.K:
                     HiveMind.GetInstance().ClearHive();
                     break;
+                    
+                case Key.I:
+
+                    _hive.IsEnabled = false;
+
+                    //show inventory here
+                    Thread.Sleep(1000);
+
+                    _hive.IsEnabled = true;
+                    
+                    break;
             }
 
             Maze.GetInstance().Refresh(Player.GetInstance());
@@ -125,8 +136,8 @@ namespace HerosAndMostersGUI
             }
 
             //can pick based off preference
-            FitToFrame(size);
-            //FitToPixel(size);
+            //FitToFrame(size);
+            FitToPixel(size);
 
             //Should only do once per maze generation-----------------------
 
