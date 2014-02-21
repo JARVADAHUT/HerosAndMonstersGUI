@@ -20,6 +20,11 @@ namespace MazeTest
             _myEquippedGear = new EquippedGearInventory();
         }
 
+        public IEnumerable<Gear> GetEquippedGear()
+        {
+            return _myEquippedGear.EquippedGear.Values;
+        }
+
         public static Player GetInstance()
         {
             return _thisPlayer ?? (_thisPlayer = new Player());

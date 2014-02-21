@@ -80,14 +80,25 @@ namespace HerosAndMostersGUI
                     break;
                     
                 case Key.I:
-
+                    //----------work in progress----------
                     _hive.IsEnabled = false;
 
+                    //screen.Children.Clear();
+                    //create a listbox and place it here since clearing the children destroys it
+                    screen.Children.Clear();
+                    Action emptyDelegate = delegate { };
+
+                    //Menusc.Visibility = Visibility.Visible;
+
+                    foreach(Gear g in Player.GetInstance().GetEquippedGear())
+                        label1.Content = g.Description;
+                    screen.Dispatcher.Invoke(emptyDelegate, DispatcherPriority.Render);
                     //show inventory here
                     Thread.Sleep(1000);
-
-                    _hive.IsEnabled = true;
                     
+                    _hive.IsEnabled = true;
+                    //Menusc.Visibility = Visibility.Hidden;
+                    Maze.GetInstance().Display();
                     break;
             }
 
@@ -136,8 +147,8 @@ namespace HerosAndMostersGUI
             }
 
             //can pick based off preference
-            //FitToFrame(size);
-            FitToPixel(size);
+            FitToFrame(size);
+            //FitToPixel(size);
 
             //Should only do once per maze generation-----------------------
 
