@@ -24,3 +24,16 @@ C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.g.resources
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe.config
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.exe
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.pdb
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.pdb
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csprojResolveAssemblyReference.cache
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\MainWindow.baml
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\MainWindow.g.cs
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\App.g.cs
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_MarkupCompile.cache
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.g.resources
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
+N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache

@@ -28,7 +28,7 @@ namespace HerosAndMostersGUI
         #region Constant Game Properties
 
         private int _pixelSize;
-        private int _constantPixelSize = 10;
+        private int _constantPixelSize = 100;
         private const int _tickSpeed = 200;
         private const int _firstMazeSize = 12;
         private const int _frameSize = 1000;
@@ -80,7 +80,9 @@ namespace HerosAndMostersGUI
                     break;
                     
                 case Key.I:
+
                     //----------work in progress----------
+
                     _hive.IsEnabled = false;
 
                     //screen.Children.Clear();
@@ -88,17 +90,29 @@ namespace HerosAndMostersGUI
                     screen.Children.Clear();
                     Action emptyDelegate = delegate { };
 
+                    ListBox invBox = new ListBox();
+                    invBox.VerticalAlignment = VerticalAlignment.Top;
+                    invBox.HorizontalAlignment = HorizontalAlignment.Left;
+                    invBox.Height = screen.Height/2;
+                    invBox.Width = screen.Width/2;
+                    screen.Children.Add(invBox);
+
                     //Menusc.Visibility = Visibility.Visible;
 
-                    foreach(Gear g in Player.GetInstance().GetEquippedGear())
-                        label1.Content = g.Description;
+                    foreach (Gear g in Player.GetInstance().GetEquippedGear())
+                        invBox.Items.Add(g.Description);
                     screen.Dispatcher.Invoke(emptyDelegate, DispatcherPriority.Render);
                     //show inventory here
-                    Thread.Sleep(1000);
+                    //Thread.Sleep(1000);
+                    
+
                     
                     _hive.IsEnabled = true;
                     //Menusc.Visibility = Visibility.Hidden;
                     Maze.GetInstance().Display();
+
+                    //----------work in progress----------
+
                     break;
             }
 

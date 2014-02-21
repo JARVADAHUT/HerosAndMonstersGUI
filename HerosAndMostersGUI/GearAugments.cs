@@ -15,6 +15,10 @@ namespace HerosAndMostersGUI
         public int Health { get; set; }
         public int Resource { get; set; }
 
+        //dictionary of Stats Type
+
+
+
         public GearAugments()
         {
             Intelligence = 0;

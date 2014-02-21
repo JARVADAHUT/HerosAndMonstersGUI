@@ -14,7 +14,7 @@ namespace MazeTest
         //protected DungeonCharacter dc;
 
         private EnumDirection _lastMoveDirection;
-        protected static Inventory _creatureInventory;
+        protected Inventory _creatureInventory;
 
         protected LivingCreature() : base(null)
         {

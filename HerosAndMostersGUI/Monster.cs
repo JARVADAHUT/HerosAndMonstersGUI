@@ -20,6 +20,8 @@ namespace MazeTest
         public SolidColorBrush Color { set; get; }
 
         private List<int> _moveWeight;
+
+        //list of int to represent how many monsters how difficult
         private List<IMonsterType> _monsterParty;
         private int _monsterLevel;
 
@@ -73,15 +75,19 @@ namespace MazeTest
             return _monsterParty.Count;
         }
 
-        public override void Interact(LivingCreature lc)
+        public override void Interact(LivingCreature creature)
         {
-            if (lc.GetInteractionType() == EnumMazeObject.Monster)
+            if (creature.GetInteractionType() == EnumMazeObject.Monster)
             {
-                Monster killer = (Monster)lc;
+                Monster killer = (Monster)creature;
 
                 if (killer.PartySize() + this.PartySize() <= _maxPartySize)
                 {
                     killer.AddMonsters(_monsterParty);
+
+                    killer.GiveGear(_creatureInventory.GearContained.GetContents());
+                    killer.GiveConsumables(_creatureInventory.ConsumablesContained.GetContents());
+
                     this.Die();
                 }
             }
@@ -89,6 +95,10 @@ namespace MazeTest
             else
             {
                 //enter battle arena
+
+                //exit BA
+                creature.GiveGear(_creatureInventory.GearContained.GetContents());
+                creature.GiveConsumables(_creatureInventory.ConsumablesContained.GetContents());
                 this.Die();
             }
             
