@@ -30,7 +30,7 @@ namespace MazeTest
     {
         Head,
         Shoulders,
-        Armer,
+        Armor,
         Chest,
         Legs,
         Feet

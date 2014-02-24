@@ -85,6 +85,11 @@ namespace HerosAndMostersGUI
 
                     _hive.IsEnabled = false;
 
+                    InventoryScreen InvScr = new InventoryScreen(_hive);
+                    InvScr.Show();
+
+                    /*
+
                     //screen.Children.Clear();
                     //create a listbox and place it here since clearing the children destroys it
                     screen.Children.Clear();
@@ -110,6 +115,8 @@ namespace HerosAndMostersGUI
                     _hive.IsEnabled = true;
                     //Menusc.Visibility = Visibility.Hidden;
                     Maze.GetInstance().Display();
+                    
+                     */
 
                     //----------work in progress----------
 

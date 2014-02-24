@@ -14,12 +14,12 @@ namespace HerosAndMostersGUI
             GearAugments test = new GearAugments();
             Random rnd = new Random();
             
-            test.Agility = rnd.Next();
-            test.Health = rnd.Next();
-            test.Defence = rnd.Next();
-            test.Resource = rnd.Next();
-            test.Intelligence = rnd.Next();
-            test.Strength = rnd.Next();
+            test.Agility = rnd.Next(100);
+            test.Health = rnd.Next(100);
+            test.Defence = rnd.Next(100);
+            test.Resource = rnd.Next(100);
+            test.Intelligence = rnd.Next(100);
+            test.Strength = rnd.Next(100);
 
             return new Gear(test, EnumGearType.Chest);
 

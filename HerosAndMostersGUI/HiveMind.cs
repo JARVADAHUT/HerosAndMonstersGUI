@@ -12,7 +12,7 @@ namespace MazeTest
     // Singleton
 
     // ALL Monsters must register themselves with the HiveMind on creation. At any moment a monster dies or merges, it will unregister itself
-    // The HiveMind will control the movements of all the monsters. Monsters will be done on one thread and the hive will work on that thread.
+    // The HiveMind will control the movements of all the monsters. Monsters will be done on one thread or event timer and the hive will serve as the delegate.
 
     public class HiveMind
     {

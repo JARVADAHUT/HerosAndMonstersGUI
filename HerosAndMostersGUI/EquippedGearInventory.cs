@@ -17,7 +17,7 @@ namespace HerosAndMostersGUI
 
             EquippedGear.Add(EnumGearType.Head, new Gear(new GearAugments(), EnumGearType.Head));
             EquippedGear.Add(EnumGearType.Shoulders, new Gear(new GearAugments(), EnumGearType.Shoulders));
-            EquippedGear.Add(EnumGearType.Armer, new Gear(new GearAugments(), EnumGearType.Armer));
+            EquippedGear.Add(EnumGearType.Armor, new Gear(new GearAugments(), EnumGearType.Armor));
             EquippedGear.Add(EnumGearType.Chest, new Gear(new GearAugments(), EnumGearType.Chest));
             EquippedGear.Add(EnumGearType.Legs, new Gear(new GearAugments(), EnumGearType.Legs));
             EquippedGear.Add(EnumGearType.Feet, new Gear(new GearAugments(), EnumGearType.Feet));

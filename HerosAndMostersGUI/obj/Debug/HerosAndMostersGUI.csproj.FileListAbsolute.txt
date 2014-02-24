@@ -37,3 +37,17 @@ N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_
 N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.g.resources
 N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
 N:\HEROSANDMONSTERS AHHHH\GOOEY\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe.config
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.exe
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.pdb
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.pdb
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csprojResolveAssemblyReference.cache
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.baml
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.g.cs
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\App.g.cs
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_MarkupCompile.cache
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.g.resources
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
+C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.InventoryScreen.resources
