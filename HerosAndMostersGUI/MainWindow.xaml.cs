@@ -1,4 +1,5 @@
-﻿using MazeTest;
+﻿using DesignPatterns___DC_Design;
+using MazeTest;
 using System;
 using System.Collections.Generic;
 using System.Linq;

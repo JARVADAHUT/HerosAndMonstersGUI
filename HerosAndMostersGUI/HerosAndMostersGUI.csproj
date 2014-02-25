@@ -75,7 +75,6 @@
     <Compile Include="InventoryScreen.Designer.cs">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="MazeCode\IMonsterType.cs" />
     <Compile Include="CharacterCode\Inventory.cs" />
     <Compile Include="MazeCode\Position.cs" />
     <Compile Include="MazeCode\Surroundings.cs" />
