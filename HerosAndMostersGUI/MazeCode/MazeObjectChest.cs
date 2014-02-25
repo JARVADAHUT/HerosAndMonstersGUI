@@ -1,4 +1,5 @@
-﻿using HerosAndMostersGUI;
+﻿using DesignPatterns___DC_Design;
+using HerosAndMostersGUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace MazeTest
         public MazeObjectChest()
         {
             _myColor = Brushes.Gold;
-            _loot = new Inventory();
+            //_loot = new Inventory();
             _looted = false;
-            _loot.GearContained.Add(FGearFactory.GetGear());
+            //_loot.GearContained.Add(FGearFactory.GetGear());
         }
 
         public override string ToString()
@@ -32,8 +33,8 @@ namespace MazeTest
             if (!_looted)
             {
                 _myColor = Brushes.BurlyWood;
-                creature.GiveGear(_loot.GearContained.GetContents());
-                creature.GiveConsumables(_loot.ConsumablesContained.GetContents());
+                //creature.GiveGear(_loot.GearContained.GetContents());
+                //creature.GiveConsumables(_loot.ConsumablesContained.GetContents());
                 _looted = true;
             }
         }

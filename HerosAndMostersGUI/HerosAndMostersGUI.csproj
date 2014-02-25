@@ -55,24 +55,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EquippedGearInventory.cs" />
-    <Compile Include="FGearFactory.cs" />
-    <Compile Include="FMonsterFactory.cs" />
+    <Compile Include="BattleCode\AttackFactory.cs" />
+    <Compile Include="CharacterCode\DungeonCharacter.cs" />
+    <Compile Include="CharacterCode\Hero.cs" />
+    <Compile Include="BattleCode\HeroAttackFactory.cs" />
+    <Compile Include="BattleCode\IMonsterTurnAI.cs" />
+    <Compile Include="CharacterCode\InventoryItem.cs" />
+    <Compile Include="CharacterCode\Monster.cs" />
+    <Compile Include="BattleCode\MonsterAttackFactory.cs" />
+    <Compile Include="BattleCode\MonsterTurnManager.cs" />
+    <Compile Include="BattleCode\PublicEnums.cs" />
+    <Compile Include="BattleCode\StatAugmentCommand.cs" />
+    <Compile Include="BattleCode\StatAugmentManager.cs" />
+    <Compile Include="BattleCode\Stats.cs" />
+    <Compile Include="BattleCode\Target.cs" />
     <Compile Include="InventoryScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InventoryScreen.Designer.cs">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gear.cs" />
-    <Compile Include="GearAugments.cs" />
-    <Compile Include="IConsumable.cs" />
-    <Compile Include="IMonsterType.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="InventoryContents.cs" />
-    <Compile Include="MonsterEasy.cs" />
-    <Compile Include="Position.cs" />
-    <Compile Include="Surroundings.cs" />
+    <Compile Include="MazeCode\IMonsterType.cs" />
+    <Compile Include="CharacterCode\Inventory.cs" />
+    <Compile Include="MazeCode\Position.cs" />
+    <Compile Include="MazeCode\Surroundings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,31 +87,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DefaultMazeDisplay.cs" />
-    <Compile Include="DefaultMazeGenerator.cs" />
-    <Compile Include="Enumerations.cs" />
-    <Compile Include="FMazeObjectFactory.cs" />
-    <Compile Include="HiveMind.cs" />
-    <Compile Include="IInteractionType.cs" />
-    <Compile Include="IMazeDisplay.cs" />
-    <Compile Include="IMazeGenerator.cs" />
-    <Compile Include="LivingCreature.cs" />
+    <Compile Include="MazeCode\DefaultMazeDisplay.cs" />
+    <Compile Include="MazeCode\DefaultMazeGenerator.cs" />
+    <Compile Include="MazeCode\FMazeObjectFactory.cs" />
+    <Compile Include="MazeCode\HiveMind.cs" />
+    <Compile Include="MazeCode\IInteractionType.cs" />
+    <Compile Include="MazeCode\IMazeDisplay.cs" />
+    <Compile Include="MazeCode\IMazeGenerator.cs" />
+    <Compile Include="MazeCode\LivingCreature.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maze.cs" />
-    <Compile Include="MazeMover.cs" />
-    <Compile Include="MazeObject.cs" />
-    <Compile Include="MazeObjectAir.cs" />
-    <Compile Include="MazeObjectChest.cs" />
-    <Compile Include="MazeObjectExit.cs" />
-    <Compile Include="MazeObjectWall.cs" />
-    <Compile Include="Monster.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="MazeCode\Maze.cs" />
+    <Compile Include="MazeCode\MazeMover.cs" />
+    <Compile Include="MazeCode\MazeObject.cs" />
+    <Compile Include="MazeCode\MazeObjectAir.cs" />
+    <Compile Include="MazeCode\MazeObjectChest.cs" />
+    <Compile Include="MazeCode\MazeObjectExit.cs" />
+    <Compile Include="MazeCode\MazeObjectWall.cs" />
+    <Compile Include="MazeCode\MazeMonster.cs" />
+    <Compile Include="MazeCode\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -126,7 +130,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,6 +139,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

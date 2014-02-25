@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerosAndMostersGUI
+namespace DesignPatterns___DC_Design
 {
-    public interface IConsumable
+    interface IMonsterTurnAI
     {
-
+        void TakeTurn(Monster monster);
     }
 }

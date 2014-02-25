@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Documents;
+using DesignPatterns___DC_Design;
 using HerosAndMostersGUI;
 
 namespace MazeTest
 {
-    public class Monster : LivingCreature
+    public class MazeMonster : LivingCreature
     {
         private const int _maxWeight = 60;
         private const int _maxPartySize = 4;
@@ -25,7 +26,7 @@ namespace MazeTest
         private List<IMonsterType> _monsterParty;
         private int _monsterLevel;
 
-        public Monster() : base()
+        public MazeMonster() : base()
         {
             HiveMind.GetInstance().RegisterSubject(this);
 
@@ -37,7 +38,7 @@ namespace MazeTest
             SetInteraction(this);
 
             _monsterParty = new List<IMonsterType>();
-            _monsterParty.Add( FMonsterFactory.GetMonster() );
+            //_monsterParty.Add( FMonsterFactory.GetMonster() );
 
             Color = Brushes.Tomato;
         }
@@ -79,14 +80,13 @@ namespace MazeTest
         {
             if (creature.GetInteractionType() == EnumMazeObject.Monster)
             {
-                Monster killer = (Monster)creature;
+                MazeMonster killer = (MazeMonster)creature;
 
                 if (killer.PartySize() + this.PartySize() <= _maxPartySize)
                 {
                     killer.AddMonsters(_monsterParty);
 
-                    killer.GiveGear(_creatureInventory.GearContained.GetContents());
-                    killer.GiveConsumables(_creatureInventory.ConsumablesContained.GetContents());
+                    //<----------------------------------------------------------------------------------add give gear
 
                     this.Die();
                 }
@@ -97,8 +97,7 @@ namespace MazeTest
                 //enter battle arena
 
                 //exit BA
-                creature.GiveGear(_creatureInventory.GearContained.GetContents());
-                creature.GiveConsumables(_creatureInventory.ConsumablesContained.GetContents());
+                //<----------------------------------------------------------------------------------add give gear
                 this.Die();
             }
             
@@ -124,7 +123,7 @@ namespace MazeTest
             return _moveWeight;
         }
 
-        public bool Equals(Monster otherMonster)
+        public bool Equals(MazeMonster otherMonster)
         {
             return ID == otherMonster.ID;
         }

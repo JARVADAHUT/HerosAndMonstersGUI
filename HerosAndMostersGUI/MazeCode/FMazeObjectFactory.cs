@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DesignPatterns___DC_Design;
 
 namespace MazeTest
 {
@@ -25,7 +26,7 @@ namespace MazeTest
                     return Player.GetInstance();
 
                 case EnumMazeObject.Monster:
-                    return new Monster();
+                    return new MazeMonster();
 
                 default:
                     return new MazeObject(new MazeObjectWall());

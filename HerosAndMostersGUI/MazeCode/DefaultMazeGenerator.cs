@@ -1,4 +1,5 @@
-﻿using HerosAndMostersGUI;
+﻿using DesignPatterns___DC_Design;
+using HerosAndMostersGUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

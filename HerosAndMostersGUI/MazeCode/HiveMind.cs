@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Threading;
+using DesignPatterns___DC_Design;
 
 namespace MazeTest
 {
@@ -19,7 +20,7 @@ namespace MazeTest
 
         private static HiveMind _Hive = null;
         private ArrayList _minions;
-        private static List<Monster> _removeQueue= new List<Monster>();
+        private static List<MazeMonster> _removeQueue= new List<MazeMonster>();
 
         private HiveMind()
         {
@@ -36,13 +37,13 @@ namespace MazeTest
             return _minions.Count;
         }
 
-        public void RegisterSubject(Monster m)
+        public void RegisterSubject(MazeMonster m)
         {
             m.ID = (_minions.Count + 1);
             _minions.Add(m);
         }
 
-        public void UnregisterSubject(Monster m) // can't use _minions.remove(m) unless we override object.Equals()
+        public void UnregisterSubject(MazeMonster m) // can't use _minions.remove(m) unless we override object.Equals()
         {
             _removeQueue.Add(m);
             //Monster monster;
@@ -63,7 +64,7 @@ namespace MazeTest
             Random random = new Random();
             int sum = 0, dir = 0, r;
 
-            foreach (Monster monster in _minions)
+            foreach (MazeMonster monster in _minions)
             {
                 weight = monster.GetMoveWeight();
 
@@ -104,7 +105,7 @@ namespace MazeTest
 
         private void UnregisterRemoveQueue()
         {
-            foreach (Monster monster in _removeQueue)
+            foreach (MazeMonster monster in _removeQueue)
             {
                 _minions.Remove(monster);
             }

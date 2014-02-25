@@ -4,35 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using DesignPatterns___DC_Design;
 
 namespace MazeTest
 {
-    public class MazeObjectWall : IInteractionType
+    public class MazeObjectExit : IInteractionType
     {
-        public MazeObjectWall()
+        public MazeObjectExit()
         {
-
+            
         }
 
         public void Interact(LivingCreature creature)
         {
-            //do nothing, you are a wall
+            creature.Exit();
         }
 
         public override string ToString()
         {
-            return "w";
+            return "e";
         }
 
         public EnumMazeObject GetInteractionType()
         {
-            return EnumMazeObject.Wall;
+            return EnumMazeObject.Exit;
         }
 
 
         public SolidColorBrush GetColor()
         {
-            return Brushes.Purple;
+            return Brushes.Aqua;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using HerosAndMostersGUI;
+﻿using DesignPatterns___DC_Design;
+using HerosAndMostersGUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,15 +33,7 @@ namespace MazeTest
 
         #endregion
 
-        public void GiveGear(List<Gear> gear)
-        {
-            _creatureInventory.GearContained.Add(gear);
-        }
-
-        public void GiveConsumables(List<IConsumable> cons)
-        {
-            _creatureInventory.ConsumablesContained.Add(cons);
-        }
+        
 
         public void Interact(EnumDirection dir)
         {
