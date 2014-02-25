@@ -20,16 +20,60 @@ namespace MazeTest
             SetInteraction(this);
             //_myEquippedGear = new EquippedGearInventory();
         }
-        /*
-        public IEnumerable<Gear> GetEquippedGear()
-        {
-            return _myEquippedGear.EquippedGear.Values;
-        }
-        */
+        
         public static Player GetInstance()
         {
             return _thisPlayer ?? (_thisPlayer = new Player());
         }
+
+        public override void Die()
+        {
+            
+        }
+
+        public override void Exit()
+        {
+            Maze maze = Maze.GetInstance();
+            this.ResetPosition();
+            HiveMind.GetInstance().ClearHive();
+            maze.GenerateNext();
+            maze.Display();
+
+        }
+
+        #region Private
+
+        private void ResetPosition()
+        {
+            _surroundings = new Surroundings();
+        }
+
+        #endregion
+
+        #region IInteractionType
+
+        public override EnumMazeObject GetInteractionType()
+        {
+            return EnumMazeObject.Player;
+        }
+
+        public override SolidColorBrush GetColor()
+        {
+            return Brushes.LawnGreen;
+        }
+
+        public override string ToString()
+        {
+            return "p";
+        }
+
+        public override void Interact(LivingCreature lc)
+        {
+            lc.Die();
+        }
+
+        #endregion
+
         /*
         public void SwapGear(Gear swapMe)
         {
@@ -42,45 +86,13 @@ namespace MazeTest
             _myEquippedGear.EquippedGear.Add(swapMe.GearType, swapMe);
         }
         */
-        public override void Die()
+
+        /*
+        public IEnumerable<Gear> GetEquippedGear()
         {
-            
+            return _myEquippedGear.EquippedGear.Values;
         }
+        */
 
-        public override string ToString()
-        {
-            return "p";
-        }
-
-        public override void Interact(LivingCreature l)
-        {
-            l.Die();
-        }
-
-
-        public override void Exit()
-        {
-            Maze maze = Maze.GetInstance();
-            this.ResetPosition();
-            HiveMind.GetInstance().ClearHive();
-            maze.GenerateNext();
-            maze.Display();
-
-        }
-
-        private void ResetPosition()
-        {
-            _surroundings = new Surroundings();
-        }
-
-        public override EnumMazeObject GetInteractionType()
-        {
-            return EnumMazeObject.Player;
-        }
-
-        public override SolidColorBrush GetColor()
-        {
-            return Brushes.LawnGreen;
-        }
     }
 }

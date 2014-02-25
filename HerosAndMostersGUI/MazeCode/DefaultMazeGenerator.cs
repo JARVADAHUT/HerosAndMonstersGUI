@@ -6,11 +6,10 @@ using System.Linq;
 
 namespace MazeTest
 {
-    internal class DefaultMazeGenerator : IMazeGenerator
+    public class DefaultMazeGenerator : IMazeGenerator
     {
         public DefaultMazeGenerator()
-        {
-            
+        {    
 
         }
 

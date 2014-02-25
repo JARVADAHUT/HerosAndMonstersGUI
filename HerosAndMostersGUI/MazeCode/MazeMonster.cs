@@ -13,18 +13,21 @@ namespace MazeTest
 {
     public class MazeMonster : LivingCreature
     {
-        private const int _maxWeight = 60;
-        private const int _maxPartySize = 4;
 
+        #region Attributes
+
+        private const int MaxWeight = 60;
+        private const int MaxPartySize = 4;
+        private const int LevelVariance = 3;
 
         public int ID { set; get; }
         public SolidColorBrush Color { set; get; }
 
+        //list of int to represent how many monsters how difficult
+        private List<int> _monsterParty;
         private List<int> _moveWeight;
 
-        //list of int to represent how many monsters how difficult
-        private List<IMonsterType> _monsterParty;
-        private int _monsterLevel;
+        #endregion
 
         public MazeMonster() : base()
         {
@@ -37,8 +40,8 @@ namespace MazeTest
 
             SetInteraction(this);
 
-            _monsterParty = new List<IMonsterType>();
-            //_monsterParty.Add( FMonsterFactory.GetMonster() );
+            _monsterParty = new List<int>();
+            _monsterParty.Add( GetMonsterLevel() );
 
             Color = Brushes.Tomato;
         }
@@ -50,19 +53,9 @@ namespace MazeTest
             SetInteraction( FMazeObjectFactory.GetMazeObject(EnumMazeObject.Air) );
         }
 
-        public override void Exit()
+        public void AddMonsters(List<int> newMonsters)
         {
-            // do nothing you're a monster
-        }
-
-        public override EnumMazeObject GetInteractionType()
-        {
-            return EnumMazeObject.Monster;
-        }
-
-        public void AddMonsters(List<IMonsterType> newMonsters)
-        {
-            foreach(IMonsterType m in newMonsters)
+            foreach (int m in newMonsters)
                 _monsterParty.Add(m);
 
             if (_monsterParty.Count < 4)
@@ -76,13 +69,48 @@ namespace MazeTest
             return _monsterParty.Count;
         }
 
+        public override void Hook()
+        {
+            if (_moveWeight[(int)(this.GetLastMove())] == MaxWeight)
+                _moveWeight[(int)(this.GetLastMove())] = 10;
+            else
+                _moveWeight[(int)(this.GetLastMove())] = (_moveWeight[(int)(this.GetLastMove())]) + 10;
+        }
+
+        public List<int> GetMoveWeight()
+        {
+            return _moveWeight;
+        }
+
+        public bool Equals(MazeMonster otherMonster)
+        {
+            return ID == otherMonster.ID;
+        }
+
+        #region Private 
+
+        private int GetMonsterLevel()
+        {
+            Random rnd = new Random();
+            int level = Maze.GetInstance().MazeLevel + rnd.Next(-LevelVariance, LevelVariance + 1);
+
+            if (level < 0)
+                level = 0;
+
+            return level;
+        }
+
+        #endregion
+
+        #region IInteractionType
+
         public override void Interact(LivingCreature creature)
         {
             if (creature.GetInteractionType() == EnumMazeObject.Monster)
             {
                 MazeMonster killer = (MazeMonster)creature;
 
-                if (killer.PartySize() + this.PartySize() <= _maxPartySize)
+                if (killer.PartySize() + this.PartySize() <= MaxPartySize)
                 {
                     killer.AddMonsters(_monsterParty);
 
@@ -100,9 +128,11 @@ namespace MazeTest
                 //<----------------------------------------------------------------------------------add give gear
                 this.Die();
             }
-            
-            
-            // do nothing
+        }
+
+        public override SolidColorBrush GetColor()
+        {
+            return Color;
         }
 
         public override string ToString()
@@ -110,27 +140,12 @@ namespace MazeTest
             return "m";
         }
 
-        public override void Hook()
+        public override EnumMazeObject GetInteractionType()
         {
-            if (_moveWeight[(int)(this.GetLastMove())] == _maxWeight)
-                _moveWeight[(int)(this.GetLastMove())] = 10;
-            else
-                _moveWeight[(int)(this.GetLastMove())] = (_moveWeight[(int)(this.GetLastMove())]) + 10;
+            return EnumMazeObject.Monster;
         }
 
-        public List<int> GetMoveWeight()
-        {
-            return _moveWeight;
-        }
+        #endregion
 
-        public bool Equals(MazeMonster otherMonster)
-        {
-            return ID == otherMonster.ID;
-        }
-
-        public override SolidColorBrush GetColor()
-        {
-            return Color;
-        }
     }
 }

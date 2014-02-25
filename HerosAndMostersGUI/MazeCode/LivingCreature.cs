@@ -13,7 +13,6 @@ namespace MazeTest
     public abstract class LivingCreature : MazeObject, IInteractionType
     {
         //protected DungeonCharacter dc;
-
         private EnumDirection _lastMoveDirection;
         protected Inventory _creatureInventory;
 
@@ -21,19 +20,6 @@ namespace MazeTest
         {
             _creatureInventory = new Inventory();
         }
-
-        #region Abstract Methods
-
-        public abstract void Die();
-        public abstract void Exit();
-        public new abstract SolidColorBrush GetColor();
-        public new abstract EnumMazeObject GetInteractionType();
-        public new abstract void Interact(LivingCreature lc);
-        public new abstract string ToString();
-
-        #endregion
-
-        
 
         public void Interact(EnumDirection dir)
         {
@@ -52,7 +38,24 @@ namespace MazeTest
             return _lastMoveDirection;
         }
 
-        //could this go somewhere else? -- where?
+        public void Move()
+        {
+            MazeMover.Move(GetLastMove(), this);
+            Hook();
+        }
+
+        #region Abstract Methods
+
+        public abstract void Die();
+        public new abstract SolidColorBrush GetColor();
+        public new abstract EnumMazeObject GetInteractionType();
+        public new abstract void Interact(LivingCreature lc);
+        public new abstract string ToString();
+
+        #endregion
+
+        #region Private Methods
+
         private MazeObject GetInteractionObject(EnumDirection dir)
         {
             switch (dir)
@@ -74,16 +77,21 @@ namespace MazeTest
             }
         }
 
-        public void Move()
-        {
-            MazeMover.Move(GetLastMove(), this);
-            Hook();
-        }
+        #endregion      
+
+        #region Virtual Methods
 
         public virtual void Hook()
         {
             
         }
+
+        public virtual void Exit()
+        {
+
+        }
+
+        #endregion
 
     }
 }

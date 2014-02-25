@@ -21,7 +21,7 @@ namespace HerosAndMostersGUI
             _hive = hive;
             InitializeComponent();
 
-            EquipedGear.DataSource = Player.GetInstance().GetEquippedGear();
+            //EquipedGear.DataSource = Player.GetInstance().GetEquippedGear();
             //InventoryItems.DataSource = Player.GetInstance().
 
         }
