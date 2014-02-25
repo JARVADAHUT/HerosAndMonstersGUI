@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns___DC_Design
 {
-    class Monster : DungeonCharacter
+    public class Monster : DungeonCharacter
     {
         private IMonsterTurnAI monsterAI;
 

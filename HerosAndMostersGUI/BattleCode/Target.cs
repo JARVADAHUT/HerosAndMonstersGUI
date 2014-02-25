@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DesignPatterns___DC_Design
 {
-    class Target : IEnumerable<DungeonCharacter>
+    public class Target : IEnumerable<DungeonCharacter>
     {
         private List<DungeonCharacter> _targets;
 

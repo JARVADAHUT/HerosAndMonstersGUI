@@ -24,6 +24,7 @@ namespace DesignPatterns___DC_Design
             this.Delay = delay;
             this.Duration = duration;
 
+            StatAugmentManager.GetInstance().SendCommand(this);
         }
 
 
@@ -32,10 +33,6 @@ namespace DesignPatterns___DC_Design
         {
         }
 
-        public void RegisterCommand()
-        {
-            StatAugmentManager.GetInstance().SendCommand(this);
-        }
 
         private bool ValidateCommand(StatsType statsForMod, Stats stats, int magnitude, int delay,
             int duration)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DesignPatterns___DC_Design
 {
-    abstract class DungeonCharacter
+    public abstract class DungeonCharacter
     {
         private Stats _dcStats;
         public string Name { get; set; }

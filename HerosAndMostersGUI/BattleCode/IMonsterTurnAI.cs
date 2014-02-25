@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns___DC_Design
 {
-    interface IMonsterTurnAI
+    public interface IMonsterTurnAI
     {
         void TakeTurn(Monster monster);
     }

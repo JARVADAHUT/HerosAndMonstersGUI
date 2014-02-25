@@ -46,7 +46,7 @@ namespace HerosAndMostersGUI
             InventoryItems.AddRange(inventory.InventoryItems);
         }
 
-        public void AddItem(List<InventoryItem> items)
+        public void AddItems(IEnumerable<InventoryItem> items)
         {
             InventoryItems.AddRange(items);
         }

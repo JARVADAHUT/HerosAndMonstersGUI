@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns___DC_Design
 {
-    abstract class AttackFactory
+    public abstract class AttackFactory
     {
         protected Stats Stats { get; set; }
 

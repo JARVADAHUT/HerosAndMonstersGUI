@@ -46,8 +46,8 @@ namespace DesignPatterns___DC_Design
             int damage = _random.Next(25 + base.Stats.GetStat(StatsType.Strength));
             int appliedDamage = damage - _random.Next(5 + targetStats.GetStat(StatsType.Defense));
 
-            new StatAugmentCommand(StatsType.CurHp, targetStats, appliedDamage).RegisterCommand();
-            new StatAugmentCommand(StatsType.Agility, base.Stats, 10, 0, 15).RegisterCommand();
+            new StatAugmentCommand(StatsType.CurHp, targetStats, appliedDamage);
+            new StatAugmentCommand(StatsType.Agility, base.Stats, 10, 0, 15);
         }
 
         private void BuildWeak(Stats targetStats)
@@ -55,7 +55,7 @@ namespace DesignPatterns___DC_Design
             int damage = _random.Next(15 + base.Stats.GetStat(StatsType.Strength));
             int appliedDamage = damage - _random.Next(5 + targetStats.GetStat(StatsType.Defense));
 
-            new StatAugmentCommand(StatsType.CurHp, targetStats, appliedDamage).RegisterCommand();
+            new StatAugmentCommand(StatsType.CurHp, targetStats, appliedDamage);
         }
 
         private void BuildDefend(Stats targetStats)

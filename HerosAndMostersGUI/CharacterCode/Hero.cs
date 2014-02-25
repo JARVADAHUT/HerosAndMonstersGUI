@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DesignPatterns___DC_Design
 {
-    class Hero : DungeonCharacter
+    public class Hero : DungeonCharacter
     {
         private static Hero _heroInstance = null;
 

@@ -19,12 +19,7 @@ namespace HerosAndMostersGUI.CharacterCode
             _properties = new List<EffectsData>();
         }
 
-        public void AddEffect(StatsType stat, int magnitude)
-        {
-            AddEffect(stat,magnitude,0,0);
-        }
-
-        public void AddEffect(StatsType stat, int magnitude, int delay, int duration)
+        public void AddEffect(StatsType stat, int magnitude, int delay = 0, int duration = 0)
         {
             _properties.Add(new EffectsData(stat,magnitude,delay,duration));
         }
@@ -38,6 +33,18 @@ namespace HerosAndMostersGUI.CharacterCode
             }
         }
         */
+
+        public void UseItem(Target target)
+        {
+            foreach (var fx in _properties)
+            {
+                foreach (var dc in target)
+                {
+                    new StatAugmentCommand(fx._stat, dc.DCStats, fx._magnitude, fx._delay, fx._duration);
+                }
+            }
+        }
+
         private class EffectsData
         {
             internal StatsType _stat { set; get; }
