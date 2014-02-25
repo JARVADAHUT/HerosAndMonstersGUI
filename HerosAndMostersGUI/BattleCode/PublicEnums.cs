@@ -40,20 +40,15 @@
         Key
     }
 
-    public enum EnumGearType
+    public enum EnumInventoryType
     {
         Head,
         Shoulders,
         Forearm,
         Chest,
         Legs,
-        Feet
-    }
-
-    public enum InventoryCategories
-    {
-        Consumable,
-        Gear
+        Feet,
+        Consumable
     }
 
 }

@@ -65,3 +65,17 @@ N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.baml
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.g.cs
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\App.g.cs
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe.config
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.exe
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.pdb
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.pdb
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csprojResolveAssemblyReference.cache
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.baml
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\MainWindow.g.cs
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\App.g.cs
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_MarkupCompile.cache
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.g.resources
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.InventoryScreen.resources
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
