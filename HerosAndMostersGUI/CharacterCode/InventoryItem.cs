@@ -9,20 +9,22 @@ namespace HerosAndMostersGUI.CharacterCode
 {
     public class InventoryItem
     {
-        public EnumInventoryType Category {private set; get; }
-        private List<EffectsData> _properties; 
-        //Meditate on this
+        public EnumInventoryType Category { private set; get; }
+        private List<EffectInformation> _properties;
+        public int Delay { set; get; }
+        public int Duration { set; get; }
 
         public InventoryItem(EnumInventoryType category)
         {
             Category = category;
-            _properties = new List<EffectsData>();
+            _properties = new List<EffectInformation>();
         }
 
-        public void AddEffect(StatsType stat, int magnitude, int delay = 0, int duration = 0)
+        public void AddEffect(StatsType stat, int magnitude)
         {
-            _properties.Add(new EffectsData(stat,magnitude,delay,duration));
+            _properties.Add(new EffectInformation(stat, magnitude));
         }
+
         /*
         public void RemoveEffect(StatsType stat)
         {
@@ -36,31 +38,8 @@ namespace HerosAndMostersGUI.CharacterCode
 
         public void UseItem(Target target)
         {
-            foreach (var fx in _properties)
-            {
-                foreach (var dc in target)
-                {
-                    new StatAugmentCommand(fx._stat, dc.DCStats, fx._magnitude, fx._delay, fx._duration);
-                }
-            }
-        }
-
-        private class EffectsData
-        {
-            internal StatsType _stat { set; get; }
-            internal int _magnitude { set; get; }
-            internal int _delay { set; get; }
-            internal int _duration { set; get; }
-
-            internal EffectsData(StatsType stat, int magnitude, int delay, int duration)
-            {
-                _stat = stat;
-                _magnitude = magnitude;
-                _delay = delay;
-                _duration = duration;
-            }
-
-
+            var cmd = new StatAugmentCommand(_properties, target);
+            cmd.RegisterCommand();
         }
     }
 }

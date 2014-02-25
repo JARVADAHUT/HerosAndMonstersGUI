@@ -1,60 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
+using HerosAndMostersGUI.CharacterCode;
 
 namespace DesignPatterns___DC_Design
 {
     public class StatAugmentCommand
     {
-        public StatsType Stat { get; set; }
-        public int Magnitude { set; get; }
-        public int Delay { set; get; }
-        public int Duration { set; get; }
+        public List<EffectInformation> Effects { private set; get; }
+        public Target Targets { private set; get; }
 
-
-        private readonly Stats _characterStats;
-
-
-        public StatAugmentCommand(StatsType statForMod, Stats stats, int magnitude, int delay, int duration)
+        public StatAugmentCommand(IEnumerable<EffectInformation> effects, Target targets)
         {
-            if (!ValidateCommand(statForMod, stats, magnitude, delay, duration))
-                throw new ArgumentException("Invalid Command Parameters");
-
-            this.Stat = statForMod;
-            this._characterStats = stats;
-            this.Magnitude = magnitude;
-            this.Delay = delay;
-            this.Duration = duration;
-
-            StatAugmentManager.GetInstance().SendCommand(this);
+            Effects = new List<EffectInformation>();
+            Effects.AddRange(effects);
+            Targets = targets;
         }
 
-
-        public StatAugmentCommand(StatsType statForMod, Stats stats, int magnitude)
-            : this(statForMod, stats, magnitude, 0, 0)
+        public void RegisterCommand()
         {
+            StatAugmentManager.GetInstance().OfferCommand(this);
         }
 
-
-        private bool ValidateCommand(StatsType statsForMod, Stats stats, int magnitude, int delay,
-            int duration)
+        public void AddEffect(EffectInformation effect)
         {
-            var result = true;
-
-            result = stats.HasStat(statsForMod) && delay >= 0 && duration >= 0;
-
-            return result;
+            Effects.Add(effect);
         }
 
+        /*
         public void ApplyAugment()
         {
-            _characterStats.AugmentStat(Stat, Magnitude);
+            foreach (var target in Targets)
+            {
+                foreach (var effect in Effects)
+                {
+                    target.DCStats.AugmentStat(effect.Stat, effect.Magnitude);
+                }
+            }
+                
         }
 
 
         public void RemoveAugment()
         {
-            _characterStats.AugmentStat(Stat, -1 * Magnitude);
+            foreach (var target in Targets)
+            {
+                foreach (var effect in Effects)
+                {
+                    target.DCStats.AugmentStat(effect.Stat, effect.Magnitude * -1);
+                }
+            }
         }
-
+        */
 
     }
 }

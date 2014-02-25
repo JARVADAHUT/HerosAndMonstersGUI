@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using HerosAndMostersGUI.CharacterCode;
 
 namespace DesignPatterns___DC_Design
 {
@@ -16,12 +17,13 @@ namespace DesignPatterns___DC_Design
             return _instanceStatAugmentManager ?? (_instanceStatAugmentManager = new StatAugmentManager());
         }
 
-        public void SendCommand(StatAugmentCommand cmd)
+        public void OfferCommand(StatAugmentCommand cmd)
         {
-
-            var sacThread = new StatAugmentCommandThread(cmd);
-
-            ThreadPool.QueueUserWorkItem(sacThread.ThreadStart);
+            foreach (var effect in cmd.Effects)
+            {
+                var sacThread = new StatAugmentCommandThread(effect,cmd.Targets);
+                ThreadPool.QueueUserWorkItem(sacThread.ThreadStart);
+            }
             //var t = new Thread(new ThreadStart(sacThread.ThreadStart));
             //t.Start();
         }
@@ -29,25 +31,31 @@ namespace DesignPatterns___DC_Design
 
         private class StatAugmentCommandThread
         {
-            private StatAugmentCommand _cmd;
+            private EffectInformation _effect;
+            private Target _targets;
 
-            internal StatAugmentCommandThread(StatAugmentCommand cmd)
+            internal StatAugmentCommandThread(EffectInformation effect, Target targets)
             {
-                _cmd = cmd;
+                _effect = effect;
+                _targets = targets;
             }
 
             internal void ThreadStart(object state)
             {
-                var delay = _cmd.Delay;
-                var duration = _cmd.Duration;
+                var delay = _effect.Delay;
+                var duration = _effect.Duration;
 
-                Thread.Sleep(delay * 1000);
-                _cmd.ApplyAugment();
-
+                foreach (var target in _targets)
+                {
+                    Thread.Sleep(delay*1000);
+                    target.DCStats.AugmentStat(_effect.Stat, _effect.Magnitude);
+                }
                 if (duration <= 0) return;
-                
-                Thread.Sleep(duration*1000);
-                _cmd.RemoveAugment();
+                foreach(var target in _targets)
+                {
+                    Thread.Sleep(duration*1000);
+                    target.DCStats.AugmentStat(_effect.Stat, _effect.Magnitude * -1);
+                }
             }
 
         }

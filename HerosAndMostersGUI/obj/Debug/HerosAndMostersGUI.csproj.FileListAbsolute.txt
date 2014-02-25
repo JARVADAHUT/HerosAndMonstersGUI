@@ -79,3 +79,6 @@ C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.InventoryScreen.resources
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.Properties.Resources.resources
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
+\\netstorage.eastern.ewu.edu\amccall\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe.config
+\\netstorage.eastern.ewu.edu\amccall\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.exe
+\\netstorage.eastern.ewu.edu\amccall\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.pdb

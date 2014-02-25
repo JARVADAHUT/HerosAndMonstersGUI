@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="BattleCode\AttackFactory.cs" />
     <Compile Include="CharacterCode\DungeonCharacter.cs" />
+    <Compile Include="CharacterCode\EffectsInformation.cs" />
     <Compile Include="CharacterCode\Hero.cs" />
     <Compile Include="BattleCode\HeroAttackFactory.cs" />
     <Compile Include="BattleCode\IMonsterTurnAI.cs" />
