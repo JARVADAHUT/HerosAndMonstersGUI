@@ -11,49 +11,97 @@ namespace HerosAndMostersGUI
 {
     public class Inventory
     {
-        public List<InventoryItem> InventoryItems { private set; get; }
-
-        public Inventory(params InventoryItem[] inventoryItems )
-        {
-            InventoryItems = new List<InventoryItem>(inventoryItems);
-        }
-
+        public List<InventoryItem> GearList { private set; get; }
+        public List<InventoryItem> ConsumablesList { private set; get; }
+        public Dictionary<EnumInventoryItemType,InventoryItem> EquipedGearSet { private set; get; }
+ 
         public Inventory()
         {
-            InventoryItems = new List<InventoryItem>();
+            GearList = new List<InventoryItem>();
+            ConsumablesList = new List<InventoryItem>();
         }
 
-        public List<InventoryItem> GetInventorySource()
+        public List<InventoryItem> SortInventory(Comparer<InventoryItem> comparer)
         {
-            return InventoryItems;
+            var resultSet = new List<InventoryItem>();
+            resultSet.AddRange(GearList);
+            resultSet.AddRange(ConsumablesList);
+            resultSet.Sort(comparer);
+
+            return resultSet;
         }
 
-        public void SortInventory(Comparer<InventoryItem> comparer)
-        {
-            InventoryItems.Sort(comparer);
-        }
-
-        public void AddItem(params InventoryItem[] items)
+        public void AddConsumables(params InventoryItem[] items)
         {
             foreach(var x in items)
             {
-                InventoryItems.Add(x);
+                if(x.Category != EnumInventoryItemType.Consumable)
+                    throw new ArgumentException("You aren't using this correctly!");
+                x.SetUseBehvaior(new ApplyEffectsUseBehavior());
+                ConsumablesList.Add(x);
             }   
         }
 
-        public void AddInventory(Inventory inventory)
+        public void AddGear(params InventoryItem[] items)
         {
-            InventoryItems.AddRange(inventory.InventoryItems);
+            foreach (var x in items)
+            {
+                if(x.Category == EnumInventoryItemType.Consumable)
+                    throw new ArgumentException("You aren't using this correctly!");
+                x.SetUseBehvaior(new ApplyEffectsUseBehavior());
+                GearList.Add(x);
+            }   
         }
 
-        public void AddItems(IEnumerable<InventoryItem> items)
+        public void AddItems(params InventoryItem[] items)
         {
-            InventoryItems.AddRange(items);
+            foreach (var x in items)
+            {
+                switch (x.Category)
+                {
+                    case EnumInventoryItemType.Chest:
+                    case EnumInventoryItemType.Feet:
+                    case EnumInventoryItemType.Forearm:
+                    case EnumInventoryItemType.Head:
+                    case EnumInventoryItemType.Legs:
+                    case EnumInventoryItemType.Shoulders:
+                        AddGear(x);
+                        break;
+                    case EnumInventoryItemType.Consumable:
+                        AddConsumables(x);
+                        break;
+                }
+            }
         }
 
-        public void RemoveItem(InventoryItem item)
+        public void UseConsumable(int index, Target targets)
         {
-            InventoryItems.Remove(item);
+            ConsumablesList[index].UseItem(targets);
+            ConsumablesList.RemoveAt(index);
+        }
+
+        public void EquipGear(int index)
+        {
+            if (EquipedGearSet.ContainsKey(GearList[index].Category))
+            {
+                UnEquipGear(GearList[index].Category);
+            }
+            
+            GearList[index].UseItem(new Target(Hero.GetInstance()));
+            GearList[index].SetUseBehvaior(new RemoveEffectsUseBehvaior());
+            EquipedGearSet.Add(GearList[index].Category,GearList[index]);
+        }
+
+        public void UnEquipGear(EnumInventoryItemType type)
+        {
+            if (EquipedGearSet.ContainsKey(type))
+            {
+                InventoryItem result = EquipedGearSet[type];
+                EquipedGearSet.Remove(type);
+                result.UseItem(new Target(Hero.GetInstance()));
+                result.SetUseBehvaior(new ApplyEffectsUseBehavior());
+                AddGear(result);
+            }
         }
     }
 }

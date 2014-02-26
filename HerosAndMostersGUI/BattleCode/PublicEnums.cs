@@ -40,7 +40,7 @@
         Key
     }
 
-    public enum EnumInventoryType
+    public enum EnumInventoryItemType
     {
         Head,
         Shoulders,
@@ -51,4 +51,5 @@
         Consumable
     }
 
+    
 }

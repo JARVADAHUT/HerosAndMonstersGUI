@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HerosAndMostersGUI;
 
 namespace DesignPatterns___DC_Design
 {
@@ -7,6 +8,7 @@ namespace DesignPatterns___DC_Design
     {
         private Stats _dcStats;
         public string Name { get; set; }
+        public Inventory Inventory { get; set; }
 
         private AttackFactory _attackFactory;
 

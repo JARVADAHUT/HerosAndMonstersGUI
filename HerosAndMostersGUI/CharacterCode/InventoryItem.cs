@@ -9,20 +9,19 @@ namespace HerosAndMostersGUI.CharacterCode
 {
     public class InventoryItem
     {
-        public EnumInventoryType Category { private set; get; }
-        private List<EffectInformation> _properties;
-        public int Delay { set; get; }
-        public int Duration { set; get; }
+        public EnumInventoryItemType Category { private set; get; }
+        public List<EffectInformation> Properties { private set; get; }
+        private IUseItemBehavior _useBehavior;
 
-        public InventoryItem(EnumInventoryType category)
+        public InventoryItem(EnumInventoryItemType category)
         {
             Category = category;
-            _properties = new List<EffectInformation>();
+            Properties = new List<EffectInformation>();
         }
 
-        public void AddEffect(StatsType stat, int magnitude)
+        public void AddEffect(EffectInformation effect)
         {
-            _properties.Add(new EffectInformation(stat, magnitude));
+            Properties.Add(effect);
         }
 
         /*
@@ -38,12 +37,12 @@ namespace HerosAndMostersGUI.CharacterCode
 
         public void UseItem(Target targets)
         {
-            var cmd = new StatAugmentCommand();
-            foreach (var target in targets)
-            {
-                cmd.AddEffects(_properties,target);
-            }
-            cmd.RegisterCommand();
+            _useBehavior.UseItem(this,targets);
+        }
+
+        public void SetUseBehvaior(IUseItemBehavior behavior)
+        {
+            _useBehavior = behavior;
         }
     }
 }
