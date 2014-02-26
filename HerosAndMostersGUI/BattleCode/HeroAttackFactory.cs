@@ -8,7 +8,7 @@ namespace DesignPatterns___DC_Design
 {
     class HeroAttackFactory : AttackFactory
     {
-        public HeroAttackFactory(Stats stats) : base(stats)
+        public HeroAttackFactory(DungeonCharacter registeredCharacter) : base(registeredCharacter)
         {
         }
 

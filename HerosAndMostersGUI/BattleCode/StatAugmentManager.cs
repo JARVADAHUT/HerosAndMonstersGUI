@@ -19,10 +19,13 @@ namespace DesignPatterns___DC_Design
 
         public void OfferCommand(StatAugmentCommand cmd)
         {
-            foreach (var effect in cmd.Effects)
+            foreach (var key in cmd.Effects.Keys)
             {
-                var sacThread = new StatAugmentCommandThread(effect,cmd.Targets);
-                ThreadPool.QueueUserWorkItem(sacThread.ThreadStart);
+                foreach (var effect in cmd.Effects[key])
+                {
+                    var sacThread = new StatAugmentCommandThread(effect,key);
+                    ThreadPool.QueueUserWorkItem(sacThread.ThreadStart);
+                }
             }
             //var t = new Thread(new ThreadStart(sacThread.ThreadStart));
             //t.Start();
@@ -31,13 +34,13 @@ namespace DesignPatterns___DC_Design
 
         private class StatAugmentCommandThread
         {
-            private EffectInformation _effect;
-            private Target _targets;
+            private readonly EffectInformation _effect;
+            private readonly DungeonCharacter _target;
 
-            internal StatAugmentCommandThread(EffectInformation effect, Target targets)
+            internal StatAugmentCommandThread(EffectInformation effect, DungeonCharacter target)
             {
                 _effect = effect;
-                _targets = targets;
+                _target = target;
             }
 
             internal void ThreadStart(object state)
@@ -45,17 +48,14 @@ namespace DesignPatterns___DC_Design
                 var delay = _effect.Delay;
                 var duration = _effect.Duration;
 
-                foreach (var target in _targets)
-                {
-                    Thread.Sleep(delay*1000);
-                    target.DCStats.AugmentStat(_effect.Stat, _effect.Magnitude);
-                }
+                Thread.Sleep(delay*1000);
+                _target.DCStats.AugmentStat(_effect.Stat, _effect.Magnitude);
+                
                 if (duration <= 0) return;
-                foreach(var target in _targets)
-                {
-                    Thread.Sleep(duration*1000);
-                    target.DCStats.AugmentStat(_effect.Stat, _effect.Magnitude * -1);
-                }
+
+                Thread.Sleep(duration*1000);
+                _target.DCStats.AugmentStat(_effect.Stat, _effect.Magnitude * -1);
+                
             }
 
         }

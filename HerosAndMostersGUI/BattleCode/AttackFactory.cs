@@ -8,11 +8,11 @@ namespace DesignPatterns___DC_Design
 {
     public abstract class AttackFactory
     {
-        protected Stats Stats { get; set; }
+        protected DungeonCharacter RegisteredDC { get; set; }
 
-        protected AttackFactory(Stats stats)
+        protected AttackFactory(DungeonCharacter dc)
         {
-            Stats = stats;
+            RegisteredDC = dc;
         }
 
         public abstract void Attack(AttackTypes atkType, Target targets);

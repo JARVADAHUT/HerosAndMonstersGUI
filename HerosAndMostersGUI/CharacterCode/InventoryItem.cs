@@ -36,9 +36,13 @@ namespace HerosAndMostersGUI.CharacterCode
         }
         */
 
-        public void UseItem(Target target)
+        public void UseItem(Target targets)
         {
-            var cmd = new StatAugmentCommand(_properties, target);
+            var cmd = new StatAugmentCommand();
+            foreach (var target in targets)
+            {
+                cmd.AddEffects(_properties,target);
+            }
             cmd.RegisterCommand();
         }
     }
