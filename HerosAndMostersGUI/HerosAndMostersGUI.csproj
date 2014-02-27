@@ -56,9 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BattleCode\AttackFactory.cs" />
-    <Compile Include="CharacterCode\Consumable.cs" />
+    <Compile Include="CharacterCode\ApplyEffectsUseBehavior.cs" />
     <Compile Include="CharacterCode\DungeonCharacter.cs" />
-    <Compile Include="CharacterCode\Equipable.cs" />
+    <Compile Include="CharacterCode\EffectsInformation.cs" />
     <Compile Include="CharacterCode\Hero.cs" />
     <Compile Include="BattleCode\HeroAttackFactory.cs" />
     <Compile Include="BattleCode\IMonsterTurnAI.cs" />
@@ -71,6 +71,9 @@
     <Compile Include="BattleCode\StatAugmentManager.cs" />
     <Compile Include="BattleCode\Stats.cs" />
     <Compile Include="BattleCode\Target.cs" />
+    <Compile Include="CharacterCode\NoEffectsUseBehavior.cs" />
+    <Compile Include="CharacterCode\RemoveEffectsUseBehavior.cs" />
+    <Compile Include="CharacterCode\IUseItemBehavior.cs" />
     <Compile Include="InventoryScreen.cs">
       <SubType>Form</SubType>
     </Compile>
