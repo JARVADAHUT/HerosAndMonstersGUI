@@ -113,9 +113,7 @@ namespace MazeTest
                 if (killer.PartySize() + this.PartySize() <= MaxPartySize)
                 {
                     killer.AddMonsters(_monsterParty);
-
-                    //<----------------------------------------------------------------------------------add give gear
-
+                    killer.TakeLoot(_creatureInventory.GetItems());
                     this.Die();
                 }
             }
@@ -125,7 +123,8 @@ namespace MazeTest
                 //enter battle arena
 
                 //exit BA
-                //<----------------------------------------------------------------------------------add give gear
+
+                creature.TakeLoot(_creatureInventory.GetItems());
                 this.Die();
             }
         }

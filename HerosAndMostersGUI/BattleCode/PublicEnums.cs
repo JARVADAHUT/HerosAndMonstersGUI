@@ -10,6 +10,8 @@
         Defense,
         Strength,
         Agility,
+
+        Max //<--- For generating items, put new types before this
     }
 
     public enum AttackTypes
@@ -40,10 +42,13 @@
         Key
     }
 
-    public enum InventoryItemType
+    public enum EnumItemType
     {
         Equipable,
-        Consumable
+        Consumable,
+        Dye,
+
+        Max //<--- For generating items, put new types before this
     }
 
     public enum EnumGearSlot
@@ -54,7 +59,8 @@
         Chest,
         Legs,
         Feet,
-        Consumable
+
+        Max //<--- For generating items, put new types before this
     }
 
     

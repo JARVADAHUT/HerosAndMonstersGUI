@@ -82,3 +82,4 @@ C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj
 \\netstorage.eastern.ewu.edu\amccall\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe.config
 \\netstorage.eastern.ewu.edu\amccall\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.exe
 \\netstorage.eastern.ewu.edu\amccall\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.pdb
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.InventoryScreen.resources

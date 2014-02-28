@@ -13,24 +13,21 @@ namespace HerosAndMostersGUI
     public class Inventory
     {
 
-        private List<GenericItems> itemList;
+        private List<InventoryItems> _itemList;
 
         public Inventory()
         {
-            itemList = new List<GenericItems>();
+            _itemList = new List<InventoryItems>();
         }
 
-        public void AddItem(GenericItems item)
+        public void AddItem(InventoryItems item)
         {
-            itemList.Add(item);
+            _itemList.Add(item);
         }
 
-        public void AddItemList(List<GenericItems> items)
+        public void AddItemList(List<InventoryItems> items)
         {
-            foreach (GenericItems i in items)
-            {
-                itemList.Add(i);
-            }
+            _itemList.AddRange(items);
         }
 
         /*
@@ -51,14 +48,14 @@ namespace HerosAndMostersGUI
         }
         */
 
-        public void RemoveItem(GenericItems item)
+        public void RemoveItem(InventoryItems item)
         {
-            itemList.Remove(item);
+            _itemList.Remove(item);
         }
 
-        internal List<GenericItems> GetItems()
+        internal List<InventoryItems> GetItems()
         {
-            return itemList;
+            return _itemList;
         }
 
         // SORTING ALGORITHM - PARAMS: COMPARER <<OR>> STAT TYPE OR OTHER (possibly overload)

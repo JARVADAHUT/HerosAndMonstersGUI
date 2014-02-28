@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI.CharacterCode
 {
-    interface InventoryItems
+    public interface InventoryItems
     {
 
-        void Use();
+        bool Use();
         String GetDescription();
-        InventoryItemType GetType();
+        EnumItemType GetType();
 
     }
 }

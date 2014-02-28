@@ -1,5 +1,6 @@
 ﻿using DesignPatterns___DC_Design;
 using HerosAndMostersGUI;
+using HerosAndMostersGUI.CharacterCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace MazeTest
             Hook();
         }
 
-        public void TakeLoot(List<GenericItems> items) // <--------- NEWLY ADDED
+        public void TakeLoot(List<InventoryItems> items) // <--------- NEWLY ADDED
         {
             _creatureInventory.AddItemList(items);
         }

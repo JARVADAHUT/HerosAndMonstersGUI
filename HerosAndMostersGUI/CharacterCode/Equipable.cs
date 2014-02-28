@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI.CharacterCode
 {
-    class Equipable : GenericItems
+    public class Equipable : GenericItems
     {
-
-        //private const int _propertyValues = 0;
+        public EnumGearSlot Slot { get; set; }
 
         public Equipable(int key, List<EffectInformation> properties, String description)
             : base(key)
@@ -20,19 +19,15 @@ namespace HerosAndMostersGUI.CharacterCode
             this.Description = description;
         }
 
-        public void Use()
+        public override bool Use()
         {
+            return true;
             // swap
         }
 
-        public String GetDescription()
+        new public EnumItemType GetType()
         {
-            return this.Description;
-        }
-
-        new public InventoryItemType GetType()
-        {
-            return InventoryItemType.Equipable;
+            return EnumItemType.Equipable;
         }
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI
 {
-    class Consumable : GenericItems
+    public class Consumable : GenericItems
     {
 
         public Consumable(int key, List<EffectInformation> properties, String description)
@@ -19,19 +19,15 @@ namespace HerosAndMostersGUI
             this.Description = description;
         }
 
-        public void Use()
+        public override bool Use()
         {
+            return true;
             // use and destroy
         }
 
-        public String GetDescription()
+        new public EnumItemType GetType()
         {
-            return this.Description;
-        }
-
-        new public InventoryItemType GetType()
-        {
-            return InventoryItemType.Consumable;
+            return EnumItemType.Consumable;
         }
 
     }

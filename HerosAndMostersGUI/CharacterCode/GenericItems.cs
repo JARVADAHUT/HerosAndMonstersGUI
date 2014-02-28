@@ -8,7 +8,7 @@ using HerosAndMostersGUI.CharacterCode;
 
 namespace HerosAndMostersGUI
 {
-    public abstract class GenericItems
+    public abstract class GenericItems : InventoryItems
     {
 
         public int Key { get; set; }
@@ -20,6 +20,18 @@ namespace HerosAndMostersGUI
             this.Key = key;
         }
 
+
+        public abstract bool Use();
+
+        public string GetDescription()
+        {
+            return Description;
+        }
+
+        public new EnumItemType GetType()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

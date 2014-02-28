@@ -84,6 +84,8 @@
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="CharacterCode\Inventory.cs" />
+    <Compile Include="MazeCode\FItemGenerator.cs" />
+    <Compile Include="MazeCode\NullItem.cs" />
     <Compile Include="MazeCode\Position.cs" />
     <Compile Include="MazeCode\Surroundings.cs" />
     <Page Include="MainWindow.xaml">

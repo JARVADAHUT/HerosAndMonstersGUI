@@ -1,5 +1,6 @@
 ﻿using DesignPatterns___DC_Design;
 using HerosAndMostersGUI;
+using HerosAndMostersGUI.MazeCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,10 @@ namespace MazeTest
             _loot = new Inventory(); // <------------------ NEWLY ADDED
             _looted = false;
             //_loot.GearContained.Add(FGearFactory.GetGear());
+
+            _loot.AddItemList( FItemGenerator.Generate() );
+
+
         }
 
         public override string ToString()
@@ -33,7 +38,7 @@ namespace MazeTest
             if (!_looted)
             {
                 _myColor = Brushes.BurlyWood;
-                creature.TakeLoot(_loot.GetItems()); // <------------- NEWLY ADDED
+                creature.TakeLoot( _loot.GetItems() ); // <------------- NEWLY ADDED
                 _looted = true;
             }
         }
