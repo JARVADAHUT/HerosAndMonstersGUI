@@ -10,6 +10,6 @@ namespace HerosAndMostersGUI.CharacterCode
 {
     public interface IUseItemBehavior
     {
-        void UseItem(InventoryItem item, Target targets);
+        void UseItem(GenericItems item, Target targets);
     }
 }

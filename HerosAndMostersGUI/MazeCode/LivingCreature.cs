@@ -44,7 +44,7 @@ namespace MazeTest
             Hook();
         }
 
-        public void TakeLoot(List<InventoryItem> items) // <--------- NEWLY ADDED
+        public void TakeLoot(List<GenericItems> items) // <--------- NEWLY ADDED
         {
             _creatureInventory.AddItemList(items);
         }

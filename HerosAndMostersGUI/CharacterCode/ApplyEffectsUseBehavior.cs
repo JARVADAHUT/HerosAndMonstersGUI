@@ -9,7 +9,7 @@ namespace HerosAndMostersGUI.CharacterCode
 {
     public class ApplyEffectsUseBehavior : IUseItemBehavior
     {
-        public void UseItem(InventoryItem item, Target targets)
+        public void UseItem(GenericItems item, Target targets)
         {
             var cmd = new StatAugmentCommand();
             foreach (var target in targets)

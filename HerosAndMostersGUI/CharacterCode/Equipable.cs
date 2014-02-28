@@ -7,29 +7,35 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI.CharacterCode
 {
-    class Equipable : InventoryItem
+    class Equipable : GenericItems
     {
 
-        public Equipable(int key)
+        //private const int _propertyValues = 0;
+
+        public Equipable(int key, List<EffectInformation> properties, String description)
             : base(key)
         {
-
+            this.Key = key;
+            this.Properties = properties;
+            this.Description = description;
         }
 
-        public override void Use()
+        public void Use()
         {
             // swap
         }
 
-        public override String GetDescription()
+        public String GetDescription()
         {
             return this.Description;
         }
 
-        public override InventoryItemType GetType()
+        new public InventoryItemType GetType()
         {
             return InventoryItemType.Equipable;
         }
+
+
 
     }
 }

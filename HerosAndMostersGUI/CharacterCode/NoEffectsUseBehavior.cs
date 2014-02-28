@@ -9,7 +9,7 @@ namespace HerosAndMostersGUI.CharacterCode
 {
     class NoEffectsUseBehavior : IUseItemBehavior
     {
-        public void UseItem(InventoryItem item, Target targets)
+        public void UseItem(GenericItems item, Target targets)
         {
         }
     }

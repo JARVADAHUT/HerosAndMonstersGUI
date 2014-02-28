@@ -13,31 +13,32 @@ namespace HerosAndMostersGUI
     public class Inventory
     {
 
-        private List<InventoryItem> itemList;
+        private List<GenericItems> itemList;
 
         public Inventory()
         {
-            itemList = new List<InventoryItem>();
+            itemList = new List<GenericItems>();
         }
 
-        public void AddItem(InventoryItem item)
+        public void AddItem(GenericItems item)
         {
             itemList.Add(item);
         }
 
-        public void AddItemList(List<InventoryItem> items)
+        public void AddItemList(List<GenericItems> items)
         {
-            foreach (InventoryItem i in items)
+            foreach (GenericItems i in items)
             {
                 itemList.Add(i);
             }
         }
 
+        /*
         public void RemoveItem(int key)
         {
             int index = 0;
             bool found = false;
-            foreach (InventoryItem i in itemList)
+            foreach (GenericItems i in itemList)
             {
                 if (i.Key == key)
                     break;
@@ -48,13 +49,14 @@ namespace HerosAndMostersGUI
             if (found)
                 itemList.RemoveAt(index);
         }
+        */
 
-        public void RemoveItem(InventoryItem item)
+        public void RemoveItem(GenericItems item)
         {
             itemList.Remove(item);
         }
 
-        internal List<InventoryItem> GetItems()
+        internal List<GenericItems> GetItems()
         {
             return itemList;
         }

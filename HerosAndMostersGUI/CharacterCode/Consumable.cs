@@ -1,4 +1,5 @@
 ﻿using DesignPatterns___DC_Design;
+using HerosAndMostersGUI.CharacterCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,28 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI
 {
-    class Consumable : InventoryItem
+    class Consumable : GenericItems
     {
 
-        public Consumable(int key)
+        public Consumable(int key, List<EffectInformation> properties, String description)
             : base(key)
         {
-
+            this.Key = key;
+            this.Properties = properties;
+            this.Description = description;
         }
 
-        public override void Use()
+        public void Use()
         {
             // use and destroy
         }
 
-        public override String GetDescription()
+        public String GetDescription()
         {
             return this.Description;
         }
 
-        public override InventoryItemType GetType()
+        new public InventoryItemType GetType()
         {
             return InventoryItemType.Consumable;
         }

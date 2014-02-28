@@ -9,7 +9,7 @@ namespace HerosAndMostersGUI.CharacterCode
 {
     class RemoveEffectsUseBehvaior : IUseItemBehavior
     {
-        public void UseItem(InventoryItem item, Target targets)
+        public void UseItem(GenericItems item, Target targets)
         {
             var cmd = new StatAugmentCommand();
             var effectsResult = item.Properties.Select(effect => effect.GetInverse()).ToList();

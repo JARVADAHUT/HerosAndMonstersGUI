@@ -8,21 +8,17 @@ using HerosAndMostersGUI.CharacterCode;
 
 namespace HerosAndMostersGUI
 {
-    public abstract class InventoryItem
+    public abstract class GenericItems
     {
 
         public int Key { get; set; }
-        public List<EffectInformation> Properties { private set; get; }
-        protected String Description { get; set; }
+        public List<EffectInformation> Properties { set; get; }
+        public String Description { get; set; }
 
-        public InventoryItem(int key)
+        public GenericItems(int key)
         {
             this.Key = key;
         }
-
-        public abstract void Use();
-        public abstract String GetDescription();
-        new public abstract InventoryItemType GetType();
 
     }
 }
