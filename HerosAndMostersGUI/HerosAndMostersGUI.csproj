@@ -62,13 +62,10 @@
     <Compile Include="CharacterCode\EffectsInformation.cs" />
     <Compile Include="CharacterCode\Equipable.cs" />
     <Compile Include="CharacterCode\Hero.cs" />
-    <Compile Include="BattleCode\HeroAttackFactory.cs" />
     <Compile Include="BattleCode\IMonsterTurnAI.cs" />
     <Compile Include="CharacterCode\GenericItems.cs" />
     <Compile Include="CharacterCode\InventoryItems.cs" />
     <Compile Include="CharacterCode\Monster.cs" />
-    <Compile Include="BattleCode\MonsterAttackFactory.cs" />
-    <Compile Include="BattleCode\MonsterTurnManager.cs" />
     <Compile Include="BattleCode\PublicEnums.cs" />
     <Compile Include="BattleCode\StatAugmentCommand.cs" />
     <Compile Include="BattleCode\StatAugmentManager.cs" />

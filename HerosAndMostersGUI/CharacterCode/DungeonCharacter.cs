@@ -17,11 +17,10 @@ namespace DesignPatterns___DC_Design
             get { return _dcStats; }
         }
 
-        protected DungeonCharacter(string name, Stats stats, AttackFactory factory)
+        protected DungeonCharacter(string name, Stats stats)
         {
             this.Name = name;
             this._dcStats = stats;
-            this._attackFactory = factory;
         }
     }
 }

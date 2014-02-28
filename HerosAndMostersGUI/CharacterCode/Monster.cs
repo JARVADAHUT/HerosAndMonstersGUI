@@ -10,7 +10,7 @@ namespace DesignPatterns___DC_Design
     {
         private IMonsterTurnAI monsterAI;
 
-        public Monster(string name, Stats stats, AttackFactory factory, IMonsterTurnAI monsterAi) : base(name, stats, factory)
+        public Monster(string name, Stats stats, IMonsterTurnAI monsterAi) : base(name, stats)
         {
             monsterAI = monsterAi;
             IsDead = false;
