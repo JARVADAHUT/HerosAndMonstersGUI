@@ -18,7 +18,7 @@ namespace MazeTest
         public MazeObjectChest()
         {
             _myColor = Brushes.Gold;
-            //_loot = new Inventory();
+            _loot = new Inventory(); // <------------------ NEWLY ADDED
             _looted = false;
             //_loot.GearContained.Add(FGearFactory.GetGear());
         }
@@ -33,8 +33,7 @@ namespace MazeTest
             if (!_looted)
             {
                 _myColor = Brushes.BurlyWood;
-                //creature.GiveGear(_loot.GearContained.GetContents());
-                //creature.GiveConsumables(_loot.ConsumablesContained.GetContents());
+                creature.TakeLoot(_loot.GetItems()); // <------------- NEWLY ADDED
                 _looted = true;
             }
         }

@@ -7,7 +7,7 @@ namespace DesignPatterns___DC_Design
     {
         private static Hero _heroInstance = null;
 
-        private Hero(string name, Stats stats) : base(name, stats, new HeroAttackFactory(stats))
+        private Hero(string name, Stats stats) : base(name, stats, new HeroAttackFactory(Hero.GetInstance())) // this was taking stats? Changed to Hero.GetInstance() for it to compile
         {
         }
 

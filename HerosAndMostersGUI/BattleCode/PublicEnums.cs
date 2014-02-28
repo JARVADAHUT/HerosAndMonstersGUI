@@ -40,7 +40,13 @@
         Key
     }
 
-    public enum EnumInventoryItemType
+    public enum InventoryItemType
+    {
+        Equipable,
+        Consumable
+    }
+
+    public enum EnumGearSlot
     {
         Head,
         Shoulders,

@@ -13,12 +13,12 @@ namespace MazeTest
     public class Player : LivingCreature
     {
         private static Player _thisPlayer = null;
-        //private EquippedGearInventory _myEquippedGear;
+        //private static Inventory _myInventory = null;
 
         private Player() : base()
         {
             SetInteraction(this);
-            //_myEquippedGear = new EquippedGearInventory();
+            //_myInventory = new Inventory();
         }
         
         public static Player GetInstance()
