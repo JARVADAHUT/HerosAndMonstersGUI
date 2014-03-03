@@ -32,7 +32,6 @@ namespace DesignPatterns___DC_Design
             return this._targets.GetEnumerator();
         }
 
-        //I'm not sure what this method stub is.
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();

@@ -37,5 +37,10 @@ namespace DesignPatterns___DC_Design
             return "stephen";
         }
 
+
+        public override void Attack(AttackTypes type, Target target)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

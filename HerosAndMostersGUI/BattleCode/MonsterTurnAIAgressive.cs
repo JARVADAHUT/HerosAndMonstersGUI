@@ -18,7 +18,7 @@ namespace HerosAndMostersGUI.BattleCode
             }
             else
             {
-                monster.AttackFactory.Attack(AttackTypes.Strong, new Target(Hero.GetInstance()));
+                monster.Attack(AttackTypes.Strong, new Target(Hero.GetInstance()));
             }
         }
     }

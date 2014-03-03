@@ -23,5 +23,10 @@ namespace DesignPatterns___DC_Design
         {
             monsterAI.TakeTurn(this);
         }
+
+        public override void Attack(AttackTypes type, Target target)
+        {
+            base.AttackFactory.Attack(type,target);
+        }
     }
 }
