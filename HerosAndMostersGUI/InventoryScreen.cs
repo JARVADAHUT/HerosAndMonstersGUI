@@ -1,4 +1,5 @@
-﻿using MazeTest;
+﻿using HerosAndMostersGUI.CharacterCode;
+using MazeTest;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,60 +17,48 @@ namespace HerosAndMostersGUI
     {
         DispatcherTimer _hive;
 
-        // <------------------------------------------------- NESTED CLASS FOR TESTING ONLY
-
-        List<NestedStats> equiped;
-        List<NestedStats> invItems;
-
-        internal class NestedStats
-        {
-            public int Str { get; set; }
-            public int Agi { get; set; }
-            public int Int { get; set; }
-            public int Def { get; set; }
-
-            public NestedStats(int str, int agi, int intel, int def)
-            {
-                this.Str = str;
-                this.Agi = agi;
-                this.Int = intel;
-                this.Def = def;
-            }
-
-            public override String ToString()
-            {
-                return "Strength: " + this.Str + ", Agility: " + this.Agi + ", Intelect: " + this.Int + ", Defense: " + this.Def;
-            }
-
-        }
-
-        void generateLists()
-        {
-            Random rnd = new Random();
-            equiped = new List<NestedStats>();
-            invItems = new List<NestedStats>();
-
-            for (int x = 0; x < 6; x++)
-                equiped.Add(new NestedStats(rnd.Next(20), rnd.Next(20), rnd.Next(20), rnd.Next(20)));
-            for (int x = 0; x < 15; x++)
-                invItems.Add(new NestedStats(rnd.Next(20), rnd.Next(20), rnd.Next(20), rnd.Next(20)));
-        }
-
-        // <------------------------------------------------- NESTED CLASS FOR TESTING ONLY
+        List<InventoryItems> equiped;
+        List<InventoryItems> invItems;
 
         public InventoryScreen(DispatcherTimer hive)
         {
             _hive = hive;
             InitializeComponent();
             this.ControlBox = false;
-            generateLists(); // <------------------------------ REMOVE 
+            generateLists(); 
 
             EquipedGear.DataSource = equiped;
             Inventory.DataSource = invItems;
 
-            //EquipedGear.DataSource = Player.GetInstance().GetEquippedGear();
-            //InventoryItems.DataSource = Player.GetInstance().
+            setInventory();
+            setCurSelectedBox();
 
+
+            // EVENTS
+            //this.Inventory.DrawItem += new System.Windows.Forms.DrawItemEventHandler(Inventory_DrawItem); //<--- allows variable font and text color
+            this.Inventory.SelectedIndexChanged += new EventHandler(setCurSelectedandTradeoffLabels);
+
+        }
+
+
+        private void setInventory()
+        {
+            this.Inventory.Enabled = true;
+            this.Inventory.Font = new Font("Microsoft Sans Black", 20.0f, FontStyle.Bold);
+        }
+
+        private void setCurSelectedBox()
+        {
+            CurSelectStrLabel.Font = new Font("Microsoft Sans Black", 15.0f, FontStyle.Bold);
+            CurSelectAgiLabel.Font = new Font("Microsoft Sans Black", 15.0f, FontStyle.Bold);
+            CurSelectIntLabel.Font = new Font("Microsoft Sans Black", 15.0f, FontStyle.Bold);
+            CurSelectDefLabel.Font = new Font("Microsoft Sans Black", 15.0f, FontStyle.Bold);
+            CurSelectMHPLabel.Font = new Font("Microsoft Sans Black", 15.0f, FontStyle.Bold);
+        }
+
+        private void generateLists()
+        {
+            invItems = new List<InventoryItems>(Player.GetInstance().GetInventory());
         }
 
         private void InventoryScreen_Load(object sender, EventArgs e)
@@ -87,5 +76,18 @@ namespace HerosAndMostersGUI
             _hive.IsEnabled = true;
             Dispose(true);
         }
+
+        // EVENT METHODS ----------------------------------------------------------------------------------
+
+        private void setCurSelectedandTradeoffLabels(object sender, EventArgs e) // <---- NEED TO GET AT STATS HERE
+        {
+            InventoryItems selectedItem = (InventoryItems)this.Inventory.SelectedItem;
+            CurSelectStrLabel.Text = "Strength: " + selectedItem.GetDescription();
+            CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetDescription();
+            CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetDescription();
+            CurSelectDefLabel.Text = "Defense: " + selectedItem.GetDescription();
+            CurSelectMHPLabel.Text = "+Max HP: " + selectedItem.GetDescription();
+        }
+
     }
 }

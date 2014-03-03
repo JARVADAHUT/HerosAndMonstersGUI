@@ -20,7 +20,6 @@ namespace HerosAndMostersGUI
             this.Key = key;
         }
 
-
         public abstract bool Use();
 
         public string GetDescription()
@@ -31,6 +30,11 @@ namespace HerosAndMostersGUI
         public new EnumItemType GetType()
         {
             throw new NotImplementedException();
+        }
+
+        public override String ToString()
+        {
+            return this.Description;
         }
     }
 }
