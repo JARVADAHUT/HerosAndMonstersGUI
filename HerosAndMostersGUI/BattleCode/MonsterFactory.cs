@@ -12,6 +12,24 @@ namespace HerosAndMostersGUI.BattleCode
         private static MonsterFactory _instance;
         private static Random _random;
 
+        private static readonly List<string> PrefixNames = new List<string>()
+                                                   {
+                                                       "Richard",
+                                                       "Maridith",
+                                                       "Augusta",
+                                                       "Stephen",
+                                                       "Homer",
+                                                       "Garrick"
+                                                   };
+
+        private static readonly List<string> SuffixNames = new List<string>()
+                                                   {
+                                                       " the destroyer",
+                                                       " the unstopable",
+                                                       " of the Night",
+                                                       " for the Hoarde",
+                                                       " the badass"
+                                                   }; 
         private MonsterFactory()
         {
             _random = new Random();
@@ -52,7 +70,9 @@ namespace HerosAndMostersGUI.BattleCode
 
         private static string GetName()
         {
-            return "Stephen";
+            var prefix = _random.Next(PrefixNames.Count);
+            var suffix = _random.Next(SuffixNames.Count);
+            return PrefixNames[prefix] + SuffixNames[suffix];
         }
     }
 }

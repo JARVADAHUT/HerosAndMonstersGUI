@@ -11,7 +11,15 @@ namespace HerosAndMostersGUI.BattleCode
     {
         public void TakeTurn(Monster monster)
         {
-            throw new NotImplementedException();
+
+            if (new Random().Next(100) < 70)
+            {
+                monster.Attack(AttackTypes.Weak, new Target(Hero.GetInstance()));
+            }
+            else
+            {
+                monster.AttackFactory.Attack(AttackTypes.Strong, new Target(Hero.GetInstance()));
+            }
         }
     }
 }

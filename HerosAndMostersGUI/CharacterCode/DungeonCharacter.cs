@@ -10,7 +10,7 @@ namespace DesignPatterns___DC_Design
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
 
-        private AttackFactory _attackFactory;
+        public AttackFactory AttackFactory { private set; get; }
 
         public Stats DCStats
         {
@@ -22,5 +22,7 @@ namespace DesignPatterns___DC_Design
             this.Name = name;
             this._dcStats = stats;
         }
+
+        public abstract void Attack(AttackTypes type, Target target);
     }
 }
