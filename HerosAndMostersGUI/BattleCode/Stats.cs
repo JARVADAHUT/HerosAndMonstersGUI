@@ -33,6 +33,17 @@ namespace DesignPatterns___DC_Design
             }
         }
 
+        public void AddStat(StatsType stat, int value)
+        {
+            if(HasStat(stat))
+                throw new ArgumentException("Already Contains the stat: " + stat);
+            _stats.Add(stat,value);
+            if(stat == StatsType.MaxHp)
+                AddStat(StatsType.CurHp,value);
+            if(stat == StatsType.MaxResources)
+                AddStat(StatsType.CurResources, value);
+        }
+
         public bool HasStat(StatsType stat)
         {
             lock (this)
@@ -44,12 +55,14 @@ namespace DesignPatterns___DC_Design
         public int GetStat(StatsType stat)
         {
             if (!HasStat(stat))
-                throw new ArgumentException("Stats does not contain stat:" + stat);
+                throw new ArgumentException("Stats does not contain stat: " + stat);
             return _stats[stat];
         }
 
         private int ValidateStat(StatsType stat, int magnitude)
         {
+            if(!HasStat(stat))
+                throw new ArgumentException("Stats does not contain stat: " + stat);
             switch (stat)
             {
                 case (StatsType.CurHp):
