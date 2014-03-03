@@ -58,6 +58,8 @@
     <Compile Include="BattleCode\AttackFactory.cs" />
     <Compile Include="BattleCode\MonsterFactory.cs" />
     <Compile Include="BattleCode\MonsterTurnAIAgressive.cs" />
+    <Compile Include="BattleCode\MonsterTurnAIHealer.cs" />
+    <Compile Include="BattleCode\MonsterTurnAIPassive.cs" />
     <Compile Include="BattleCode\MonsterTurnManager.cs" />
     <Compile Include="CharacterCode\ApplyEffectsUseBehavior.cs" />
     <Compile Include="CharacterCode\Consumable.cs" />

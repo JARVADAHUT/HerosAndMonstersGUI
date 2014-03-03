@@ -8,7 +8,7 @@ namespace DesignPatterns___DC_Design
     {
         private Stats _dcStats;
         public string Name { get; set; }
-        public Inventory Inventory { get; set; }
+
 
         public AttackFactory AttackFactory { private set; get; }
 

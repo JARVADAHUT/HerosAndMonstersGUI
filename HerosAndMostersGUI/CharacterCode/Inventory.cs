@@ -10,7 +10,7 @@ using HerosAndMostersGUI.CharacterCode;
 namespace HerosAndMostersGUI
 {
 
-    public class Inventory
+    public class Inventory : IEnumerable<InventoryItems>
     {
 
         private List<InventoryItems> _itemList;
@@ -25,7 +25,7 @@ namespace HerosAndMostersGUI
             _itemList.Add(item);
         }
 
-        public void AddItemList(List<InventoryItems> items)
+        public void AddItemList(IEnumerable<InventoryItems> items)
         {
             _itemList.AddRange(items);
         }
@@ -60,6 +60,16 @@ namespace HerosAndMostersGUI
 
         // SORTING ALGORITHM - PARAMS: COMPARER <<OR>> STAT TYPE OR OTHER (possibly overload)
 
+
+        public IEnumerator<InventoryItems> GetEnumerator()
+        {
+            return _itemList.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     } // end class
 
 } //end namespace

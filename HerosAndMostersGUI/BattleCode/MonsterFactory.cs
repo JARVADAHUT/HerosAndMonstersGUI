@@ -27,9 +27,12 @@ namespace HerosAndMostersGUI.BattleCode
                                                        " the destroyer",
                                                        " the unstopable",
                                                        " of the Night",
-                                                       " for the Hoarde",
+                                                       " for the Horde",
                                                        " the badass"
                                                    }; 
+
+        private static readonly Dictionary<string,Dictionary<string,List<string>>> _names = new Dictionary<string,Dictionary<string,List<string>>>();
+
         private MonsterFactory()
         {
             _random = new Random();
@@ -49,13 +52,15 @@ namespace HerosAndMostersGUI.BattleCode
             tempStats.AddStat(StatsType.Strength, GetStatValue(level));
             tempStats.AddStat(StatsType.Strength, GetStatValue(level));
 
-            IMonsterTurnAI tempAI = new MonsterTurnAIAgressive();
+            string AItype;
+            IMonsterTurnAI tempAI = GetAI(level,out AItype);
+            var name = GetName(AItype);
             /*switch (level)
             {
                 
                     
             }*/
-            return new Monster(GetName(),tempStats,tempAI);
+            return new Monster(name,tempStats,tempAI);
         }
 
         private static int GetHpValue(int level)
@@ -68,8 +73,33 @@ namespace HerosAndMostersGUI.BattleCode
             return _random.Next(5 + (level * 2), 10 + (level * 2));
         }
 
-        private static string GetName()
+        private static IMonsterTurnAI GetAI(int level, out string AItype)
         {
+            switch (level)
+            {
+                case 1:
+                    switch (_random.Next(3) + 1)
+                    {
+                        case 1:
+                            AItype = "Agressive";
+                            return new MonsterTurnAIAgressive();
+                        case 2:
+                            AItype = "Passive";
+                            return new MonsterTurnAIPassive();
+                        case 3:
+                            AItype = "Healer";
+                            return new MonsterTurnAIHealer();
+                    }
+                    break;
+            }
+            AItype = "This is not working... yet";
+            return null;
+        }
+
+        private static string GetName(string aiType)
+        {
+
+
             var prefix = _random.Next(PrefixNames.Count);
             var suffix = _random.Next(SuffixNames.Count);
             return PrefixNames[prefix] + SuffixNames[suffix];

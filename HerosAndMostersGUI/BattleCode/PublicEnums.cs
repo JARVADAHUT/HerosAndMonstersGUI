@@ -63,5 +63,8 @@
         Max //<--- For generating items, put new types before this
     }
 
-    
+    public class EnumAttacks
+    {
+        
+    }
 }

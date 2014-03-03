@@ -45,14 +45,14 @@ namespace MazeTest
             Hook();
         }
 
-        public void TakeLoot(List<InventoryItems> items) 
+        public void TakeLoot(IEnumerable<InventoryItems> items) 
         {
             _creatureInventory.AddItemList(items);
         }
 
-        public List<InventoryItems> GetInventory() // <--------- NEWLY ADDED
+        public Inventory GetInventory() // <--------- NEWLY ADDED
         {
-            return _creatureInventory.GetItems();
+            return _creatureInventory;
         }
 
         #region Abstract Methods

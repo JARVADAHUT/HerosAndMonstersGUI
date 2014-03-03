@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using HerosAndMostersGUI;
+using MazeTest;
 
 namespace DesignPatterns___DC_Design
 {
@@ -18,7 +20,7 @@ namespace DesignPatterns___DC_Design
 
         private static Stats BuildStats()
         {
-            Stats result = new Stats(new Dictionary<StatsType, int>
+            var result = new Stats(new Dictionary<StatsType, int>
                 {
                     {StatsType.MaxHp, 100},
                     {StatsType.CurHp, 100},
@@ -41,6 +43,11 @@ namespace DesignPatterns___DC_Design
         public override void Attack(AttackTypes type, Target target)
         {
             throw new NotImplementedException();
+        }
+
+        public Inventory GetInventory()
+        {
+            return Player.GetInstance().GetInventory();
         }
     }
 }
