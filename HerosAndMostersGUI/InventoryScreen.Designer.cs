@@ -42,15 +42,15 @@ namespace HerosAndMostersGUI
             this.CurSelectAgiLabel = new System.Windows.Forms.Label();
             this.CurSelectStrLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Swap = new System.Windows.Forms.Button();
-            this.Exit = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TradeoffMMPLabel = new System.Windows.Forms.Label();
+            this.TradeoffAgiLabel = new System.Windows.Forms.Label();
             this.TradeoffMHPLabel = new System.Windows.Forms.Label();
+            this.TradeoffStrLabel = new System.Windows.Forms.Label();
             this.TradeoffIntLabel = new System.Windows.Forms.Label();
             this.TradeoffDefLabel = new System.Windows.Forms.Label();
-            this.TradeoffAgiLabel = new System.Windows.Forms.Label();
-            this.TradeoffStrLabel = new System.Windows.Forms.Label();
+            this.Equip = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,7 +74,7 @@ namespace HerosAndMostersGUI
             this.tabPage1.Controls.Add(this.Inventory);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.Swap);
+            this.tabPage1.Controls.Add(this.Equip);
             this.tabPage1.Controls.Add(this.Exit);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -196,14 +196,68 @@ namespace HerosAndMostersGUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stat Tradeoffs";
             // 
-            // Swap
+            // TradeoffMMPLabel
             // 
-            this.Swap.Location = new System.Drawing.Point(344, 507);
-            this.Swap.Name = "Swap";
-            this.Swap.Size = new System.Drawing.Size(93, 36);
-            this.Swap.TabIndex = 10;
-            this.Swap.Text = "Swap";
-            this.Swap.UseVisualStyleBackColor = true;
+            this.TradeoffMMPLabel.AutoSize = true;
+            this.TradeoffMMPLabel.Location = new System.Drawing.Point(6, 147);
+            this.TradeoffMMPLabel.Name = "TradeoffMMPLabel";
+            this.TradeoffMMPLabel.Size = new System.Drawing.Size(35, 13);
+            this.TradeoffMMPLabel.TabIndex = 11;
+            this.TradeoffMMPLabel.Text = "label1";
+            // 
+            // TradeoffAgiLabel
+            // 
+            this.TradeoffAgiLabel.AutoSize = true;
+            this.TradeoffAgiLabel.Location = new System.Drawing.Point(6, 50);
+            this.TradeoffAgiLabel.Name = "TradeoffAgiLabel";
+            this.TradeoffAgiLabel.Size = new System.Drawing.Size(46, 13);
+            this.TradeoffAgiLabel.TabIndex = 7;
+            this.TradeoffAgiLabel.Text = "Agility: 0";
+            // 
+            // TradeoffMHPLabel
+            // 
+            this.TradeoffMHPLabel.AutoSize = true;
+            this.TradeoffMHPLabel.Location = new System.Drawing.Point(5, 125);
+            this.TradeoffMHPLabel.Name = "TradeoffMHPLabel";
+            this.TradeoffMHPLabel.Size = new System.Drawing.Size(63, 13);
+            this.TradeoffMHPLabel.TabIndex = 10;
+            this.TradeoffMHPLabel.Text = "+Max HP: 0";
+            // 
+            // TradeoffStrLabel
+            // 
+            this.TradeoffStrLabel.AutoSize = true;
+            this.TradeoffStrLabel.Location = new System.Drawing.Point(6, 24);
+            this.TradeoffStrLabel.Name = "TradeoffStrLabel";
+            this.TradeoffStrLabel.Size = new System.Drawing.Size(59, 13);
+            this.TradeoffStrLabel.TabIndex = 6;
+            this.TradeoffStrLabel.Text = "Strength: 0";
+            // 
+            // TradeoffIntLabel
+            // 
+            this.TradeoffIntLabel.AutoSize = true;
+            this.TradeoffIntLabel.Location = new System.Drawing.Point(5, 101);
+            this.TradeoffIntLabel.Name = "TradeoffIntLabel";
+            this.TradeoffIntLabel.Size = new System.Drawing.Size(73, 13);
+            this.TradeoffIntLabel.TabIndex = 9;
+            this.TradeoffIntLabel.Text = "Intelligence: 0";
+            // 
+            // TradeoffDefLabel
+            // 
+            this.TradeoffDefLabel.AutoSize = true;
+            this.TradeoffDefLabel.Location = new System.Drawing.Point(6, 76);
+            this.TradeoffDefLabel.Name = "TradeoffDefLabel";
+            this.TradeoffDefLabel.Size = new System.Drawing.Size(59, 13);
+            this.TradeoffDefLabel.TabIndex = 8;
+            this.TradeoffDefLabel.Text = "Defense: 0";
+            // 
+            // Equip
+            // 
+            this.Equip.Location = new System.Drawing.Point(344, 507);
+            this.Equip.Name = "Equip";
+            this.Equip.Size = new System.Drawing.Size(93, 36);
+            this.Equip.TabIndex = 10;
+            this.Equip.Text = "Equip";
+            this.Equip.UseVisualStyleBackColor = true;
             // 
             // Exit
             // 
@@ -224,60 +278,6 @@ namespace HerosAndMostersGUI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // TradeoffMMPLabel
-            // 
-            this.TradeoffMMPLabel.AutoSize = true;
-            this.TradeoffMMPLabel.Location = new System.Drawing.Point(6, 147);
-            this.TradeoffMMPLabel.Name = "TradeoffMMPLabel";
-            this.TradeoffMMPLabel.Size = new System.Drawing.Size(35, 13);
-            this.TradeoffMMPLabel.TabIndex = 11;
-            this.TradeoffMMPLabel.Text = "label1";
-            // 
-            // TradeoffMHPLabel
-            // 
-            this.TradeoffMHPLabel.AutoSize = true;
-            this.TradeoffMHPLabel.Location = new System.Drawing.Point(5, 125);
-            this.TradeoffMHPLabel.Name = "TradeoffMHPLabel";
-            this.TradeoffMHPLabel.Size = new System.Drawing.Size(63, 13);
-            this.TradeoffMHPLabel.TabIndex = 10;
-            this.TradeoffMHPLabel.Text = "+Max HP: 0";
-            // 
-            // TradeoffIntLabel
-            // 
-            this.TradeoffIntLabel.AutoSize = true;
-            this.TradeoffIntLabel.Location = new System.Drawing.Point(5, 101);
-            this.TradeoffIntLabel.Name = "TradeoffIntLabel";
-            this.TradeoffIntLabel.Size = new System.Drawing.Size(73, 13);
-            this.TradeoffIntLabel.TabIndex = 9;
-            this.TradeoffIntLabel.Text = "Intelligence: 0";
-            // 
-            // TradeoffDefLabel
-            // 
-            this.TradeoffDefLabel.AutoSize = true;
-            this.TradeoffDefLabel.Location = new System.Drawing.Point(6, 76);
-            this.TradeoffDefLabel.Name = "TradeoffDefLabel";
-            this.TradeoffDefLabel.Size = new System.Drawing.Size(59, 13);
-            this.TradeoffDefLabel.TabIndex = 8;
-            this.TradeoffDefLabel.Text = "Defense: 0";
-            // 
-            // TradeoffAgiLabel
-            // 
-            this.TradeoffAgiLabel.AutoSize = true;
-            this.TradeoffAgiLabel.Location = new System.Drawing.Point(6, 50);
-            this.TradeoffAgiLabel.Name = "TradeoffAgiLabel";
-            this.TradeoffAgiLabel.Size = new System.Drawing.Size(46, 13);
-            this.TradeoffAgiLabel.TabIndex = 7;
-            this.TradeoffAgiLabel.Text = "Agility: 0";
-            // 
-            // TradeoffStrLabel
-            // 
-            this.TradeoffStrLabel.AutoSize = true;
-            this.TradeoffStrLabel.Location = new System.Drawing.Point(6, 24);
-            this.TradeoffStrLabel.Name = "TradeoffStrLabel";
-            this.TradeoffStrLabel.Size = new System.Drawing.Size(59, 13);
-            this.TradeoffStrLabel.TabIndex = 6;
-            this.TradeoffStrLabel.Text = "Strength: 0";
             // 
             // InventoryScreen
             // 
@@ -306,7 +306,7 @@ namespace HerosAndMostersGUI
         private System.Windows.Forms.Button Drop;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button Swap;
+        private System.Windows.Forms.Button Equip;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox Inventory;

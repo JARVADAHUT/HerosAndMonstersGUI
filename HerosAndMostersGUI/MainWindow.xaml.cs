@@ -87,7 +87,7 @@ namespace HerosAndMostersGUI
                     _hive.IsEnabled = false;
 
                     InventoryScreen InvScr = new InventoryScreen(_hive);
-                    InvScr.Show();
+                    InvScr.ShowDialog();
 
                     /*
 
