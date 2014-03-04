@@ -51,8 +51,8 @@ namespace HerosAndMostersGUI.MazeCode
 
             }
 
-            
-            
+
+
             return theLoot;
         }
 
@@ -63,38 +63,69 @@ namespace HerosAndMostersGUI.MazeCode
         {
             List<EffectInformation> stats = new List<EffectInformation>();
             Equipable gear;
-            EnumGearSlot slot = (EnumGearSlot) rnd.Next( (int)EnumGearSlot.Max );
+            EnumGearSlot slot = (EnumGearSlot)rnd.Next((int)EnumGearSlot.Max);
             int statPool = (Maze.GetInstance().MazeLevel + 1) * _statPoolPerLevel;
 
             StatContainer statContainer = new StatContainer();
 
-            while(statPool > 0)
+            while (statPool > 0)
             {
                 int whatStat = ChooseStat();
                 statContainer.Increment(whatStat);
                 statPool -= 1;
             }
 
-            stats.Add( new EffectInformation(StatsType.MaxHp, statContainer.Hp) );
-            stats.Add( new EffectInformation(StatsType.MaxResources, statContainer.Mp) );
-            stats.Add( new EffectInformation(StatsType.Agility, statContainer.Agi) );
-            stats.Add( new EffectInformation(StatsType.Strength, statContainer.Str) );
-            stats.Add( new EffectInformation(StatsType.Intelegence, statContainer.Int) );
-            stats.Add( new EffectInformation(StatsType.Defense, statContainer.Def) );
+            stats.Add(new EffectInformation(StatsType.MaxHp, statContainer.Hp));
+            stats.Add(new EffectInformation(StatsType.MaxResources, statContainer.Mp));
+            stats.Add(new EffectInformation(StatsType.Agility, statContainer.Agi));
+            stats.Add(new EffectInformation(StatsType.Strength, statContainer.Str));
+            stats.Add(new EffectInformation(StatsType.Intelegence, statContainer.Int));
+            stats.Add(new EffectInformation(StatsType.Defense, statContainer.Def));
 
-            gear = new Equipable(key++, stats, GetEquippableDescription());
+            gear = new Equipable(key++, stats, GetEquippableDescription(statContainer, slot));
             gear.Slot = slot;
 
             return gear;
         }
 
-
-        private static string GetEquippableDescription()
+        private static string GetEquippableDescription(StatContainer gearStats, EnumGearSlot slot)
         {
-            //do more complex name generation here
-            return "gear";
+            int max = gearStats.Next();
+            int statType = 0;
+
+            for (int x = 1; x < StatContainer.NumStats; x++)
+            {
+                int check = gearStats.Next();
+                if (max <= check)
+                {
+                    max = check;
+                    statType = x;
+                }
+            }
+
+            return GetSlotText(slot) + gearStats.GetStatName(statType);
         }
 
+        private static string GetSlotText(EnumGearSlot slot)
+        {
+            switch (slot)
+            {
+                case EnumGearSlot.Chest:
+                    return "Chest";
+                case EnumGearSlot.Legs:
+                    return "Pants";
+                case EnumGearSlot.Forearm:
+                    return "Gauntlets";
+                case EnumGearSlot.Feet:
+                    return "Boots";
+                case EnumGearSlot.Head:
+                    return "Helmet";
+                case EnumGearSlot.Shoulders:
+                    return "Spaulders";
+                default:
+                    return "ERROR";
+            }
+        }
 
         private static int ChooseStat()
         {
@@ -107,7 +138,7 @@ namespace HerosAndMostersGUI.MazeCode
         private static EnumItemType GetItemType()
         {
             //add more knowledge later?
-            return  (EnumItemType) rnd.Next((int) EnumItemType.Max );
+            return (EnumItemType)rnd.Next((int)EnumItemType.Max);
         }
     }
 
@@ -121,6 +152,64 @@ namespace HerosAndMostersGUI.MazeCode
         public int Str { set; get; }
 
         public static int NumStats = 6;
+
+        private int curStat;
+
+        public StatContainer()
+        {
+            curStat = 0;
+        }
+
+
+        public int Next()
+        {
+            int retVal = GetStat(curStat);
+            curStat = (curStat + 1) % NumStats;
+
+            return retVal;
+        }
+
+        public string GetStatName(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    return " of The Eagle";
+                case 1:
+                    return " of The Whale";
+                case 2:
+                    return " of The Turtle";
+                case 3:
+                    return " of The Monkey";
+                case 4:
+                    return " of The Owl";
+                case 5:
+                    return " of The Bear";
+                default:
+                    return "ERROR";
+            }
+        }
+
+        public int GetStat(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    return Hp;
+                case 1:
+                    return Mp;
+                case 2:
+                    return Def;
+                case 3:
+                    return Agi;
+                case 4:
+                    return Int;
+                case 5:
+                    return Str;
+                default:
+                    return 0;
+            }
+        }
 
         public void Increment(int i)
         {
