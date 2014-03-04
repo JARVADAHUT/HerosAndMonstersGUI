@@ -14,12 +14,12 @@ namespace MazeTest
     public class Player : LivingCreature
     {
         private static Player _thisPlayer = null;
-        private Dictionary<InventoryItems, int> equipedGear; // <------- NEWLY ADDED
+        private Dictionary<Equipable, EnumGearSlot> equipedGear; // <------- NEWLY ADDED
 
         private Player() : base()
         {
             SetInteraction(this);
-            equipedGear = new Dictionary<InventoryItems, int>(); // <------- NEWLY ADDED
+            equipedGear = new Dictionary<Equipable, EnumGearSlot>(); // <------- NEWLY ADDED
             GenerateBeginningEquipedGear();
         }
         
@@ -43,7 +43,7 @@ namespace MazeTest
 
         }
 
-        public Dictionary<InventoryItems, int> GetEquipedInventory() // <------- NEWLY ADDED
+        public Dictionary<Equipable, EnumGearSlot> GetEquipedInventory() // <------- NEWLY ADDED
         {
             return equipedGear;
         }
