@@ -9,12 +9,20 @@ using System.Threading.Tasks;
 
 namespace HerosAndMostersGUI.MazeCode
 {
+
+    private enum Rarity
+    {
+
+    }
+
     public class FItemGenerator
     {
         private static int key = 0;
         private static Random rnd = new Random();
         private const int _itemMax = 3;
-        private const int _statPoolPerLevel = 30;
+        private const int _statPoolPerLevel = 10;
+        private const int _plusOrMinusToPool = 10;
+
 
         public static List<InventoryItems> Generate()
         {
@@ -56,6 +64,57 @@ namespace HerosAndMostersGUI.MazeCode
             return theLoot;
         }
 
+        private static EnumItemType GetItemType()
+        {
+            //add more knowledge later?
+            return (EnumItemType)rnd.Next((int)EnumItemType.Max);
+        }
+
+        #region GetStarterGear
+
+        public static Dictionary<EnumGearSlot, Equipable> GetStarterGear()
+        {
+            List<EffectInformation> blankStats = new List<EffectInformation>();
+
+            blankStats.Add(new EffectInformation(StatsType.MaxHp, 0));
+            blankStats.Add(new EffectInformation(StatsType.MaxResources, 0));
+            blankStats.Add(new EffectInformation(StatsType.Agility, 0));
+            blankStats.Add(new EffectInformation(StatsType.Strength, 0));
+            blankStats.Add(new EffectInformation(StatsType.Intelegence, 0));
+            blankStats.Add(new EffectInformation(StatsType.Defense, 0));
+
+            Dictionary<EnumGearSlot,Equipable> gearSlots = new Dictionary<EnumGearSlot,Equipable>();
+
+            Equipable head = new Equipable(key++, blankStats, "Burlap Sack");
+            head.Slot = EnumGearSlot.Head;
+
+            Equipable legs = new Equipable(key++, blankStats, "Saggy Pants");
+            legs.Slot = EnumGearSlot.Legs;
+
+            Equipable feet = new Equipable(key++, blankStats, "Socks");
+            feet.Slot = EnumGearSlot.Feet;
+
+            Equipable arm = new Equipable(key++, blankStats, "Livestrong Wristband");
+            arm.Slot = EnumGearSlot.Forearm;
+
+            Equipable chest = new Equipable(key++, blankStats, "T-Shirt");
+            chest.Slot = EnumGearSlot.Chest;
+
+            Equipable shoulder = new Equipable(key++, blankStats, "A Pet Bird");
+            shoulder.Slot = EnumGearSlot.Shoulders;
+
+            gearSlots.Add(head.Slot, head);
+            gearSlots.Add(legs.Slot, legs);
+            gearSlots.Add(feet.Slot, feet);
+            gearSlots.Add(arm.Slot, arm);
+            gearSlots.Add(chest.Slot, chest);
+            gearSlots.Add(shoulder.Slot, shoulder);
+
+            return gearSlots;
+
+        }
+
+        #endregion
 
         #region Generate Equippable
 
@@ -64,7 +123,7 @@ namespace HerosAndMostersGUI.MazeCode
             List<EffectInformation> stats = new List<EffectInformation>();
             Equipable gear;
             EnumGearSlot slot = (EnumGearSlot)rnd.Next((int)EnumGearSlot.Max);
-            int statPool = (Maze.GetInstance().MazeLevel + 1) * _statPoolPerLevel;
+            int statPool = ((Maze.GetInstance().MazeLevel + 1) * _statPoolPerLevel) + rnd.Next(- _plusOrMinusToPool, _plusOrMinusToPool + 1);
 
             StatContainer statContainer = new StatContainer();
 
@@ -74,6 +133,10 @@ namespace HerosAndMostersGUI.MazeCode
                 statContainer.Increment(whatStat);
                 statPool -= 1;
             }
+
+
+            
+            //rarity here
 
             stats.Add(new EffectInformation(StatsType.MaxHp, statContainer.Hp));
             stats.Add(new EffectInformation(StatsType.MaxResources, statContainer.Mp));
@@ -113,7 +176,7 @@ namespace HerosAndMostersGUI.MazeCode
                 case EnumGearSlot.Chest:
                     return "Chest";
                 case EnumGearSlot.Legs:
-                    return "Pants";
+                    return "Leggings";
                 case EnumGearSlot.Forearm:
                     return "Gauntlets";
                 case EnumGearSlot.Feet:
@@ -134,13 +197,9 @@ namespace HerosAndMostersGUI.MazeCode
 
         #endregion
 
-
-        private static EnumItemType GetItemType()
-        {
-            //add more knowledge later?
-            return (EnumItemType)rnd.Next((int)EnumItemType.Max);
-        }
     }
+
+    #region Stat Container
 
     internal class StatContainer
     {
@@ -237,7 +296,6 @@ namespace HerosAndMostersGUI.MazeCode
         }
     }
 
-
-
+    #endregion
 
 }
