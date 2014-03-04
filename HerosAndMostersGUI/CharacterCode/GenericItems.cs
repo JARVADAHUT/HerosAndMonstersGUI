@@ -41,6 +41,15 @@ namespace HerosAndMostersGUI
         {
             return this.Description;
         }
+
+        public EffectInformation GetProperty(StatsType type)
+        {
+            EffectInformation temp = new EffectInformation(type, 0);
+            int index = Properties.IndexOf(temp);
+
+            return Properties.ElementAt<EffectInformation>(index);
+
+        }
     }
 }
 

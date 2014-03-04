@@ -7,7 +7,7 @@ using DesignPatterns___DC_Design;
 
 namespace HerosAndMostersGUI.CharacterCode
 {
-    public class EffectInformation
+    public class EffectInformation : IEquatable<EffectInformation>
     {
         public StatsType Stat { set; get; }
         public int Magnitude { set; get; }
@@ -25,6 +25,11 @@ namespace HerosAndMostersGUI.CharacterCode
         public EffectInformation GetInverse()
         {
             return new EffectInformation(Stat,-1*Magnitude);
+        }
+
+        public bool Equals(EffectInformation other)
+        {
+            return this.Stat == other.Stat;
         }
     }
 }

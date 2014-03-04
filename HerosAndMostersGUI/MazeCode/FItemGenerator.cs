@@ -10,11 +10,14 @@ using System.Threading.Tasks;
 namespace HerosAndMostersGUI.MazeCode
 {
 
+<<<<<<< HEAD
 //    private enum Rarity
 //    {
 //
 //    }
 
+=======
+>>>>>>> Consumables implemented
     public class FItemGenerator
     {
         private static int key = 0;
@@ -33,8 +36,8 @@ namespace HerosAndMostersGUI.MazeCode
             for (int x = 0; x < howManyItems; x++)
             {
                 EnumItemType itemType = GetItemType();
-                InventoryItems item = GenerateEquipable();//new NullItem();
-                /*
+                InventoryItems item = new NullItem();
+                
                 switch (itemType)
                 {
                     case EnumItemType.Equipable:
@@ -42,18 +45,18 @@ namespace HerosAndMostersGUI.MazeCode
                         break;
 
                     case EnumItemType.Consumable:
-
+                        item = GenerateConsumable();
                         break;
 
-                    case EnumItemType.Dye:
-
-                        break;
+                    //case EnumItemType.HealthPot:
+                    //    item = GenerateHealthPot();
+                    //    break;
 
                     default:
                         item = GenerateEquipable();
                         break;
                 }//end switch
-                */
+                
 
                 theLoot.Add(item);
 
@@ -69,6 +72,66 @@ namespace HerosAndMostersGUI.MazeCode
             //add more knowledge later?
             return (EnumItemType)rnd.Next((int)EnumItemType.Max);
         }
+
+        #region Generate Consumable
+
+        private static Consumable GenerateConsumable()
+        {
+            StatsType whatStat = ChoosePotStat();
+            int magnitude = rnd.Next( 10, ((Maze.GetInstance().MazeLevel + 1) * 10) + 1 ) + rnd.Next( -_plusOrMinusToPool, _plusOrMinusToPool );
+            int duration;
+            
+            if(whatStat == StatsType.CurHp || whatStat == StatsType.CurResources)
+                duration = 0;
+            else
+                duration = rnd.Next(10, 30);
+
+            List<EffectInformation> potionEffects = new List<EffectInformation>();
+
+            //potionEffects.Add( new EffectInformation( (StatsType) whatStat, magnitude, 0, duration ) );
+
+            // -2 to get rid of cur's
+            for (int x = 0; x < ((int)StatsType.Max - 2); x++)
+            {
+                if (x != (int)whatStat)
+                    potionEffects.Add(new EffectInformation((StatsType)x, 0));
+                else
+                    potionEffects.Add(new EffectInformation((StatsType)whatStat, magnitude, 0, duration));
+            }
+
+            Consumable thePotion = new Consumable(key++, potionEffects, GetPotName(whatStat));
+
+            return thePotion;
+        }
+
+
+        private static StatsType ChoosePotStat()
+        {
+            return (StatsType)rnd.Next( (int)StatsType.Max - 2);
+        }
+
+        private static string GetPotName(StatsType whatStat)
+        {
+            switch (whatStat)
+            {
+                case StatsType.CurHp:
+                    return "Health Potion";
+                case StatsType.CurResources:
+                    return "Mana Potion";
+                case StatsType.Defense:
+                    return "Potion of Defence";
+                case StatsType.Agility:
+                    return "Potion of Agility";
+                case StatsType.Strength:
+                    return "Potion of Strength";
+                case StatsType.Intelegence:
+                    return "Potion of Intellect";
+                default:
+                    return "ERROR";
+            }
+        }
+
+        #endregion
 
         #region GetStarterGear
 
@@ -104,11 +167,11 @@ namespace HerosAndMostersGUI.MazeCode
             shoulder.Slot = EnumGearSlot.Shoulders;
 
             gearSlots.Add(head.Slot, head);
+            gearSlots.Add(shoulder.Slot, shoulder);
+            gearSlots.Add(chest.Slot, chest);
+            gearSlots.Add(arm.Slot, arm);
             gearSlots.Add(legs.Slot, legs);
             gearSlots.Add(feet.Slot, feet);
-            gearSlots.Add(arm.Slot, arm);
-            gearSlots.Add(chest.Slot, chest);
-            gearSlots.Add(shoulder.Slot, shoulder);
 
             return gearSlots;
 
@@ -129,14 +192,17 @@ namespace HerosAndMostersGUI.MazeCode
 
             while (statPool > 0)
             {
-                int whatStat = ChooseStat();
+                int whatStat = ChooseGearStat();
                 statContainer.Increment(whatStat);
                 statPool -= 1;
             }
 
 
-            
             //rarity here
+            int rarity = rnd.Next(1000);
+            double statScale = GetRarity(rarity);
+            statContainer.Scale(statScale);
+            
 
             stats.Add(new EffectInformation(StatsType.MaxHp, statContainer.Hp));
             stats.Add(new EffectInformation(StatsType.MaxResources, statContainer.Mp));
@@ -145,10 +211,43 @@ namespace HerosAndMostersGUI.MazeCode
             stats.Add(new EffectInformation(StatsType.Intelegence, statContainer.Int));
             stats.Add(new EffectInformation(StatsType.Defense, statContainer.Def));
 
-            gear = new Equipable(key++, stats, GetEquippableDescription(statContainer, slot));
+            gear = new Equipable(key++, stats, GetRarityInText(rarity) + GetEquippableDescription(statContainer, slot) );
             gear.Slot = slot;
 
             return gear;
+        }
+
+        private static string GetRarityInText(double rarity)
+        {
+            if (rarity <= 100)//basic
+                return "Basic ";
+            else if (rarity <= 700)//common
+                return "Common ";
+            else if (rarity <= 900)//uncommon
+                return "Uncommon ";
+            else if (rarity <= 975)//rare
+                return "Rare ";
+            else if (rarity <= 999)//epic
+                return "Epic ";
+            else//legendary
+                return "Legendary ";
+        }
+
+        private static double GetRarity(int type)
+        {
+            
+            if (type <= 100)//basic
+                return .40;
+            else if (type <= 700)//common
+                return 1.0;
+            else if (type <= 900)//uncommon
+                return 1.1;
+            else if (type <= 975)//rare
+                return 1.3;
+            else if (type <= 999)//epic
+                return 1.6;
+            else//legendary
+                return 2;
         }
 
         private static string GetEquippableDescription(StatContainer gearStats, EnumGearSlot slot)
@@ -190,7 +289,7 @@ namespace HerosAndMostersGUI.MazeCode
             }
         }
 
-        private static int ChooseStat()
+        private static int ChooseGearStat()
         {
             return rnd.Next(StatContainer.NumStats);
         }
@@ -293,6 +392,17 @@ namespace HerosAndMostersGUI.MazeCode
                     Str++;
                     break;
             }
+        }
+
+        internal void Scale(double statScale)
+        {
+            Hp = (int) ( (double) Hp * statScale );
+            Mp = (int)((double) Mp * statScale);
+            Str = (int)((double) Str * statScale);
+            Int = (int)((double) Int * statScale);
+            Agi = (int)((double) Agi * statScale);
+            Def = (int)((double) Def * statScale);
+
         }
     }
 

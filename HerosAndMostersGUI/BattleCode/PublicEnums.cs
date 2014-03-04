@@ -4,12 +4,14 @@
     {
         CurResources,
         CurHp,
-        MaxHp,
-        MaxResources,
+        
         Agility,
         Strength,
         Intelegence,
         Defense,
+
+        MaxHp,
+        MaxResources,
 
         Max //<--- For generating items, put new types before this
     }
@@ -46,7 +48,6 @@
     {
         Equipable,
         Consumable,
-        Dye,
 
         Max //<--- For generating items, put new types before this
     }
