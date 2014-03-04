@@ -14,7 +14,7 @@ namespace HerosAndMostersGUI.CharacterCode
         String GetDescription();
         List<EffectInformation> GetProperties();
         EffectInformation GetProperty(StatsType type);
+        void SetType(EnumItemType type);
         EnumItemType GetType();
-
     }
 }

@@ -8,7 +8,7 @@ namespace HerosAndMostersGUI.MazeCode
 {
     public class NullItem : InventoryItems
     {
-
+        //this will never actually be used anywhere, just make it think something was created
         public bool Use()
         {
             throw new NotImplementedException();
@@ -25,6 +25,18 @@ namespace HerosAndMostersGUI.MazeCode
         }
 
         public List<EffectInformation> GetProperties()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public EffectInformation GetProperty(DesignPatterns___DC_Design.StatsType type)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void SetType(DesignPatterns___DC_Design.EnumItemType type)
         {
             throw new NotImplementedException();
         }

@@ -124,31 +124,34 @@ namespace HerosAndMostersGUI
                 {
                     // curSelect adjustments
                     InventoryItems selectedItem = (InventoryItems)this.Inventory.SelectedItem;
-                    CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Strength) - 2).Magnitude;
-                    CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Agility) - 2).Magnitude;
-                    CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Intelegence) - 2).Magnitude;
-                    CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Defense) - 2).Magnitude;
-                    CurSelectMHPLabel.Text = "Bonus HP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude;
-                    CurSelectMMPLabel.Text = "Bonus MP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxResources) - 2).Magnitude;
+                    CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperty(StatsType.Strength).Magnitude;
+                    CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperty(StatsType.Agility).Magnitude;
+                    CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperty(StatsType.Intelegence).Magnitude;
+                    CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperty(StatsType.Defense).Magnitude;
+                    CurSelectMHPLabel.Text = "Bonus HP: " + selectedItem.GetProperty(StatsType.MaxHp).Magnitude;
+                    CurSelectMMPLabel.Text = "Bonus MP: " + selectedItem.GetProperty(StatsType.MaxResources).Magnitude;
 
                     //tradeoff calculations
-                    EnumGearSlot selectedType = ((Equipable)selectedItem).Slot;
-                    int tStr = (selectedItem.GetProperties().ElementAt((int)(StatsType.Strength) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Strength) - 2).Magnitude);
-                    int tAgi = (selectedItem.GetProperties().ElementAt((int)(StatsType.Agility) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Agility) - 2).Magnitude);
-                    int tInt = (selectedItem.GetProperties().ElementAt((int)(StatsType.Intelegence) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Intelegence) - 2).Magnitude);
-                    int tDef = (selectedItem.GetProperties().ElementAt((int)(StatsType.Defense) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Defense) - 2).Magnitude);
-                    int tMHP = (selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.MaxHp) - 2).Magnitude);
-                    int tMMP = (selectedItem.GetProperties().ElementAt((int)(StatsType.MaxResources) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.MaxResources) - 2).Magnitude);
+                    if (selectedItem.GetType() == EnumItemType.Equipable) //<---DEBUG----DEBUG : Get rid of this when potion tab is implemented ------DEBUG-----DEBUG-------DEBUG----------DEBUG----------DEBUG-------DEBUG-----------
+                    {
+                        EnumGearSlot selectedType = ((Equipable)selectedItem).Slot;
+                        int tStr = (selectedItem.GetProperty(StatsType.Strength).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Strength).Magnitude);
+                        int tAgi = (selectedItem.GetProperty(StatsType.Agility).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Agility).Magnitude);
+                        int tInt = (selectedItem.GetProperty(StatsType.Intelegence).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Intelegence).Magnitude);
+                        int tDef = (selectedItem.GetProperty(StatsType.Defense).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Defense).Magnitude);
+                        int tMHP = (selectedItem.GetProperty(StatsType.MaxHp).Magnitude) - (equiped[selectedType].GetProperty(StatsType.MaxHp).Magnitude);
+                        int tMMP = (selectedItem.GetProperty(StatsType.MaxResources).Magnitude) - (equiped[selectedType].GetProperty(StatsType.MaxResources).Magnitude);
 
-                    // tradeoff adjustments
-                    TradeoffStrLabel.Text = "Strength: " + tStr;
-                    TradeoffAgiLabel.Text = "Agility: " + tAgi;
-                    TradeoffIntLabel.Text = "Intelligence: " + tInt;
-                    TradeoffDefLabel.Text = "Defense: " + tDef;
-                    TradeoffMHPLabel.Text = "Bonus HP: " + tMHP;
-                    TradeoffMMPLabel.Text = "Bonus MP: " + tMMP;
+                        // tradeoff adjustments
+                        TradeoffStrLabel.Text = "Strength: " + tStr;
+                        TradeoffAgiLabel.Text = "Agility: " + tAgi;
+                        TradeoffIntLabel.Text = "Intelligence: " + tInt;
+                        TradeoffDefLabel.Text = "Defense: " + tDef;
+                        TradeoffMHPLabel.Text = "Bonus HP: " + tMHP;
+                        TradeoffMMPLabel.Text = "Bonus MP: " + tMMP;
 
-                    SetTradeoffColors(tStr, tAgi, tInt, tDef, tMHP, tMMP);
+                        SetTradeoffColors(tStr, tAgi, tInt, tDef, tMHP, tMMP);
+                    }
                 }
                 catch (NullReferenceException)
                 {

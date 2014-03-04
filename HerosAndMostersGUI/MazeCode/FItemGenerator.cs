@@ -10,14 +10,6 @@ using System.Threading.Tasks;
 namespace HerosAndMostersGUI.MazeCode
 {
 
-<<<<<<< HEAD
-//    private enum Rarity
-//    {
-//
-//    }
-
-=======
->>>>>>> Consumables implemented
     public class FItemGenerator
     {
         private static int key = 0;
@@ -42,18 +34,17 @@ namespace HerosAndMostersGUI.MazeCode
                 {
                     case EnumItemType.Equipable:
                         item = GenerateEquipable();
+                        item.SetType(EnumItemType.Equipable);
                         break;
 
                     case EnumItemType.Consumable:
                         item = GenerateConsumable();
+                        item.SetType(EnumItemType.Consumable);
                         break;
-
-                    //case EnumItemType.HealthPot:
-                    //    item = GenerateHealthPot();
-                    //    break;
 
                     default:
                         item = GenerateEquipable();
+                        item.SetType(EnumItemType.Equipable);
                         break;
                 }//end switch
                 
@@ -90,8 +81,7 @@ namespace HerosAndMostersGUI.MazeCode
 
             //potionEffects.Add( new EffectInformation( (StatsType) whatStat, magnitude, 0, duration ) );
 
-            // -2 to get rid of cur's
-            for (int x = 0; x < ((int)StatsType.Max - 2); x++)
+            for (int x = 0; x < ((int)StatsType.Max); x++)
             {
                 if (x != (int)whatStat)
                     potionEffects.Add(new EffectInformation((StatsType)x, 0));
