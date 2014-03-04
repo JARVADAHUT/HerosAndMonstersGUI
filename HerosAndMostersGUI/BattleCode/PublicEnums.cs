@@ -48,6 +48,7 @@
     {
         Equipable,
         Consumable,
+        Dye,
 
         Max //<--- For generating items, put new types before this
     }

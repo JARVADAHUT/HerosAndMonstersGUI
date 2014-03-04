@@ -15,8 +15,8 @@ namespace HerosAndMostersGUI.MazeCode
         private static int key = 0;
         private static Random rnd = new Random();
         private const int _itemMax = 3;
-        private const int _statPoolPerLevel = 10;
-        private const int _plusOrMinusToPool = 10;
+        private const int _statPoolPerLevel = 5;
+        private const int _plusOrMinusToPool = 5;
 
 
         public static List<InventoryItems> Generate()
@@ -42,6 +42,11 @@ namespace HerosAndMostersGUI.MazeCode
                         item.SetType(EnumItemType.Consumable);
                         break;
 
+                    case EnumItemType.Dye:
+                        item = GenerateDye();
+                        item.SetType(EnumItemType.Dye);
+                        break;
+
                     default:
                         item = GenerateEquipable();
                         item.SetType(EnumItemType.Equipable);
@@ -58,10 +63,25 @@ namespace HerosAndMostersGUI.MazeCode
             return theLoot;
         }
 
+        
+
         private static EnumItemType GetItemType()
         {
             //add more knowledge later?
-            return (EnumItemType)rnd.Next((int)EnumItemType.Max);
+            int roll = rnd.Next(1000);
+
+            if (roll < 600)
+                return EnumItemType.Consumable;
+            else if (roll < 900)
+                return EnumItemType.Consumable;
+            else
+                return EnumItemType.Dye;
+        }
+
+        private static InventoryItems GenerateDye()
+        {
+            return GenerateEquipable();//keep it from blowing up
+            //throw new NotImplementedException();
         }
 
         #region Generate Consumable
@@ -215,9 +235,9 @@ namespace HerosAndMostersGUI.MazeCode
                 return "Common ";
             else if (rarity <= 900)//uncommon
                 return "Uncommon ";
-            else if (rarity <= 975)//rare
+            else if (rarity <= 950)//rare
                 return "Rare ";
-            else if (rarity <= 999)//epic
+            else if (rarity <= 985)//epic
                 return "Epic ";
             else//legendary
                 return "Legendary ";
@@ -231,13 +251,13 @@ namespace HerosAndMostersGUI.MazeCode
             else if (type <= 700)//common
                 return 1.0;
             else if (type <= 900)//uncommon
-                return 1.1;
-            else if (type <= 975)//rare
                 return 1.3;
+            else if (type <= 975)//rare
+                return 1.8;
             else if (type <= 999)//epic
-                return 1.6;
+                return 2.5;
             else//legendary
-                return 2;
+                return 4;
         }
 
         private static string GetEquippableDescription(StatContainer gearStats, EnumGearSlot slot)
