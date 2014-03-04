@@ -18,15 +18,17 @@ namespace HerosAndMostersGUI
     {
         DispatcherTimer _hive;
 
-        List<InventoryItems> equiped;
+        //List<InventoryItems> equiped;
+        private Dictionary<EnumGearSlot, Equipable> equiped;
         List<InventoryItems> invItems;
 
         // consts
-        private const float CurSelectedSize = 13.0f;
-        private const String CurSelectedFont = "Microsoft Sans Black";
+        private const float SelectedSize = 13.0f;
+        private const String SelectedFont = "Microsoft Sans Black";
+        private const FontStyle SelectedFontStyle = FontStyle.Regular;
 
         public InventoryScreen(DispatcherTimer hive)
-        {
+        {   
             _hive = hive;
             InitializeComponent();
             this.ControlBox = false;
@@ -51,6 +53,8 @@ namespace HerosAndMostersGUI
 
             // final initialization
             setCurSelectedandTradeoffLabels(null, null);
+            tabControl1.TabPages[0].Text = "Item Inventory";
+            tabControl1.TabPages[1].Text = "Consumables";
 
         }
 
@@ -59,15 +63,26 @@ namespace HerosAndMostersGUI
         {
             this.Inventory.Enabled = true;
             this.Inventory.Font = new Font("Microsoft Sans Black", 14.0f, FontStyle.Regular);
+
+            this.EquipedGear.Enabled = true;
+            this.EquipedGear.Font = new Font("Microsoft Sans Black", 10.0f, FontStyle.Regular);
         }
 
         private void setCurSelectedBox()
         {
-            CurSelectStrLabel.Font = new Font(CurSelectedFont, CurSelectedSize, FontStyle.Bold);
-            CurSelectAgiLabel.Font = new Font(CurSelectedFont, CurSelectedSize, FontStyle.Bold);
-            CurSelectIntLabel.Font = new Font(CurSelectedFont, CurSelectedSize, FontStyle.Bold);
-            CurSelectDefLabel.Font = new Font(CurSelectedFont, CurSelectedSize, FontStyle.Bold);
-            CurSelectMHPLabel.Font = new Font(CurSelectedFont, CurSelectedSize, FontStyle.Bold);
+            CurSelectStrLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectAgiLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectIntLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectDefLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectMHPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectMMPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+
+            TradeoffStrLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            TradeoffAgiLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            TradeoffIntLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            TradeoffDefLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            TradeoffMHPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            TradeoffMMPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
         }
 
         private void GenerateLists()
@@ -76,8 +91,9 @@ namespace HerosAndMostersGUI
             Inventory.DataSource = null;
 
             invItems = new List<InventoryItems>(Player.GetInstance().GetInventory());
+            equiped = new Dictionary<EnumGearSlot, Equipable>(Player.GetInstance().GetEquipedInventory());
 
-            EquipedGear.DataSource = equiped;
+            EquipedGear.DataSource = new BindingSource(equiped, null);
             Inventory.DataSource = invItems;
 
         }
@@ -100,18 +116,39 @@ namespace HerosAndMostersGUI
 
         // EVENT METHODS ----------------------------------------------------------------------------------
 
-        private void setCurSelectedandTradeoffLabels(object sender, EventArgs e) // <---- NEED TO GET AT STATS HERE
+        private void setCurSelectedandTradeoffLabels(object sender, EventArgs e) 
         {
             if (invItems.Count > 0)
             {
                 try
                 {
+                    // curSelect adjustments
                     InventoryItems selectedItem = (InventoryItems)this.Inventory.SelectedItem;
                     CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Strength) - 2).Magnitude;
                     CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Agility) - 2).Magnitude;
                     CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Intelegence) - 2).Magnitude;
                     CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Defense) - 2).Magnitude;
-                    CurSelectMHPLabel.Text = "+Max HP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude;
+                    CurSelectMHPLabel.Text = "Bonus HP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude;
+                    CurSelectMMPLabel.Text = "Bonus MP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxResources) - 2).Magnitude;
+
+                    //tradeoff calculations
+                    EnumGearSlot selectedType = ((Equipable)selectedItem).Slot;
+                    int tStr = (selectedItem.GetProperties().ElementAt((int)(StatsType.Strength) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Strength) - 2).Magnitude);
+                    int tAgi = (selectedItem.GetProperties().ElementAt((int)(StatsType.Agility) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Agility) - 2).Magnitude);
+                    int tInt = (selectedItem.GetProperties().ElementAt((int)(StatsType.Intelegence) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Intelegence) - 2).Magnitude);
+                    int tDef = (selectedItem.GetProperties().ElementAt((int)(StatsType.Defense) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.Defense) - 2).Magnitude);
+                    int tMHP = (selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.MaxHp) - 2).Magnitude);
+                    int tMMP = (selectedItem.GetProperties().ElementAt((int)(StatsType.MaxResources) - 2).Magnitude) - (equiped[selectedType].Properties.ElementAt((int)(StatsType.MaxResources) - 2).Magnitude);
+
+                    // tradeoff adjustments
+                    TradeoffStrLabel.Text = "Strength: " + tStr;
+                    TradeoffAgiLabel.Text = "Agility: " + tAgi;
+                    TradeoffIntLabel.Text = "Intelligence: " + tInt;
+                    TradeoffDefLabel.Text = "Defense: " + tDef;
+                    TradeoffMHPLabel.Text = "Bonus HP: " + tMHP;
+                    TradeoffMMPLabel.Text = "Bonus MP: " + tMMP;
+
+                    SetTradeoffColors(tStr, tAgi, tInt, tDef, tMHP, tMMP);
                 }
                 catch (NullReferenceException)
                 {
@@ -120,13 +157,66 @@ namespace HerosAndMostersGUI
             }
         }
 
+        private void SetTradeoffColors(int str, int agi, int intel, int def, int mhp, int mmp) // <--- should be refactored
+        {
+            if (str > 0)
+                TradeoffStrLabel.ForeColor = System.Drawing.Color.Green;
+            else if (str == 0)
+                TradeoffStrLabel.ForeColor = System.Drawing.Color.Black;
+            else
+                TradeoffStrLabel.ForeColor = System.Drawing.Color.Red;
+
+            if (agi > 0)
+                TradeoffAgiLabel.ForeColor = System.Drawing.Color.Green;
+            else if (agi == 0)
+                TradeoffAgiLabel.ForeColor = System.Drawing.Color.Black;
+            else
+                TradeoffAgiLabel.ForeColor = System.Drawing.Color.Red;
+
+            if (intel > 0)
+                TradeoffIntLabel.ForeColor = System.Drawing.Color.Green;
+            else if (intel == 0)
+                TradeoffIntLabel.ForeColor = System.Drawing.Color.Black;
+            else
+                TradeoffIntLabel.ForeColor = System.Drawing.Color.Red;
+
+            if (def > 0)
+                TradeoffDefLabel.ForeColor = System.Drawing.Color.Green;
+            else if (def == 0)
+                TradeoffDefLabel.ForeColor = System.Drawing.Color.Black;
+            else
+                TradeoffDefLabel.ForeColor = System.Drawing.Color.Red;
+
+            if (mhp > 0)
+                TradeoffMHPLabel.ForeColor = System.Drawing.Color.Green;
+            else if (mhp == 0)
+                TradeoffMHPLabel.ForeColor = System.Drawing.Color.Black;
+            else
+                TradeoffMHPLabel.ForeColor = System.Drawing.Color.Red;
+
+            if (mmp > 0)
+                TradeoffMMPLabel.ForeColor = System.Drawing.Color.Green;
+            else if (mmp == 0)
+                TradeoffMMPLabel.ForeColor = System.Drawing.Color.Black;
+            else
+                TradeoffMMPLabel.ForeColor = System.Drawing.Color.Red;
+        }
+
         private void GenerateDefaultLabels()
         {
-            CurSelectStrLabel.Text = "No Item Selected.";
-            CurSelectAgiLabel.Text = "No Item Selected.";
-            CurSelectIntLabel.Text = "No Item Selected.";
-            CurSelectDefLabel.Text = "No Item Selected.";
-            CurSelectMHPLabel.Text = "No Item Selected.";
+            CurSelectStrLabel.Text = "";
+            CurSelectAgiLabel.Text = "";
+            CurSelectIntLabel.Text = "";
+            CurSelectDefLabel.Text = "";
+            CurSelectMHPLabel.Text = "";
+            CurSelectMMPLabel.Text = "";
+
+            TradeoffStrLabel.Text = "";
+            TradeoffAgiLabel.Text = "";
+            TradeoffIntLabel.Text = "";
+            TradeoffDefLabel.Text = "";
+            TradeoffMHPLabel.Text = "";
+            TradeoffMMPLabel.Text = "";
 
         }
 

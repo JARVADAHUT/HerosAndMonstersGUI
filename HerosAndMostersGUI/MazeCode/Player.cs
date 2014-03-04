@@ -1,6 +1,7 @@
 ﻿using DesignPatterns___DC_Design;
 using HerosAndMostersGUI;
 using HerosAndMostersGUI.CharacterCode;
+using HerosAndMostersGUI.MazeCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,12 @@ namespace MazeTest
     public class Player : LivingCreature
     {
         private static Player _thisPlayer = null;
-        private Dictionary<Equipable, EnumGearSlot> equipedGear; // <------- NEWLY ADDED
+        private Dictionary<EnumGearSlot, Equipable> equipedGear; // <------- NEWLY ADDED
 
         private Player() : base()
         {
             SetInteraction(this);
-            equipedGear = new Dictionary<Equipable, EnumGearSlot>(); // <------- NEWLY ADDED
+            equipedGear = new Dictionary<EnumGearSlot, Equipable>(); // <------- NEWLY ADDED
             GenerateBeginningEquipedGear();
         }
         
@@ -43,14 +44,14 @@ namespace MazeTest
 
         }
 
-        public Dictionary<Equipable, EnumGearSlot> GetEquipedInventory() // <------- NEWLY ADDED
+        public Dictionary<EnumGearSlot, Equipable> GetEquipedInventory() // <------- NEWLY ADDED
         {
             return equipedGear;
         }
 
         private void GenerateBeginningEquipedGear()
         {
-
+            equipedGear = FItemGenerator.GetStarterGear();
         }
 
         #region Private
@@ -81,6 +82,7 @@ namespace MazeTest
 
         public override void Interact(LivingCreature lc)
         {
+            this.GetInventory().AddItemList(lc.GetInventory());
             lc.Die();
         }
 

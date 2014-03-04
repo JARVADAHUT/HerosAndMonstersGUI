@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace HerosAndMostersGUI.MazeCode
 {
 
-    private enum Rarity
-    {
-
-    }
+//    private enum Rarity
+//    {
+//
+//    }
 
     public class FItemGenerator
     {
