@@ -2,14 +2,14 @@
 {
     public enum StatsType
     {
-        MaxHp,
-        CurHp,
-        MaxResources,
         CurResources,
+        CurHp,
+        MaxHp,
+        MaxResources,
+        Agility,
+        Strength,
         Intelegence,
         Defense,
-        Strength,
-        Agility,
 
         Max //<--- For generating items, put new types before this
     }

@@ -23,5 +23,10 @@ namespace HerosAndMostersGUI.MazeCode
         {
             throw new NotImplementedException();
         }
+
+        public List<EffectInformation> GetProperties()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

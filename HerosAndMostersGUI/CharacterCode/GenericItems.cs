@@ -27,6 +27,11 @@ namespace HerosAndMostersGUI
             return Description;
         }
 
+        public List<EffectInformation> GetProperties()
+        {
+            return Properties;
+        }
+
         public new EnumItemType GetType()
         {
             throw new NotImplementedException();

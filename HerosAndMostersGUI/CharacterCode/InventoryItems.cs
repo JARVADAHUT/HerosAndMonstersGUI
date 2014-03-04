@@ -12,6 +12,7 @@ namespace HerosAndMostersGUI.CharacterCode
 
         bool Use();
         String GetDescription();
+        List<EffectInformation> GetProperties();
         EnumItemType GetType();
 
     }
