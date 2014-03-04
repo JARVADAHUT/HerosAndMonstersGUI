@@ -66,14 +66,21 @@ namespace HerosAndMostersGUI.MazeCode
             EnumGearSlot slot = (EnumGearSlot) rnd.Next( (int)EnumGearSlot.Max );
             int statPool = (Maze.GetInstance().MazeLevel + 1) * _statPoolPerLevel;
 
-            for (int y = 0; y < (int)StatsType.Max; y++)
+            StatContainer statContainer = new StatContainer();
+
+            while(statPool > 0)
             {
-                int magnitude = GetStatMagnitude(statPool);
-
-                stats.Add( new EffectInformation( (StatsType)y, magnitude) );
-
-                statPool -= magnitude;
+                int whatStat = ChooseStat();
+                statContainer.Increment(whatStat);
+                statPool -= 1;
             }
+
+            stats.Add( new EffectInformation(StatsType.MaxHp, statContainer.Hp) );
+            stats.Add( new EffectInformation(StatsType.MaxResources, statContainer.Mp) );
+            stats.Add( new EffectInformation(StatsType.Agility, statContainer.Agi) );
+            stats.Add( new EffectInformation(StatsType.Strength, statContainer.Str) );
+            stats.Add( new EffectInformation(StatsType.Intelegence, statContainer.Int) );
+            stats.Add( new EffectInformation(StatsType.Defense, statContainer.Def) );
 
             gear = new Equipable(key++, stats, GetEquippableDescription());
             gear.Slot = slot;
@@ -89,9 +96,9 @@ namespace HerosAndMostersGUI.MazeCode
         }
 
 
-        private static int GetStatMagnitude(int statPool)
+        private static int ChooseStat()
         {
-            return statPool /= ( (int)(StatsType.Max) - 1 );
+            return rnd.Next(StatContainer.NumStats);
         }
 
         #endregion
@@ -103,4 +110,45 @@ namespace HerosAndMostersGUI.MazeCode
             return  (EnumItemType) rnd.Next((int) EnumItemType.Max );
         }
     }
+
+    internal class StatContainer
+    {
+        public int Hp { set; get; }
+        public int Mp { set; get; }
+        public int Def { set; get; }
+        public int Agi { set; get; }
+        public int Int { set; get; }
+        public int Str { set; get; }
+
+        public static int NumStats = 6;
+
+        public void Increment(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    Hp++;
+                    break;
+                case 1:
+                    Mp++;
+                    break;
+                case 2:
+                    Def++;
+                    break;
+                case 3:
+                    Agi++;
+                    break;
+                case 4:
+                    Int++;
+                    break;
+                case 5:
+                    Str++;
+                    break;
+            }
+        }
+    }
+
+
+
+
 }
