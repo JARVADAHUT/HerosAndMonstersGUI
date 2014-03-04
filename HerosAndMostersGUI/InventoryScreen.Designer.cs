@@ -35,15 +35,15 @@ namespace HerosAndMostersGUI
             this.Drop = new System.Windows.Forms.Button();
             this.Inventory = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CurSelectMHPLabel = new System.Windows.Forms.Label();
+            this.CurSelectIntLabel = new System.Windows.Forms.Label();
+            this.CurSelectDefLabel = new System.Windows.Forms.Label();
+            this.CurSelectAgiLabel = new System.Windows.Forms.Label();
+            this.CurSelectStrLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Swap = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.CurSelectStrLabel = new System.Windows.Forms.Label();
-            this.CurSelectAgiLabel = new System.Windows.Forms.Label();
-            this.CurSelectDefLabel = new System.Windows.Forms.Label();
-            this.CurSelectIntLabel = new System.Windows.Forms.Label();
-            this.CurSelectMHPLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -92,6 +92,7 @@ namespace HerosAndMostersGUI
             this.Drop.TabIndex = 14;
             this.Drop.Text = "Drop";
             this.Drop.UseVisualStyleBackColor = true;
+            this.Drop.Click += new System.EventHandler(this.Drop_Click);
             // 
             // Inventory
             // 
@@ -116,6 +117,51 @@ namespace HerosAndMostersGUI
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Currently Selected Gear";
+            // 
+            // CurSelectMHPLabel
+            // 
+            this.CurSelectMHPLabel.AutoSize = true;
+            this.CurSelectMHPLabel.Location = new System.Drawing.Point(7, 125);
+            this.CurSelectMHPLabel.Name = "CurSelectMHPLabel";
+            this.CurSelectMHPLabel.Size = new System.Drawing.Size(63, 13);
+            this.CurSelectMHPLabel.TabIndex = 4;
+            this.CurSelectMHPLabel.Text = "+Max HP: 0";
+            // 
+            // CurSelectIntLabel
+            // 
+            this.CurSelectIntLabel.AutoSize = true;
+            this.CurSelectIntLabel.Location = new System.Drawing.Point(6, 101);
+            this.CurSelectIntLabel.Name = "CurSelectIntLabel";
+            this.CurSelectIntLabel.Size = new System.Drawing.Size(73, 13);
+            this.CurSelectIntLabel.TabIndex = 3;
+            this.CurSelectIntLabel.Text = "Intelligence: 0";
+            // 
+            // CurSelectDefLabel
+            // 
+            this.CurSelectDefLabel.AutoSize = true;
+            this.CurSelectDefLabel.Location = new System.Drawing.Point(7, 72);
+            this.CurSelectDefLabel.Name = "CurSelectDefLabel";
+            this.CurSelectDefLabel.Size = new System.Drawing.Size(59, 13);
+            this.CurSelectDefLabel.TabIndex = 2;
+            this.CurSelectDefLabel.Text = "Defense: 0";
+            // 
+            // CurSelectAgiLabel
+            // 
+            this.CurSelectAgiLabel.AutoSize = true;
+            this.CurSelectAgiLabel.Location = new System.Drawing.Point(7, 46);
+            this.CurSelectAgiLabel.Name = "CurSelectAgiLabel";
+            this.CurSelectAgiLabel.Size = new System.Drawing.Size(46, 13);
+            this.CurSelectAgiLabel.TabIndex = 1;
+            this.CurSelectAgiLabel.Text = "Agility: 0";
+            // 
+            // CurSelectStrLabel
+            // 
+            this.CurSelectStrLabel.AutoSize = true;
+            this.CurSelectStrLabel.Location = new System.Drawing.Point(7, 20);
+            this.CurSelectStrLabel.Name = "CurSelectStrLabel";
+            this.CurSelectStrLabel.Size = new System.Drawing.Size(59, 13);
+            this.CurSelectStrLabel.TabIndex = 0;
+            this.CurSelectStrLabel.Text = "Strength: 0";
             // 
             // groupBox1
             // 
@@ -154,51 +200,6 @@ namespace HerosAndMostersGUI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // CurSelectStrLabel
-            // 
-            this.CurSelectStrLabel.AutoSize = true;
-            this.CurSelectStrLabel.Location = new System.Drawing.Point(7, 20);
-            this.CurSelectStrLabel.Name = "CurSelectStrLabel";
-            this.CurSelectStrLabel.Size = new System.Drawing.Size(59, 13);
-            this.CurSelectStrLabel.TabIndex = 0;
-            this.CurSelectStrLabel.Text = "Strength: 0";
-            // 
-            // CurSelectAgiLabel
-            // 
-            this.CurSelectAgiLabel.AutoSize = true;
-            this.CurSelectAgiLabel.Location = new System.Drawing.Point(7, 46);
-            this.CurSelectAgiLabel.Name = "CurSelectAgiLabel";
-            this.CurSelectAgiLabel.Size = new System.Drawing.Size(46, 13);
-            this.CurSelectAgiLabel.TabIndex = 1;
-            this.CurSelectAgiLabel.Text = "Agility: 0";
-            // 
-            // CurSelectDefLabel
-            // 
-            this.CurSelectDefLabel.AutoSize = true;
-            this.CurSelectDefLabel.Location = new System.Drawing.Point(7, 72);
-            this.CurSelectDefLabel.Name = "CurSelectDefLabel";
-            this.CurSelectDefLabel.Size = new System.Drawing.Size(59, 13);
-            this.CurSelectDefLabel.TabIndex = 2;
-            this.CurSelectDefLabel.Text = "Defense: 0";
-            // 
-            // CurSelectIntLabel
-            // 
-            this.CurSelectIntLabel.AutoSize = true;
-            this.CurSelectIntLabel.Location = new System.Drawing.Point(6, 101);
-            this.CurSelectIntLabel.Name = "CurSelectIntLabel";
-            this.CurSelectIntLabel.Size = new System.Drawing.Size(73, 13);
-            this.CurSelectIntLabel.TabIndex = 3;
-            this.CurSelectIntLabel.Text = "Intelligence: 0";
-            // 
-            // CurSelectMHPLabel
-            // 
-            this.CurSelectMHPLabel.AutoSize = true;
-            this.CurSelectMHPLabel.Location = new System.Drawing.Point(7, 125);
-            this.CurSelectMHPLabel.Name = "CurSelectMHPLabel";
-            this.CurSelectMHPLabel.Size = new System.Drawing.Size(63, 13);
-            this.CurSelectMHPLabel.TabIndex = 4;
-            this.CurSelectMHPLabel.Text = "+Max HP: 0";
             // 
             // InventoryScreen
             // 

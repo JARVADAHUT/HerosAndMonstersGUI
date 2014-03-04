@@ -50,7 +50,7 @@ namespace MazeTest
             _creatureInventory.AddItemList(items);
         }
 
-        public Inventory GetInventory() // <--------- NEWLY ADDED
+        public Inventory GetInventory() 
         {
             return _creatureInventory;
         }

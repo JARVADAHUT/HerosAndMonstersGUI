@@ -1,5 +1,6 @@
 ﻿using DesignPatterns___DC_Design;
 using HerosAndMostersGUI;
+using HerosAndMostersGUI.CharacterCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,13 @@ namespace MazeTest
     public class Player : LivingCreature
     {
         private static Player _thisPlayer = null;
-        //private static Inventory _myInventory = null;
+        private Dictionary<InventoryItems, int> equipedGear; // <------- NEWLY ADDED
 
         private Player() : base()
         {
             SetInteraction(this);
-            //_myInventory = new Inventory();
+            equipedGear = new Dictionary<InventoryItems, int>(); // <------- NEWLY ADDED
+            GenerateBeginningEquipedGear();
         }
         
         public static Player GetInstance()
@@ -38,6 +40,16 @@ namespace MazeTest
             HiveMind.GetInstance().ClearHive();
             maze.GenerateNext();
             maze.Display();
+
+        }
+
+        public Dictionary<InventoryItems, int> GetEquipedInventory() // <------- NEWLY ADDED
+        {
+            return equipedGear;
+        }
+
+        private void GenerateBeginningEquipedGear()
+        {
 
         }
 

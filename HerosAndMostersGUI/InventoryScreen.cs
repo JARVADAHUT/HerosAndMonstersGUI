@@ -30,19 +30,24 @@ namespace HerosAndMostersGUI
             _hive = hive;
             InitializeComponent();
             this.ControlBox = false;
-            generateLists(); 
+            GenerateLists();
 
-            EquipedGear.DataSource = equiped;
-            Inventory.DataSource = invItems;
+            if (invItems.Count > 0)
+            {
+                this.Inventory.SelectedIndex = 0;
+            }
+            else
+            {
+                GenerateDefaultLabels();
+            }
 
-            this.Inventory.SelectedIndex = 0;
             setInventory();
             setCurSelectedBox();
 
 
             // EVENTS
             //this.Inventory.DrawItem += new System.Windows.Forms.DrawItemEventHandler(Inventory_DrawItem); //<--- allows variable font and text color
-            this.Inventory.SelectedValueChanged += new EventHandler(setCurSelectedandTradeoffLabels);
+            this.Inventory.SelectedIndexChanged += new EventHandler(setCurSelectedandTradeoffLabels);
 
             // final initialization
             setCurSelectedandTradeoffLabels(null, null);
@@ -53,7 +58,7 @@ namespace HerosAndMostersGUI
         private void setInventory()
         {
             this.Inventory.Enabled = true;
-            this.Inventory.Font = new Font("Microsoft Sans Black", 20.0f, FontStyle.Bold);
+            this.Inventory.Font = new Font("Microsoft Sans Black", 14.0f, FontStyle.Regular);
         }
 
         private void setCurSelectedBox()
@@ -65,9 +70,16 @@ namespace HerosAndMostersGUI
             CurSelectMHPLabel.Font = new Font(CurSelectedFont, CurSelectedSize, FontStyle.Bold);
         }
 
-        private void generateLists()
+        private void GenerateLists()
         {
+            EquipedGear.DataSource = null;
+            Inventory.DataSource = null;
+
             invItems = new List<InventoryItems>(Player.GetInstance().GetInventory());
+
+            EquipedGear.DataSource = equiped;
+            Inventory.DataSource = invItems;
+
         }
 
         private void InventoryScreen_Load(object sender, EventArgs e)
@@ -90,12 +102,45 @@ namespace HerosAndMostersGUI
 
         private void setCurSelectedandTradeoffLabels(object sender, EventArgs e) // <---- NEED TO GET AT STATS HERE
         {
-            InventoryItems selectedItem = (InventoryItems)this.Inventory.SelectedItem;
-            CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Strength)-2).Magnitude;
-            CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Agility) - 2).Magnitude;
-            CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Intelegence) - 2).Magnitude;
-            CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Defense) - 2).Magnitude;
-            CurSelectMHPLabel.Text = "+Max HP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude;
+            if (invItems.Count > 0)
+            {
+                try
+                {
+                    InventoryItems selectedItem = (InventoryItems)this.Inventory.SelectedItem;
+                    CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Strength) - 2).Magnitude;
+                    CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Agility) - 2).Magnitude;
+                    CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Intelegence) - 2).Magnitude;
+                    CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperties().ElementAt((int)(StatsType.Defense) - 2).Magnitude;
+                    CurSelectMHPLabel.Text = "+Max HP: " + selectedItem.GetProperties().ElementAt((int)(StatsType.MaxHp) - 2).Magnitude;
+                }
+                catch (NullReferenceException)
+                {
+
+                }
+            }
+        }
+
+        private void GenerateDefaultLabels()
+        {
+            CurSelectStrLabel.Text = "No Item Selected.";
+            CurSelectAgiLabel.Text = "No Item Selected.";
+            CurSelectIntLabel.Text = "No Item Selected.";
+            CurSelectDefLabel.Text = "No Item Selected.";
+            CurSelectMHPLabel.Text = "No Item Selected.";
+
+        }
+
+        private void Drop_Click(object sender, EventArgs e)
+        {
+            Player.GetInstance().GetInventory().RemoveItem((InventoryItems)this.Inventory.SelectedItem);
+
+            GenerateLists();
+
+            if (invItems.Count > 0)
+                this.Inventory.SelectedIndex = 0;
+            else
+                GenerateDefaultLabels();
+
         }
 
     }
