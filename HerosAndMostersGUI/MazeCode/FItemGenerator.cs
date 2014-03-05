@@ -71,7 +71,7 @@ namespace HerosAndMostersGUI.MazeCode
             int roll = rnd.Next(1000);
 
             if (roll < 600)
-                return EnumItemType.Consumable;
+                return EnumItemType.Equipable;
             else if (roll < 900)
                 return EnumItemType.Consumable;
             else
@@ -246,18 +246,18 @@ namespace HerosAndMostersGUI.MazeCode
         private static double GetRarity(int type)
         {
             
-            if (type <= 100)//basic
-                return .40;
-            else if (type <= 700)//common
+            if (type <= 175)//basic             100
+                return .5;
+            else if (type <= 350)//common       700
                 return 1.0;
-            else if (type <= 900)//uncommon
-                return 1.3;
-            else if (type <= 975)//rare
-                return 1.8;
-            else if (type <= 999)//epic
-                return 2.5;
-            else//legendary
+            else if (type <= 525)//uncommon     900
+                return 1.5;
+            else if (type <= 700)//rare         975
+                return 2;
+            else if (type <= 875)//epic         999
                 return 4;
+            else//legendary                     1
+                return 8;
         }
 
         private static string GetEquippableDescription(StatContainer gearStats, EnumGearSlot slot)
