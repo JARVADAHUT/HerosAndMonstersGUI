@@ -82,8 +82,12 @@ namespace MazeTest
 
         public override void Interact(LivingCreature lc)
         {
-            this.GetInventory().AddItemList(lc.GetInventory());
-            lc.Die();
+            //Battle
+            if (!lc.Dead)
+            {
+                this.GetInventory().AddItemList(lc.GetInventory());
+                lc.Die();
+            }
         }
 
         #endregion

@@ -36,7 +36,7 @@ namespace HerosAndMostersGUI.CharacterCode
                 }
 
                 // apply inverse cmd to character to "unequpid" item. 
-                StatAugmentManager.GetInstance().OfferCommand(cmd);
+                cmd.RegisterCommand();
 
                 // remove item from equipped, add to inventory
                 PlayerEquipedInventory.Remove(Slot);
@@ -45,11 +45,9 @@ namespace HerosAndMostersGUI.CharacterCode
                 // reset command
                 cmd = new StatAugmentCommand();
 
-                // add the effects of the to-be-equiped item
-                foreach (EffectInformation effect in this.Properties)
-                {
-                    cmd.AddEffect(effect, Hero.GetInstance());
-                }
+                //Give the properties of this gear to the hero and register
+                cmd.AddEffects(this.Properties, Hero.GetInstance());
+                cmd.RegisterCommand();
 
                 // add item to equpied, remove from inventory
                 PlayerEquipedInventory.Add(Slot, this);

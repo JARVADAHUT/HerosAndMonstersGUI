@@ -50,6 +50,7 @@ namespace MazeTest
         {
             _monsterParty.Clear();
             HiveMind.GetInstance().UnregisterSubject(this);
+            Dead = true;
             SetInteraction( FMazeObjectFactory.GetMazeObject(EnumMazeObject.Air) );
         }
 
@@ -118,7 +119,7 @@ namespace MazeTest
                 }
             }
 
-            else
+            else if(!Dead)
             {
                 //enter battle arena
 

@@ -13,13 +13,14 @@ namespace MazeTest
 {
     public abstract class LivingCreature : MazeObject, IInteractionType
     {
-        //protected DungeonCharacter dc;
+        public bool Dead;
         private EnumDirection _lastMoveDirection;
         protected Inventory _creatureInventory;
 
         protected LivingCreature() : base(null)
         {
             _creatureInventory = new Inventory();
+            Dead = false;
         }
 
         public void Interact(EnumDirection dir)

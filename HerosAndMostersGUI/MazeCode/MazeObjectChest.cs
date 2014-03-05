@@ -37,6 +37,7 @@ namespace MazeTest
         {
             if (!_looted)
             {
+                Hero test = Hero.GetInstance();
                 _myColor = Brushes.BurlyWood;
                 creature.TakeLoot( _loot.GetItems() ); // <------------- NEWLY ADDED
                 _looted = true;
