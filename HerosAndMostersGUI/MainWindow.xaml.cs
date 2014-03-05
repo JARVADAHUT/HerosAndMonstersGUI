@@ -84,20 +84,33 @@ namespace HerosAndMostersGUI
                     
                 case Key.I:
                     _hive.IsEnabled = false;
-                    InvScr = new InventoryScreen(_hive);
-                    InvScr.tabControl1.SelectedTab = InvScr.tabControl1.TabPages[0];
+                    InvScr = new InventoryScreen(_hive, "tabPage1");
                     InvScr.ShowDialog();
+                    //SetSelectedScreen(_hive, InvScr, "tabPage1");
                     break;
+
                 case Key.C:
                     _hive.IsEnabled = false;
-                    InvScr = new InventoryScreen(_hive);
-                    InvScr.tabControl1.SelectedTab = InvScr.tabControl1.TabPages[1];
+                    InvScr = new InventoryScreen(_hive, "tabPage2");
                     InvScr.ShowDialog();
+                    //SetSelectedScreen(_hive, InvScr, "tabPage2");
                     break;
 
             }
 
             Maze.GetInstance().Refresh(Player.GetInstance());
+        }
+
+        private void SetSelectedScreen(DispatcherTimer _hive, InventoryScreen InvScr, String tabIndex)
+        {
+            _hive.IsEnabled = false;
+            InvScr.tabControl1.SelectedTab = InvScr.tabControl1.TabPages[tabIndex];
+            InvScr.tabControl1.SelectedTab.Focus();
+            if (tabIndex.Equals("tabPage1"))
+                InvScr.Inventory.Focus();
+            else
+                InvScr.EquippedInventory.Focus();
+            InvScr.ShowDialog();
         }
 
         #region IMazeDisplay

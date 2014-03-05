@@ -27,24 +27,20 @@ namespace HerosAndMostersGUI
         private const String SelectedFont = "Microsoft Sans Black";
         private const FontStyle SelectedFontStyle = FontStyle.Regular;
 
-        public InventoryScreen(DispatcherTimer hive)
+        public InventoryScreen(DispatcherTimer hive, String tabPage)
         {
             this.KeyPreview = true;
             _hive = hive;
+
             InitializeComponent();
+
             this.ControlBox = false;
             GenerateLists();
             GenerateListPage2();
 
-            if (invItems.Count > 0)
-            {
-                this.Inventory.SelectedIndex = 0;
-            }
-            else
-            {
+            if (invItems.Count < 1)
                 GenerateDefaultLabels();
-            }
-            //this.EquippedInventory.SelectedIndex = 0;
+            
             SetCurEquippedSelectedLabels(null, null);
 
 
@@ -65,6 +61,13 @@ namespace HerosAndMostersGUI
             setCurSelectedandTradeoffLabels(null, null);
             tabControl1.TabPages[0].Text = "Item Inventory";
             tabControl1.TabPages[1].Text = "Character";
+
+            this.tabControl1.SelectedTab = tabControl1.TabPages[tabPage];
+            this.tabControl1.SelectedTab.Focus();
+            if (tabPage.Equals("tabPage1"))
+                this.ActiveControl = this.Inventory;
+            else
+                this.ActiveControl = this.EquippedInventory;
 
         }
 
@@ -145,7 +148,7 @@ namespace HerosAndMostersGUI
 
         private void InventoryScreen_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Swap_Click(object sender, EventArgs e)
@@ -190,17 +193,40 @@ namespace HerosAndMostersGUI
 
         // EVENT METHODS ----------------------------------------------------------------------------------
 
-        private void CheckIfKeyToClose(object sender, KeyEventArgs e)
+        private void CheckIfKeyToClose(object sender, KeyEventArgs e) // <--- LEFT AND RIGHT KEYPRESS LOGIC WILL NEED TO CHANGE IF TABS > 2
         {
-            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.C || e.KeyCode == Keys.I)
+            Keys keyPressed = e.KeyCode;
+
+            if (keyPressed == Keys.Escape || keyPressed == Keys.C || keyPressed == Keys.I)
                 Exit_Click(sender, e);
+
+            if (keyPressed == Keys.Left)
+            {
+                this.tabControl1.SelectedTab = tabControl1.TabPages["tabPage1"];
+                this.tabControl1.TabPages["tabPage1"].Focus();
+                this.Inventory.Focus();
+            }
+            if (keyPressed == Keys.Right)
+            {
+                this.tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
+                this.tabControl1.TabPages["tabPage2"].Focus();
+                this.EquippedInventory.Focus();
+            }
+
         }
 
         private void UpdateCharacterStats(object sender, EventArgs e) // chest and forearm might be getting mixed
         {
-            int charStr = 0, charAgi = 0, charInt = 0, charDef = 0, charMHP = 0, charMMP = 0;
-            Dictionary<EnumGearSlot, Equipable> curEquippedInv = Player.GetInstance().GetEquipedInventory();
+            //Dictionary<EnumGearSlot, Equipable> curEquippedInv = Player.GetInstance().GetEquipedInventory();
 
+            int charStr = Hero.GetInstance().DCStats.GetStat(StatsType.Strength);
+            int charAgi = Hero.GetInstance().DCStats.GetStat(StatsType.Agility);
+            int charDef = Hero.GetInstance().DCStats.GetStat(StatsType.Defense);
+            int charInt = Hero.GetInstance().DCStats.GetStat(StatsType.Intelegence);
+            int charMHP = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
+            int charMMP = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
+
+            /*
             foreach (KeyValuePair<EnumGearSlot, Equipable> item in curEquippedInv)
             {
                 Equipable curItem = (Equipable)item.Value;
@@ -221,6 +247,7 @@ namespace HerosAndMostersGUI
 
                 }
             }
+            */
 
             CharacterStrLabel.Text = "Strength: " + charStr;
             CharacterAgiLabel.Text = "Agility: " + charAgi;
