@@ -28,11 +28,13 @@ namespace HerosAndMostersGUI
         private const FontStyle SelectedFontStyle = FontStyle.Regular;
 
         public InventoryScreen(DispatcherTimer hive)
-        {   
+        {
+            this.KeyPreview = true;
             _hive = hive;
             InitializeComponent();
             this.ControlBox = false;
             GenerateLists();
+            GenerateListPage2();
 
             if (invItems.Count > 0)
             {
@@ -42,22 +44,31 @@ namespace HerosAndMostersGUI
             {
                 GenerateDefaultLabels();
             }
+            //this.EquippedInventory.SelectedIndex = 0;
+            SetCurEquippedSelectedLabels(null, null);
+
 
             setInventory();
             setCurSelectedBox();
+            SetEquippedInventory();
+            SetEquippedSelectedBox();
 
 
             // EVENTS
             //this.Inventory.DrawItem += new System.Windows.Forms.DrawItemEventHandler(Inventory_DrawItem); //<--- allows variable font and text color
             this.Inventory.SelectedIndexChanged += new EventHandler(setCurSelectedandTradeoffLabels);
+            this.EquippedInventory.SelectedIndexChanged += new EventHandler(SetCurEquippedSelectedLabels);
+            this.tabControl1.GotFocus += new EventHandler(UpdateCharacterStats);
+            this.KeyDown += new KeyEventHandler(CheckIfKeyToClose);
 
             // final initialization
             setCurSelectedandTradeoffLabels(null, null);
             tabControl1.TabPages[0].Text = "Item Inventory";
-            tabControl1.TabPages[1].Text = "Consumables";
+            tabControl1.TabPages[1].Text = "Character";
 
         }
 
+        // INITIALIZATION METHODS --------------------------------------------------------------------------------------------------------------------
 
         private void setInventory()
         {
@@ -65,7 +76,7 @@ namespace HerosAndMostersGUI
             this.Inventory.Font = new Font("Microsoft Sans Black", 14.0f, FontStyle.Regular);
 
             this.EquipedGear.Enabled = true;
-            this.EquipedGear.Font = new Font("Microsoft Sans Black", 10.0f, FontStyle.Regular);
+            this.EquipedGear.Font = new Font("Microsoft Sans Black", 8.0f, FontStyle.Bold);
         }
 
         private void setCurSelectedBox()
@@ -85,6 +96,29 @@ namespace HerosAndMostersGUI
             TradeoffMMPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
         }
 
+        private void SetEquippedInventory()
+        {
+            this.EquippedInventory.Enabled = true;
+            this.EquippedInventory.Font = new Font("Microsoft Sans Black", 14.0f, FontStyle.Regular);
+        }
+
+        private void SetEquippedSelectedBox()
+        {
+            CurSelectedEquipStr.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectedEquipAgi.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectedEquipDef.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectedEquipInt.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectedEquipMHP.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CurSelectedEquipMMP.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+
+            CharacterStrLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CharacterAgiLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CharacterDefLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CharacterIntLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CharacterMHPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+            CharacterMMPLabel.Font = new Font(SelectedFont, SelectedSize, SelectedFontStyle);
+        }
+
         private void GenerateLists()
         {
             EquipedGear.DataSource = null;
@@ -97,6 +131,17 @@ namespace HerosAndMostersGUI
             Inventory.DataSource = invItems;
 
         }
+
+        private void GenerateListPage2()
+        {
+            EquippedInventory.DataSource = null;
+
+            equiped = new Dictionary<EnumGearSlot, Equipable>(Player.GetInstance().GetEquipedInventory());
+
+            EquippedInventory.DataSource = new BindingSource(equiped, null);
+        }
+
+        // FORM WIRED EVENT METHODS ------------------------------------------------------------------------------------------------------
 
         private void InventoryScreen_Load(object sender, EventArgs e)
         {
@@ -114,7 +159,77 @@ namespace HerosAndMostersGUI
             Dispose(true);
         }
 
+        private void Drop_Click(object sender, EventArgs e)
+        {
+            Player.GetInstance().GetInventory().RemoveItem((InventoryItems)this.Inventory.SelectedItem);
+
+            GenerateLists();
+
+            if (invItems.Count > 0)
+                this.Inventory.SelectedIndex = 0;
+            else
+                GenerateDefaultLabels();
+
+        }
+
+        private void Tab2ExitBtn_Click(object sender, EventArgs e)
+        {
+            Exit_Click(sender, e);
+        }
+
+        private void Equip_Click(object sender, EventArgs e)
+        {
+            if (this.Inventory.Items.Count > 0)
+            {
+                GenericItems itemSelected = (GenericItems)(this.Inventory.SelectedItem);        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
+                Player.GetInstance().GetInventory().Use(itemSelected);
+                GenerateLists();
+                GenerateListPage2();
+            }
+        }
+
         // EVENT METHODS ----------------------------------------------------------------------------------
+
+        private void CheckIfKeyToClose(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.C || e.KeyCode == Keys.I)
+                Exit_Click(sender, e);
+        }
+
+        private void UpdateCharacterStats(object sender, EventArgs e) // chest and forearm might be getting mixed
+        {
+            int charStr = 0, charAgi = 0, charInt = 0, charDef = 0, charMHP = 0, charMMP = 0;
+            Dictionary<EnumGearSlot, Equipable> curEquippedInv = Player.GetInstance().GetEquipedInventory();
+
+            foreach (KeyValuePair<EnumGearSlot, Equipable> item in curEquippedInv)
+            {
+                Equipable curItem = (Equipable)item.Value;
+                foreach (EffectInformation effect in curItem.Properties)
+                {
+                    if (effect.Stat == StatsType.Strength)
+                        charStr += effect.Magnitude;
+                    else if (effect.Stat == StatsType.Agility)
+                        charAgi += effect.Magnitude;
+                    else if (effect.Stat == StatsType.Intelegence)
+                        charInt += effect.Magnitude;
+                    else if (effect.Stat == StatsType.Defense)
+                        charDef += effect.Magnitude;
+                    else if (effect.Stat == StatsType.MaxHp)
+                        charMHP += effect.Magnitude;
+                    else if (effect.Stat == StatsType.MaxResources)
+                        charMMP += effect.Magnitude;
+
+                }
+            }
+
+            CharacterStrLabel.Text = "Strength: " + charStr;
+            CharacterAgiLabel.Text = "Agility: " + charAgi;
+            CharacterDefLabel.Text = "Defense: " + charDef;
+            CharacterIntLabel.Text = "Intelligence: " + charInt;
+            CharacterMHPLabel.Text = "Bonus HP: " + charMHP;
+            CharacterMMPLabel.Text = "Bonus MP: " + charMMP;
+
+        }
 
         private void setCurSelectedandTradeoffLabels(object sender, EventArgs e) 
         {
@@ -288,24 +403,20 @@ namespace HerosAndMostersGUI
 
         }
 
-        private void Drop_Click(object sender, EventArgs e)
+        private void SetCurEquippedSelectedLabels(object sender, EventArgs e)
         {
-            Player.GetInstance().GetInventory().RemoveItem((InventoryItems)this.Inventory.SelectedItem);
+            if (EquippedInventory.SelectedIndex >= 0)
+            {
+                Dictionary<EnumGearSlot, Equipable> curEquippedInv = Player.GetInstance().GetEquipedInventory();
+                InventoryItems selectedItem = curEquippedInv[(EnumGearSlot)(EquippedInventory.SelectedIndex)];
 
-            GenerateLists();
-
-            if (invItems.Count > 0)
-                this.Inventory.SelectedIndex = 0;
-            else
-                GenerateDefaultLabels();
-
-        }
-
-        private void Equip_Click(object sender, EventArgs e)
-        {
-            GenericItems itemSelected = (GenericItems)(this.Inventory.SelectedItem);        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
-            Player.GetInstance().GetInventory().Use(itemSelected);
-            GenerateLists();
+                CurSelectedEquipStr.Text = "Strength: " + selectedItem.GetProperty(StatsType.Strength).Magnitude;
+                CurSelectedEquipAgi.Text = "Agility: " + selectedItem.GetProperty(StatsType.Agility).Magnitude;
+                CurSelectedEquipInt.Text = "Intelligence: " + selectedItem.GetProperty(StatsType.Intelegence).Magnitude;
+                CurSelectedEquipDef.Text = "Defense: " + selectedItem.GetProperty(StatsType.Defense).Magnitude;
+                CurSelectedEquipMHP.Text = "Bonus HP: " + selectedItem.GetProperty(StatsType.MaxHp).Magnitude;
+                CurSelectedEquipMMP.Text = "Bonus MP: " + selectedItem.GetProperty(StatsType.MaxResources).Magnitude;
+            }
         }
 
     }

@@ -58,6 +58,8 @@ namespace HerosAndMostersGUI
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
         {
+            InventoryScreen InvScr;
+
             switch (e.Key)
             {
                 case Key.W:
@@ -81,47 +83,18 @@ namespace HerosAndMostersGUI
                     break;
                     
                 case Key.I:
-
-                    //----------work in progress----------
-
                     _hive.IsEnabled = false;
-
-                    InventoryScreen InvScr = new InventoryScreen(_hive);
+                    InvScr = new InventoryScreen(_hive);
+                    InvScr.tabControl1.SelectedTab = InvScr.tabControl1.TabPages[0];
                     InvScr.ShowDialog();
-
-                    /*
-
-                    //screen.Children.Clear();
-                    //create a listbox and place it here since clearing the children destroys it
-                    screen.Children.Clear();
-                    Action emptyDelegate = delegate { };
-
-                    ListBox invBox = new ListBox();
-                    invBox.VerticalAlignment = VerticalAlignment.Top;
-                    invBox.HorizontalAlignment = HorizontalAlignment.Left;
-                    invBox.Height = screen.Height/2;
-                    invBox.Width = screen.Width/2;
-                    screen.Children.Add(invBox);
-
-                    //Menusc.Visibility = Visibility.Visible;
-
-                    foreach (Gear g in Player.GetInstance().GetEquippedGear())
-                        invBox.Items.Add(g.Description);
-                    screen.Dispatcher.Invoke(emptyDelegate, DispatcherPriority.Render);
-                    //show inventory here
-                    //Thread.Sleep(1000);
-                    
-
-                    
-                    _hive.IsEnabled = true;
-                    //Menusc.Visibility = Visibility.Hidden;
-                    Maze.GetInstance().Display();
-                    
-                     */
-
-                    //----------work in progress----------
-
                     break;
+                case Key.C:
+                    _hive.IsEnabled = false;
+                    InvScr = new InventoryScreen(_hive);
+                    InvScr.tabControl1.SelectedTab = InvScr.tabControl1.TabPages[1];
+                    InvScr.ShowDialog();
+                    break;
+
             }
 
             Maze.GetInstance().Refresh(Player.GetInstance());

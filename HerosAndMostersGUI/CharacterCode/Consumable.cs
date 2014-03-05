@@ -29,6 +29,8 @@ namespace HerosAndMostersGUI
                 cmd.AddEffect(ef, Hero.GetInstance());
             }
 
+            cmd.RegisterCommand();
+
             Player.GetInstance().GetInventory().RemoveItem(this);
 
         return true;

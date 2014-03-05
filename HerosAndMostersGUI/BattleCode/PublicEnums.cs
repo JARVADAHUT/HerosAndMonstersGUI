@@ -57,8 +57,8 @@
     {
         Head,
         Shoulders,
-        Forearm,
         Chest,
+        Forearm,
         Legs,
         Feet,
 

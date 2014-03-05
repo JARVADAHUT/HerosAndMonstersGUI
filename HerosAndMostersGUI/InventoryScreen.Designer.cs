@@ -51,10 +51,29 @@ namespace HerosAndMostersGUI
             this.Equip = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.EquippedInventory = new System.Windows.Forms.ListBox();
+            this.ItemStats = new System.Windows.Forms.GroupBox();
+            this.CharacterStats = new System.Windows.Forms.GroupBox();
+            this.CurSelectedEquipMMP = new System.Windows.Forms.Label();
+            this.CurSelectedEquipMHP = new System.Windows.Forms.Label();
+            this.CurSelectedEquipInt = new System.Windows.Forms.Label();
+            this.CurSelectedEquipDef = new System.Windows.Forms.Label();
+            this.CurSelectedEquipAgi = new System.Windows.Forms.Label();
+            this.CurSelectedEquipStr = new System.Windows.Forms.Label();
+            this.CharacterMMPLabel = new System.Windows.Forms.Label();
+            this.CharacterMHPLabel = new System.Windows.Forms.Label();
+            this.CharacterIntLabel = new System.Windows.Forms.Label();
+            this.CharacterDefLabel = new System.Windows.Forms.Label();
+            this.CharacterAgiLabel = new System.Windows.Forms.Label();
+            this.CharacterStrLabel = new System.Windows.Forms.Label();
+            this.Tab2ExitBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.ItemStats.SuspendLayout();
+            this.CharacterStats.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -272,6 +291,10 @@ namespace HerosAndMostersGUI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.Tab2ExitBtn);
+            this.tabPage2.Controls.Add(this.CharacterStats);
+            this.tabPage2.Controls.Add(this.ItemStats);
+            this.tabPage2.Controls.Add(this.EquippedInventory);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -279,6 +302,162 @@ namespace HerosAndMostersGUI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // EquippedInventory
+            // 
+            this.EquippedInventory.FormattingEnabled = true;
+            this.EquippedInventory.Location = new System.Drawing.Point(7, 7);
+            this.EquippedInventory.Name = "EquippedInventory";
+            this.EquippedInventory.Size = new System.Drawing.Size(549, 290);
+            this.EquippedInventory.TabIndex = 0;
+            // 
+            // ItemStats
+            // 
+            this.ItemStats.Controls.Add(this.CurSelectedEquipMMP);
+            this.ItemStats.Controls.Add(this.CurSelectedEquipMHP);
+            this.ItemStats.Controls.Add(this.CurSelectedEquipInt);
+            this.ItemStats.Controls.Add(this.CurSelectedEquipDef);
+            this.ItemStats.Controls.Add(this.CurSelectedEquipAgi);
+            this.ItemStats.Controls.Add(this.CurSelectedEquipStr);
+            this.ItemStats.Location = new System.Drawing.Point(7, 297);
+            this.ItemStats.Name = "ItemStats";
+            this.ItemStats.Size = new System.Drawing.Size(265, 233);
+            this.ItemStats.TabIndex = 1;
+            this.ItemStats.TabStop = false;
+            this.ItemStats.Text = "Item Stats";
+            // 
+            // CharacterStats
+            // 
+            this.CharacterStats.Controls.Add(this.CharacterMMPLabel);
+            this.CharacterStats.Controls.Add(this.CharacterAgiLabel);
+            this.CharacterStats.Controls.Add(this.CharacterMHPLabel);
+            this.CharacterStats.Controls.Add(this.CharacterStrLabel);
+            this.CharacterStats.Controls.Add(this.CharacterIntLabel);
+            this.CharacterStats.Controls.Add(this.CharacterDefLabel);
+            this.CharacterStats.Location = new System.Drawing.Point(288, 297);
+            this.CharacterStats.Name = "CharacterStats";
+            this.CharacterStats.Size = new System.Drawing.Size(268, 233);
+            this.CharacterStats.TabIndex = 2;
+            this.CharacterStats.TabStop = false;
+            this.CharacterStats.Text = "Character Stats";
+            // 
+            // CurSelectedEquipMMP
+            // 
+            this.CurSelectedEquipMMP.AutoSize = true;
+            this.CurSelectedEquipMMP.Location = new System.Drawing.Point(5, 194);
+            this.CurSelectedEquipMMP.Name = "CurSelectedEquipMMP";
+            this.CurSelectedEquipMMP.Size = new System.Drawing.Size(35, 13);
+            this.CurSelectedEquipMMP.TabIndex = 11;
+            this.CurSelectedEquipMMP.Text = "label1";
+            // 
+            // CurSelectedEquipMHP
+            // 
+            this.CurSelectedEquipMHP.AutoSize = true;
+            this.CurSelectedEquipMHP.Location = new System.Drawing.Point(2, 164);
+            this.CurSelectedEquipMHP.Name = "CurSelectedEquipMHP";
+            this.CurSelectedEquipMHP.Size = new System.Drawing.Size(63, 13);
+            this.CurSelectedEquipMHP.TabIndex = 10;
+            this.CurSelectedEquipMHP.Text = "+Max HP: 0";
+            // 
+            // CurSelectedEquipInt
+            // 
+            this.CurSelectedEquipInt.AutoSize = true;
+            this.CurSelectedEquipInt.Location = new System.Drawing.Point(5, 133);
+            this.CurSelectedEquipInt.Name = "CurSelectedEquipInt";
+            this.CurSelectedEquipInt.Size = new System.Drawing.Size(73, 13);
+            this.CurSelectedEquipInt.TabIndex = 9;
+            this.CurSelectedEquipInt.Text = "Intelligence: 0";
+            // 
+            // CurSelectedEquipDef
+            // 
+            this.CurSelectedEquipDef.AutoSize = true;
+            this.CurSelectedEquipDef.Location = new System.Drawing.Point(6, 100);
+            this.CurSelectedEquipDef.Name = "CurSelectedEquipDef";
+            this.CurSelectedEquipDef.Size = new System.Drawing.Size(59, 13);
+            this.CurSelectedEquipDef.TabIndex = 8;
+            this.CurSelectedEquipDef.Text = "Defense: 0";
+            // 
+            // CurSelectedEquipAgi
+            // 
+            this.CurSelectedEquipAgi.AutoSize = true;
+            this.CurSelectedEquipAgi.Location = new System.Drawing.Point(6, 67);
+            this.CurSelectedEquipAgi.Name = "CurSelectedEquipAgi";
+            this.CurSelectedEquipAgi.Size = new System.Drawing.Size(46, 13);
+            this.CurSelectedEquipAgi.TabIndex = 7;
+            this.CurSelectedEquipAgi.Text = "Agility: 0";
+            // 
+            // CurSelectedEquipStr
+            // 
+            this.CurSelectedEquipStr.AutoSize = true;
+            this.CurSelectedEquipStr.Location = new System.Drawing.Point(6, 32);
+            this.CurSelectedEquipStr.Name = "CurSelectedEquipStr";
+            this.CurSelectedEquipStr.Size = new System.Drawing.Size(59, 13);
+            this.CurSelectedEquipStr.TabIndex = 6;
+            this.CurSelectedEquipStr.Text = "Strength: 0";
+            // 
+            // CharacterMMPLabel
+            // 
+            this.CharacterMMPLabel.AutoSize = true;
+            this.CharacterMMPLabel.Location = new System.Drawing.Point(6, 194);
+            this.CharacterMMPLabel.Name = "CharacterMMPLabel";
+            this.CharacterMMPLabel.Size = new System.Drawing.Size(35, 13);
+            this.CharacterMMPLabel.TabIndex = 17;
+            this.CharacterMMPLabel.Text = "label1";
+            // 
+            // CharacterMHPLabel
+            // 
+            this.CharacterMHPLabel.AutoSize = true;
+            this.CharacterMHPLabel.Location = new System.Drawing.Point(5, 164);
+            this.CharacterMHPLabel.Name = "CharacterMHPLabel";
+            this.CharacterMHPLabel.Size = new System.Drawing.Size(63, 13);
+            this.CharacterMHPLabel.TabIndex = 16;
+            this.CharacterMHPLabel.Text = "+Max HP: 0";
+            // 
+            // CharacterIntLabel
+            // 
+            this.CharacterIntLabel.AutoSize = true;
+            this.CharacterIntLabel.Location = new System.Drawing.Point(5, 133);
+            this.CharacterIntLabel.Name = "CharacterIntLabel";
+            this.CharacterIntLabel.Size = new System.Drawing.Size(73, 13);
+            this.CharacterIntLabel.TabIndex = 15;
+            this.CharacterIntLabel.Text = "Intelligence: 0";
+            // 
+            // CharacterDefLabel
+            // 
+            this.CharacterDefLabel.AutoSize = true;
+            this.CharacterDefLabel.Location = new System.Drawing.Point(5, 100);
+            this.CharacterDefLabel.Name = "CharacterDefLabel";
+            this.CharacterDefLabel.Size = new System.Drawing.Size(59, 13);
+            this.CharacterDefLabel.TabIndex = 14;
+            this.CharacterDefLabel.Text = "Defense: 0";
+            // 
+            // CharacterAgiLabel
+            // 
+            this.CharacterAgiLabel.AutoSize = true;
+            this.CharacterAgiLabel.Location = new System.Drawing.Point(6, 67);
+            this.CharacterAgiLabel.Name = "CharacterAgiLabel";
+            this.CharacterAgiLabel.Size = new System.Drawing.Size(46, 13);
+            this.CharacterAgiLabel.TabIndex = 13;
+            this.CharacterAgiLabel.Text = "Agility: 0";
+            // 
+            // CharacterStrLabel
+            // 
+            this.CharacterStrLabel.AutoSize = true;
+            this.CharacterStrLabel.Location = new System.Drawing.Point(6, 32);
+            this.CharacterStrLabel.Name = "CharacterStrLabel";
+            this.CharacterStrLabel.Size = new System.Drawing.Size(59, 13);
+            this.CharacterStrLabel.TabIndex = 12;
+            this.CharacterStrLabel.Text = "Strength: 0";
+            // 
+            // Tab2ExitBtn
+            // 
+            this.Tab2ExitBtn.Location = new System.Drawing.Point(468, 530);
+            this.Tab2ExitBtn.Name = "Tab2ExitBtn";
+            this.Tab2ExitBtn.Size = new System.Drawing.Size(88, 30);
+            this.Tab2ExitBtn.TabIndex = 3;
+            this.Tab2ExitBtn.Text = "Exit";
+            this.Tab2ExitBtn.UseVisualStyleBackColor = true;
+            this.Tab2ExitBtn.Click += new System.EventHandler(this.Tab2ExitBtn_Click);
             // 
             // InventoryScreen
             // 
@@ -295,13 +474,17 @@ namespace HerosAndMostersGUI
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.ItemStats.ResumeLayout(false);
+            this.ItemStats.PerformLayout();
+            this.CharacterStats.ResumeLayout(false);
+            this.CharacterStats.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ListBox EquipedGear;
         private System.Windows.Forms.Button Drop;
@@ -323,6 +506,23 @@ namespace HerosAndMostersGUI
         private System.Windows.Forms.Label TradeoffStrLabel;
         private System.Windows.Forms.Label TradeoffIntLabel;
         private System.Windows.Forms.Label TradeoffDefLabel;
+        private System.Windows.Forms.GroupBox CharacterStats;
+        private System.Windows.Forms.Label CharacterMMPLabel;
+        private System.Windows.Forms.Label CharacterAgiLabel;
+        private System.Windows.Forms.Label CharacterMHPLabel;
+        private System.Windows.Forms.Label CharacterStrLabel;
+        private System.Windows.Forms.Label CharacterIntLabel;
+        private System.Windows.Forms.Label CharacterDefLabel;
+        private System.Windows.Forms.GroupBox ItemStats;
+        private System.Windows.Forms.Label CurSelectedEquipMMP;
+        private System.Windows.Forms.Label CurSelectedEquipMHP;
+        private System.Windows.Forms.Label CurSelectedEquipInt;
+        private System.Windows.Forms.Label CurSelectedEquipDef;
+        private System.Windows.Forms.Label CurSelectedEquipAgi;
+        private System.Windows.Forms.Label CurSelectedEquipStr;
+        private System.Windows.Forms.ListBox EquippedInventory;
+        public System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button Tab2ExitBtn;
 
     }
 }
