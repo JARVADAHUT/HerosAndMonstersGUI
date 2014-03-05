@@ -70,6 +70,14 @@ namespace HerosAndMostersGUI
         {
             return GetEnumerator();
         }
+
+        public void Use(InventoryItems item)
+        {
+            bool remove = item.Use();
+            if (remove)
+                _itemList.Remove(item);
+            
+        }
     } // end class
 
 } //end namespace

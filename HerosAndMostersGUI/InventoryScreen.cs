@@ -304,7 +304,7 @@ namespace HerosAndMostersGUI
         private void Equip_Click(object sender, EventArgs e)
         {
             GenericItems itemSelected = (GenericItems)(this.Inventory.SelectedItem);        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
-            itemSelected.Use();
+            Player.GetInstance().GetInventory().Use(itemSelected);
             GenerateLists();
         }
 

@@ -51,7 +51,7 @@ namespace HerosAndMostersGUI.CharacterCode
 
                 // add item to equpied, remove from inventory
                 PlayerEquipedInventory.Add(Slot, this);
-                Player.GetInstance().GetInventory().RemoveItem(this);
+                //Player.GetInstance().GetInventory().RemoveItem(this);
             }
             catch (Exception e) // <---- WILL CHANGE FROM GENERIC EXCEPTION
             {
