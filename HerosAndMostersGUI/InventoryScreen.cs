@@ -100,12 +100,12 @@ namespace HerosAndMostersGUI
 
         private void InventoryScreen_Load(object sender, EventArgs e)
         {
-       
+            
         }
 
         private void Swap_Click(object sender, EventArgs e)
         {
-            // not implemented
+            // No button calls this, not implemented
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -124,40 +124,105 @@ namespace HerosAndMostersGUI
                 {
                     // curSelect adjustments
                     InventoryItems selectedItem = (InventoryItems)this.Inventory.SelectedItem;
-                    CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperty(StatsType.Strength).Magnitude;
-                    CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperty(StatsType.Agility).Magnitude;
-                    CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperty(StatsType.Intelegence).Magnitude;
-                    CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperty(StatsType.Defense).Magnitude;
-                    CurSelectMHPLabel.Text = "Bonus HP: " + selectedItem.GetProperty(StatsType.MaxHp).Magnitude;
-                    CurSelectMMPLabel.Text = "Bonus MP: " + selectedItem.GetProperty(StatsType.MaxResources).Magnitude;
 
                     //tradeoff calculations
                     if (selectedItem.GetType() == EnumItemType.Equipable) //<---DEBUG----DEBUG : Get rid of this when potion tab is implemented ------DEBUG-----DEBUG-------DEBUG----------DEBUG----------DEBUG-------DEBUG-----------
                     {
-                        EnumGearSlot selectedType = ((Equipable)selectedItem).Slot;
-                        int tStr = (selectedItem.GetProperty(StatsType.Strength).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Strength).Magnitude);
-                        int tAgi = (selectedItem.GetProperty(StatsType.Agility).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Agility).Magnitude);
-                        int tInt = (selectedItem.GetProperty(StatsType.Intelegence).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Intelegence).Magnitude);
-                        int tDef = (selectedItem.GetProperty(StatsType.Defense).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Defense).Magnitude);
-                        int tMHP = (selectedItem.GetProperty(StatsType.MaxHp).Magnitude) - (equiped[selectedType].GetProperty(StatsType.MaxHp).Magnitude);
-                        int tMMP = (selectedItem.GetProperty(StatsType.MaxResources).Magnitude) - (equiped[selectedType].GetProperty(StatsType.MaxResources).Magnitude);
-
-                        // tradeoff adjustments
-                        TradeoffStrLabel.Text = "Strength: " + tStr;
-                        TradeoffAgiLabel.Text = "Agility: " + tAgi;
-                        TradeoffIntLabel.Text = "Intelligence: " + tInt;
-                        TradeoffDefLabel.Text = "Defense: " + tDef;
-                        TradeoffMHPLabel.Text = "Bonus HP: " + tMHP;
-                        TradeoffMMPLabel.Text = "Bonus MP: " + tMMP;
-
-                        SetTradeoffColors(tStr, tAgi, tInt, tDef, tMHP, tMMP);
+                        SetCurAndTradeoffForEquipable(selectedItem);
+                    }
+                    else if (selectedItem.GetType() == EnumItemType.Consumable)
+                    {
+                        SetCurAndTradeoffForConsumable(selectedItem);
+                    }
+                    else if (selectedItem.GetType() == EnumItemType.Dye)
+                    {
+                        SetCurAndTradeoffForDye(selectedItem);
                     }
                 }
                 catch (NullReferenceException)
                 {
-
+                    // write this out to text file for debugging
                 }
             }
+        }
+
+        private void SetCurAndTradeoffForEquipable(InventoryItems selectedItem)
+        {
+            CurSelectStrLabel.Text = "Strength: " + selectedItem.GetProperty(StatsType.Strength).Magnitude;
+            CurSelectAgiLabel.Text = "Agility: " + selectedItem.GetProperty(StatsType.Agility).Magnitude;
+            CurSelectIntLabel.Text = "Intelligence: " + selectedItem.GetProperty(StatsType.Intelegence).Magnitude;
+            CurSelectDefLabel.Text = "Defense: " + selectedItem.GetProperty(StatsType.Defense).Magnitude;
+            CurSelectMHPLabel.Text = "Bonus HP: " + selectedItem.GetProperty(StatsType.MaxHp).Magnitude;
+            CurSelectMMPLabel.Text = "Bonus MP: " + selectedItem.GetProperty(StatsType.MaxResources).Magnitude;
+
+            EnumGearSlot selectedType = ((Equipable)selectedItem).Slot;
+            int tStr = (selectedItem.GetProperty(StatsType.Strength).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Strength).Magnitude);
+            int tAgi = (selectedItem.GetProperty(StatsType.Agility).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Agility).Magnitude);
+            int tInt = (selectedItem.GetProperty(StatsType.Intelegence).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Intelegence).Magnitude);
+            int tDef = (selectedItem.GetProperty(StatsType.Defense).Magnitude) - (equiped[selectedType].GetProperty(StatsType.Defense).Magnitude);
+            int tMHP = (selectedItem.GetProperty(StatsType.MaxHp).Magnitude) - (equiped[selectedType].GetProperty(StatsType.MaxHp).Magnitude);
+            int tMMP = (selectedItem.GetProperty(StatsType.MaxResources).Magnitude) - (equiped[selectedType].GetProperty(StatsType.MaxResources).Magnitude);
+
+            // tradeoff adjustments
+            TradeoffStrLabel.Text = "Strength: " + tStr;
+            TradeoffAgiLabel.Text = "Agility: " + tAgi;
+            TradeoffIntLabel.Text = "Intelligence: " + tInt;
+            TradeoffDefLabel.Text = "Defense: " + tDef;
+            TradeoffMHPLabel.Text = "Bonus HP: " + tMHP;
+            TradeoffMMPLabel.Text = "Bonus MP: " + tMMP;
+
+            SetTradeoffColors(tStr, tAgi, tInt, tDef, tMHP, tMMP);
+
+            this.Equip.Text = "Equip";
+        }
+
+        private void SetCurAndTradeoffForConsumable(InventoryItems selectedItem)
+        {
+            Consumable potion = (Consumable)selectedItem;
+            int stat = -1; // DEFAULT VALUE
+
+            foreach (EffectInformation effect in potion.Properties)
+            {
+                if (effect.Magnitude > 0)
+                    stat = (int)effect.Stat;
+            }
+
+            CurSelectStrLabel.Text = potion.GetDescription() + ": " + selectedItem.GetProperty((StatsType)stat).Magnitude;
+            CurSelectAgiLabel.Text = "";
+            CurSelectIntLabel.Text = "";
+            CurSelectDefLabel.Text = "";
+            CurSelectMHPLabel.Text = "";
+            CurSelectMMPLabel.Text = "";
+
+            TradeoffStrLabel.Text = "";
+            TradeoffAgiLabel.Text = "";
+            TradeoffIntLabel.Text = "";
+            TradeoffDefLabel.Text = "";
+            TradeoffMHPLabel.Text = "";
+            TradeoffMMPLabel.Text = "";
+
+            this.Equip.Text = "Drink";
+        }
+
+        private void SetCurAndTradeoffForDye(InventoryItems selectedItem)
+        {
+            // WILL HAVE LOGIC HERE TO DETERMINE WHAT TYPE OF COLOR DYE EFFECTS
+
+            CurSelectStrLabel.Text = "Dye Color: Not Implemented";
+            CurSelectAgiLabel.Text = "";
+            CurSelectIntLabel.Text = "";
+            CurSelectDefLabel.Text = "";
+            CurSelectMHPLabel.Text = "";
+            CurSelectMMPLabel.Text = "";
+
+            TradeoffStrLabel.Text = "";
+            TradeoffAgiLabel.Text = "";
+            TradeoffIntLabel.Text = "";
+            TradeoffDefLabel.Text = "";
+            TradeoffMHPLabel.Text = "";
+            TradeoffMMPLabel.Text = "";
+
+            this.Equip.Text = "Apply";
         }
 
         private void SetTradeoffColors(int str, int agi, int intel, int def, int mhp, int mmp) // <--- should be refactored
@@ -234,6 +299,13 @@ namespace HerosAndMostersGUI
             else
                 GenerateDefaultLabels();
 
+        }
+
+        private void Equip_Click(object sender, EventArgs e)
+        {
+            GenericItems itemSelected = (GenericItems)(this.Inventory.SelectedItem);        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
+            itemSelected.Use();
+            GenerateLists();
         }
 
     }

@@ -258,6 +258,7 @@ namespace HerosAndMostersGUI
             this.Equip.TabIndex = 10;
             this.Equip.Text = "Equip";
             this.Equip.UseVisualStyleBackColor = true;
+            this.Equip.Click += new System.EventHandler(this.Equip_Click);
             // 
             // Exit
             // 

@@ -1,5 +1,6 @@
 ﻿using DesignPatterns___DC_Design;
 using HerosAndMostersGUI.CharacterCode;
+using MazeTest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,16 @@ namespace HerosAndMostersGUI
 
         public override bool Use()
         {
-            return true;
-            // use and destroy
+            StatAugmentCommand cmd = new StatAugmentCommand();
+
+            foreach (EffectInformation ef in this.Properties)
+            {
+                cmd.AddEffect(ef, Hero.GetInstance());
+            }
+
+            Player.GetInstance().GetInventory().RemoveItem(this);
+
+        return true;
         }
 
         new public EnumItemType GetType()

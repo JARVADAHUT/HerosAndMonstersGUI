@@ -229,15 +229,15 @@ namespace HerosAndMostersGUI.MazeCode
 
         private static string GetRarityInText(double rarity)
         {
-            if (rarity <= 100)//basic
+            if (rarity <= 175)//basic
                 return "Basic ";
-            else if (rarity <= 700)//common
+            else if (rarity <= 350)//common
                 return "Common ";
-            else if (rarity <= 900)//uncommon
+            else if (rarity <= 525)//uncommon
                 return "Uncommon ";
-            else if (rarity <= 950)//rare
+            else if (rarity <= 700)//rare
                 return "Rare ";
-            else if (rarity <= 985)//epic
+            else if (rarity <= 875)//epic
                 return "Epic ";
             else//legendary
                 return "Legendary ";
