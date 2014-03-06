@@ -114,5 +114,10 @@ namespace DesignPatterns___DC_Design
         {
             return GetEnumerator();
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

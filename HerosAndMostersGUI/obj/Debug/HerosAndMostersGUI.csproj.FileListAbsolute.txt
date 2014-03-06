@@ -99,3 +99,5 @@ N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\Heros
 N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csproj.GenerateResource.Cache
 N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.exe
 N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\HerosAndMostersGUI.pdb
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\CharacterSelect.baml
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\CharacterSelect.g.cs
