@@ -17,24 +17,12 @@ namespace DesignPatterns___DC_Design
             RegisteredDC = dc;
         }
 
-        public void Attack(AttackTypes atkType, Target targets)
+        public void Attack(EnumAttacks atkType, Target targets)
         {
-            switch (atkType)
+            var value = atkType.Value;
+            switch (value)
             {
-                case AttackTypes.Strong:
-                    BuildStrong(targets);
-                    break;
-                case AttackTypes.Weak:
-                    BuildWeak(targets);
-                    break;
-                case AttackTypes.Defend:
-                    BuildDefend(targets);
-                    break;
-                case AttackTypes.Heal:
-                    BuildHeal(targets);
-                    break;
-                default:
-                    break;
+                
             }
         }
 

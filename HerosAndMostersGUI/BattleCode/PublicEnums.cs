@@ -85,22 +85,25 @@ namespace DesignPatterns___DC_Design
 
         private static readonly List<EnumAttacks> AttacksList; 
 
-        public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong Attack","Performs a strong attack against a selected opponent.");
-        public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak attack","Performs a weak attack against an opponent.");
-        public static readonly EnumAttacks PitifulHeal = new EnumAttacks("Pitiful heal","Performs a minute heal on selected character.");
+        public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong attack","Performs a strong attack against a selected opponent.",0);
+        public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak attack","Performs a weak attack against an opponent.",1);
+        public static readonly EnumAttacks PitifulHeal = new EnumAttacks("Pitiful heal","Performs a minute heal on selected character.",2);
         
-        public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames!");
+        public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames!",3);
+        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of ice","Freezes the opponent and surrounding opponents.",4);
+        
 
 
-
-        private EnumAttacks(string name, string description)
+        private EnumAttacks(string name, string description, int value)
         {
             Name = name;
             Description = description;
+            Value = value;
         }
 
         public string Description { private set; get; }
         public string Name { private set; get; }
+        public int Value { private set; get; }
 
         public IEnumerator<EnumAttacks> GetEnumerator()
         {
