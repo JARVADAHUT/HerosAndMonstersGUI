@@ -64,6 +64,7 @@
     <Compile Include="CharacterCode\ApplyEffectsUseBehavior.cs" />
     <Compile Include="CharacterCode\Consumable.cs" />
     <Compile Include="CharacterCode\DungeonCharacter.cs" />
+    <Compile Include="CharacterCode\Dye.cs" />
     <Compile Include="CharacterCode\EffectsInformation.cs" />
     <Compile Include="CharacterCode\Equipable.cs" />
     <Compile Include="CharacterCode\Hero.cs" />

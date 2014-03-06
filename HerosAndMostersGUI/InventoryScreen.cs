@@ -183,7 +183,7 @@ namespace HerosAndMostersGUI
         {
             if (this.Inventory.Items.Count > 0)
             {
-                GenericItems itemSelected = (GenericItems)(this.Inventory.SelectedItem);        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
+                InventoryItems itemSelected = (InventoryItems)this.Inventory.SelectedItem;        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
                 Player.GetInstance().GetInventory().Use(itemSelected);
                 GenerateLists();
                 GenerateListPage2();

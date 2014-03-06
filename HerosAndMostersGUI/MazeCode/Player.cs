@@ -61,12 +61,17 @@ namespace MazeTest
             return equipedGear;
         }
 
+        public void SetColor(SolidColorBrush color)
+        {
+            _color = color;
+        }
+
+        #region Private
+
         private void GenerateBeginningEquipedGear()
         {
             equipedGear = FItemGenerator.GetStarterGear();
         }
-
-        #region Private
 
         private void ResetPosition()
         {

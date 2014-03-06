@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace HerosAndMostersGUI.MazeCode
 {
@@ -70,9 +71,9 @@ namespace HerosAndMostersGUI.MazeCode
             //add more knowledge later?
             int roll = rnd.Next(1000);
 
-            if (roll < 600)
+            if (roll < 600)//600
                 return EnumItemType.Equipable;
-            else if (roll < 900)
+            else if (roll < 900)//900
                 return EnumItemType.Consumable;
             else
                 return EnumItemType.Dye;
@@ -80,8 +81,46 @@ namespace HerosAndMostersGUI.MazeCode
 
         private static InventoryItems GenerateDye()
         {
-            return GenerateEquipable();//keep it from blowing up
-            //throw new NotImplementedException();
+            int dyeColor = rnd.Next(10);
+            Dye theDye;
+            switch (dyeColor)
+            {
+                case 0:
+                    theDye = new Dye(Brushes.LawnGreen);
+                    break;
+                case 1:
+                    theDye = new Dye(Brushes.Ivory);
+                    break;
+                case 2:
+                    theDye = new Dye(Brushes.HotPink);
+                    break;
+                case 3:
+                    theDye = new Dye(Brushes.Wheat);
+                    break;
+                case 4:
+                    theDye = new Dye(Brushes.White);
+                    break;
+                case 5:
+                    theDye = new Dye(Brushes.Tomato);
+                    break;
+                case 6:
+                    theDye = new Dye(Brushes.Snow);
+                    break;
+                case 7:
+                    theDye = new Dye(Brushes.Silver);
+                    break;
+                case 8:
+                    theDye = new Dye(Brushes.Plum);
+                    break;
+                case 9:
+                    theDye = new Dye(Brushes.OldLace);
+                    break;
+                default:
+                    theDye = new Dye(Brushes.LightYellow);
+                    break;
+            }
+
+            return theDye;
         }
 
         #region Generate Consumable
