@@ -12,6 +12,7 @@ namespace HerosAndMostersGUI.CharacterCode
 
         bool Use();
         String GetDescription();
+        String GetName();
         List<EffectInformation> GetProperties();
         EffectInformation GetProperty(StatsType type);
         void SetType(EnumItemType type);

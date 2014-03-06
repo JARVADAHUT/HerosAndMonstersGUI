@@ -15,6 +15,7 @@ namespace HerosAndMostersGUI
         public List<EffectInformation> Properties { set; get; }
         public String Description { get; set; }
         public EnumItemType Type { get; set; }
+        public String Name { get; set; }
 
         public GenericItems(int key)
         {
@@ -56,6 +57,12 @@ namespace HerosAndMostersGUI
         public new EnumItemType GetType()
         {
             return Type;
+        }
+
+
+        public string GetName()
+        {
+            return Name;
         }
     }
 }

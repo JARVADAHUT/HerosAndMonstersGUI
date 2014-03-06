@@ -40,5 +40,11 @@ namespace HerosAndMostersGUI.MazeCode
         {
             throw new NotImplementedException();
         }
+
+
+        public string GetName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

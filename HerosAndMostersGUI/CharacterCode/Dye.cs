@@ -27,7 +27,7 @@ namespace HerosAndMostersGUI.CharacterCode
 
         public string GetDescription()
         {
-            return _color.ToString() + " dye";
+            return "Dye yourself " + _color.ToString();
         }
 
         public List<EffectInformation> GetProperties()
@@ -48,6 +48,11 @@ namespace HerosAndMostersGUI.CharacterCode
         public new DesignPatterns___DC_Design.EnumItemType GetType()
         {
             return _type;
+        }
+
+        public string GetName()
+        {
+            return _color.ToString() + " dye";
         }
     }
 }
