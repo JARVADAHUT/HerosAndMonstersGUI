@@ -23,6 +23,6 @@ namespace DesignPatterns___DC_Design
             this._dcStats = stats;
         }
 
-        public abstract void Attack(AttackTypes type, Target target);
+        public abstract void Attack(EnumAttacks type, Target target);
     }
 }

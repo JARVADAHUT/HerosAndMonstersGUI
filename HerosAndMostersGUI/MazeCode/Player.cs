@@ -16,18 +16,30 @@ namespace MazeTest
     {
         private static Player _thisPlayer = null;
         private Dictionary<EnumGearSlot, Equipable> equipedGear; // <------- NEWLY ADDED
+        private SolidColorBrush _color;
+        private string _name;
+        private List<EnumAttacks> _attacks; 
 
-        private Player() : base()
+        private Player(string name, SolidColorBrush color, List<EnumAttacks> playerAttacks) : base()
         {
             SetInteraction(this);
             equipedGear = new Dictionary<EnumGearSlot, Equipable>(); // <------- NEWLY ADDED
             GenerateBeginningEquipedGear();
+            _color = color;
+            _name = name;
+            _attacks = playerAttacks;
         }
         
         public static Player GetInstance()
         {
-            return _thisPlayer ?? (_thisPlayer = new Player());
+            return _thisPlayer;
         }
+
+        public static void MakePlayer(string name, SolidColorBrush color, List<EnumAttacks> playerAttacks)
+        {
+            _thisPlayer = new Player(name, color, playerAttacks);
+        }
+
 
         public override void Die()
         {
@@ -72,12 +84,12 @@ namespace MazeTest
 
         public override SolidColorBrush GetColor()
         {
-            return Brushes.LawnGreen;
+            return _color;
         }
 
         public override string ToString()
         {
-            return "p";
+            return _name;
         }
 
         public override void Interact(LivingCreature lc)

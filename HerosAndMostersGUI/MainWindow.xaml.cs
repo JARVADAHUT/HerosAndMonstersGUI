@@ -39,6 +39,11 @@ namespace HerosAndMostersGUI
         public MainWindow()
         {
             InitializeComponent();
+
+            CharacterSelect selectScreen = new CharacterSelect();
+
+            selectScreen.ShowDialog();
+
             Start(); 
         }
 
@@ -144,6 +149,7 @@ namespace HerosAndMostersGUI
         {
             //Should only do once per maze generation-----------------------
 
+            this.Title = "Maze Level: " + (Maze.GetInstance().MazeLevel + 1);
             int size = 0;
 
             MazeObject displayCol = maze;
