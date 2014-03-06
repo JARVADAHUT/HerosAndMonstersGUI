@@ -42,19 +42,18 @@ namespace HerosAndMostersGUI
                 GenerateDefaultLabels();
             
             SetCurEquippedSelectedLabels(null, null);
-
-
             setInventory();
             setCurSelectedBox();
             SetEquippedInventory();
             SetEquippedSelectedBox();
+            UpdateCharacterStats(null, null);
 
 
             // EVENTS
             //this.Inventory.DrawItem += new System.Windows.Forms.DrawItemEventHandler(Inventory_DrawItem); //<--- allows variable font and text color
             this.Inventory.SelectedIndexChanged += new EventHandler(setCurSelectedandTradeoffLabels);
             this.EquippedInventory.SelectedIndexChanged += new EventHandler(SetCurEquippedSelectedLabels);
-            this.tabControl1.GotFocus += new EventHandler(UpdateCharacterStats);
+            this.tabControl1.Selected += new TabControlEventHandler(UpdateCharacterStats);
             this.KeyDown += new KeyEventHandler(CheckIfKeyToClose);
 
             // final initialization
@@ -226,29 +225,6 @@ namespace HerosAndMostersGUI
             int charMHP = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
             int charMMP = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
 
-            /*
-            foreach (KeyValuePair<EnumGearSlot, Equipable> item in curEquippedInv)
-            {
-                Equipable curItem = (Equipable)item.Value;
-                foreach (EffectInformation effect in curItem.Properties)
-                {
-                    if (effect.Stat == StatsType.Strength)
-                        charStr += effect.Magnitude;
-                    else if (effect.Stat == StatsType.Agility)
-                        charAgi += effect.Magnitude;
-                    else if (effect.Stat == StatsType.Intelegence)
-                        charInt += effect.Magnitude;
-                    else if (effect.Stat == StatsType.Defense)
-                        charDef += effect.Magnitude;
-                    else if (effect.Stat == StatsType.MaxHp)
-                        charMHP += effect.Magnitude;
-                    else if (effect.Stat == StatsType.MaxResources)
-                        charMMP += effect.Magnitude;
-
-                }
-            }
-            */
-
             CharacterStrLabel.Text = "Strength: " + charStr;
             CharacterAgiLabel.Text = "Agility: " + charAgi;
             CharacterDefLabel.Text = "Defense: " + charDef;
@@ -330,7 +306,7 @@ namespace HerosAndMostersGUI
             }
 
             CurSelectStrLabel.Text = potion.GetDescription() + ": " + selectedItem.GetProperty((StatsType)stat).Magnitude;
-            CurSelectAgiLabel.Text = "";
+            CurSelectAgiLabel.Text = "Duration: " + selectedItem.GetProperty((StatsType)stat).Duration;
             CurSelectIntLabel.Text = "";
             CurSelectDefLabel.Text = "";
             CurSelectMHPLabel.Text = "";
