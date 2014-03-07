@@ -1,4 +1,5 @@
-﻿using DesignPatterns___DC_Design;
+﻿using System.Reflection;
+using DesignPatterns___DC_Design;
 using MazeTest;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace HerosAndMostersGUI
     public partial class MainWindow : Window, IMazeDisplay
     {
         private DispatcherTimer _hive = new DispatcherTimer();
+        private MediaPlayer _mediaPlayer;
 
         #region Constant Game Properties
 
@@ -43,6 +45,16 @@ namespace HerosAndMostersGUI
             CharacterSelect selectScreen = new CharacterSelect();
 
             selectScreen.ShowDialog();
+
+            #region Music Stuff
+
+            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+            var uri = new Uri(basePath, "Resources/soundtrack.mp3");
+            _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.Open(uri); //Maybe this can be placed somewhere else?
+            _mediaPlayer.Play();
+
+            #endregion
 
             Start(); 
         }

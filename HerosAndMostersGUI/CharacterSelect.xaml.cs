@@ -5,6 +5,7 @@ using System.Linq;
 using System.Media;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,7 +45,8 @@ namespace HerosAndMostersGUI
         private List<EnumAttacks> attacks = new List<EnumAttacks>();
         private List<EnumAttacks> allAttacks = new List<EnumAttacks>();
 
-        private MediaPlayer _player;
+        private MediaPlayer _mediaPlayer;
+
         public CharacterSelect()
         {
             SourceInitialized += MainWindow_SourceInitialized;
@@ -54,9 +56,9 @@ namespace HerosAndMostersGUI
 
             var basePath = new Uri(Assembly.GetEntryAssembly().Location);
             var uri = new Uri(basePath , "Resources/intro.mp3");
-            _player = new MediaPlayer();
-            _player.Open(uri); //Maybe this can be placed somewhere else?
-            _player.Play();
+            _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.Open(uri); //Maybe this can be placed somewhere else?
+            _mediaPlayer.Play();
             
             #endregion
 
@@ -144,6 +146,12 @@ namespace HerosAndMostersGUI
                     Player.MakePlayer("El Benatar", Brushes.Purple, attacks);
                 }
 
+                for (double i = .5; i > 0.0; i -= .03)
+                {
+                    Thread.Sleep(100);
+                    _mediaPlayer.Volume = i;
+                }
+                _mediaPlayer.Stop();
                 this.Close();
             }
             else

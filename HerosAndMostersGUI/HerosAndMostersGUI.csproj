@@ -161,12 +161,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\JPHellion.mp3" />
-    <None Include="Resources\JPHardAsIron.mp3" />
-    <None Include="Resources\IM2Minutes.mp3" />
-    <None Include="Resources\IMFearOfTheDark.mp3" />
-    <None Include="Resources\IMTrooper.mp3" />
     <Content Include="Resources\intro.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\soundtrack.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

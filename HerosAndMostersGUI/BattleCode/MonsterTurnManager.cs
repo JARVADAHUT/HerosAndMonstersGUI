@@ -25,6 +25,11 @@ namespace DesignPatterns___DC_Design
             _monsterQueue.Enqueue(monster);
         }
 
+        public void RegisterMonsters(IEnumerable<Monster> monsters)
+        {
+            foreach(var m in monsters)
+                _monsterQueue.Enqueue(m);
+        }
 
         public void Start()
         {

@@ -31,7 +31,7 @@ namespace HerosAndMostersGUI.BattleCode
 
         public void StartBattle()
         {
-            _monsterTurnManager.Start();
+            _monsterTurnManager.Start(); //Placeholder, possibly move to form
         }
     }
 }

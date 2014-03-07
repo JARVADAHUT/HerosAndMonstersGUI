@@ -118,22 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="IM2Minutes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IM2Minutes.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="IMFearOfTheDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IMFearOfTheDark.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="IMTrooper" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IMTrooper.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="intro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\intro.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="JPHardAsIron" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JPHardAsIron.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="JPHellion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JPHellion.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="soundtrack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\soundtrack.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
