@@ -71,7 +71,7 @@ namespace DesignPatterns___DC_Design
         Max //<--- For generating items, put new types before this
     }
 
-    public class EnumAttacks : IEnumerable<EnumAttacks>
+    public class EnumAttacks
     {
         static EnumAttacks()
         {
@@ -105,16 +105,8 @@ namespace DesignPatterns___DC_Design
         public string Description { private set; get; }
         public string Name { private set; get; }
         public int Value { private set; get; }
-        public static ReadOnlyCollection<EnumAttacks> AttacksList { get { return _attacksList.AsReadOnly(); } } 
-        public IEnumerator<EnumAttacks> GetEnumerator()
-        {
-            return _attacksList.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        public static IEnumerable<EnumAttacks> AttacksList { get { return _attacksList.AsReadOnly(); } } 
+        
 
         public override string ToString()
         {
