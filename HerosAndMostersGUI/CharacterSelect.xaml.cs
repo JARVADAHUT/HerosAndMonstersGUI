@@ -44,23 +44,20 @@ namespace HerosAndMostersGUI
             SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
 
-            allAttacks.AddRange(EnumAttacks.AttacksList);
+            #region Other Startup Things
 
-            /*
-            allAttacks.Add(EnumAttacks.Fireball);
-            allAttacks.Add(EnumAttacks.IceCone);
-            allAttacks.Add(EnumAttacks.PitifulHeal);
-            allAttacks.Add(EnumAttacks.StrongAttack);
-            allAttacks.Add(EnumAttacks.StrongAttack);
-            allAttacks.Add(EnumAttacks.StrongAttack);
-            */
+            allAttacks.AddRange(EnumAttacks.AttacksList);
 
             AblSelect.ItemsSource = allAttacks;
             CharAbl.ItemsSource = attacks;
 
             AblSelect.SelectedIndex = 0;
-            
-         
+
+            this.KeyDown += new KeyEventHandler(Key_Down);
+
+            #endregion
+
+
         }
 
         void MainWindow_SourceInitialized(object sender, EventArgs e)
@@ -69,21 +66,64 @@ namespace HerosAndMostersGUI
             int style = GetWindowLong(wih.Handle, GWL_STYLE);
             SetWindowLong(wih.Handle, GWL_STYLE, style & ~WS_SYSMENU);
         }
-        
+
+        private void Key_Down(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Left:
+                    btnRemove.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    break;
+                case Key.Right:
+                    btnAdd.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    break;
+                case Key.Up:
+                    UpRadioButton();
+                    break;
+                case Key.Down:
+                    DownRadioButton();
+                    break;
+                case Key.F:
+                    btnReady.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    break;
+
+
+            }
+        }
+
+        private void DownRadioButton()
+        {
+            if ((bool)rb1.IsChecked)
+                rb2.IsChecked = true;
+            else if ((bool)rb2.IsChecked)
+                rb3.IsChecked = true;
+            else
+                rb1.IsChecked = true;
+        }
+
+        private void UpRadioButton()
+        {
+            if ((bool)rb1.IsChecked)
+                rb3.IsChecked = true;
+            else if ((bool)rb2.IsChecked)
+                rb1.IsChecked = true;
+            else
+                rb2.IsChecked = true;
+        }
 
         private void Button_Click_Ready(object sender, RoutedEventArgs e)
         {
             if (attacks.Count == 4)
             {
-                if ((bool)CharGreen.IsChecked)
+                if ((bool)rb1.IsChecked)
                 {
                     Player.MakePlayer("Kip Springfield", Brushes.LawnGreen, attacks);
                 }
-                if ((bool)CharRed.IsChecked)
+                if ((bool)rb2.IsChecked)
                 {
                     Player.MakePlayer("Tom Wilde", Brushes.Red, attacks);
                 }
-                if ((bool)CharPurple.IsChecked)
+                if ((bool)rb3.IsChecked)
                 {
                     Player.MakePlayer("El Benatar", Brushes.Purple, attacks);
                 }
