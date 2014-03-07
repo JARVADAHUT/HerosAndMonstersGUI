@@ -44,13 +44,16 @@ namespace HerosAndMostersGUI
             SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
 
+            allAttacks.AddRange(EnumAttacks.AttacksList);
 
+            /*
             allAttacks.Add(EnumAttacks.Fireball);
             allAttacks.Add(EnumAttacks.IceCone);
             allAttacks.Add(EnumAttacks.PitifulHeal);
             allAttacks.Add(EnumAttacks.StrongAttack);
             allAttacks.Add(EnumAttacks.StrongAttack);
             allAttacks.Add(EnumAttacks.StrongAttack);
+            */
 
             AblSelect.ItemsSource = allAttacks;
             CharAbl.ItemsSource = attacks;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 
@@ -76,14 +77,14 @@ namespace DesignPatterns___DC_Design
         {
             Type type = typeof(EnumAttacks);
             var fields = type.GetFields(BindingFlags.Public|BindingFlags.Static);
-            AttacksList = new List<EnumAttacks>();
+            _attacksList = new List<EnumAttacks>();
             foreach (var field in fields)
             {
-                AttacksList.Add((EnumAttacks)field.GetValue(typeof(EnumAttacks)));
+                _attacksList.Add((EnumAttacks)field.GetValue(typeof(EnumAttacks)));
             }
         }
 
-        private static readonly List<EnumAttacks> AttacksList; 
+        private static readonly List<EnumAttacks> _attacksList; 
 
         public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong attack","Performs a strong attack against a selected opponent.",0);
         public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak attack","Performs a weak attack against an opponent.",1);
@@ -91,7 +92,7 @@ namespace DesignPatterns___DC_Design
         
         public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames!",3);
         public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of ice","Freezes the opponent and surrounding opponents.",4);
-        
+        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper beam","Unleashes a beam of pure energy upon the enemy.",5);
 
 
         private EnumAttacks(string name, string description, int value)
@@ -104,10 +105,10 @@ namespace DesignPatterns___DC_Design
         public string Description { private set; get; }
         public string Name { private set; get; }
         public int Value { private set; get; }
-
+        public static ReadOnlyCollection<EnumAttacks> AttacksList { get { return _attacksList.AsReadOnly(); } } 
         public IEnumerator<EnumAttacks> GetEnumerator()
         {
-            return AttacksList.GetEnumerator();
+            return _attacksList.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
