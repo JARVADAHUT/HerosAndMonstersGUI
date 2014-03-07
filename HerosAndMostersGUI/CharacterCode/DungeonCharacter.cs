@@ -21,6 +21,7 @@ namespace DesignPatterns___DC_Design
         {
             this.Name = name;
             this._dcStats = stats;
+            AttackFactory = new AttackFactory(this);
         }
 
         public abstract void Attack(EnumAttacks type, Target target);

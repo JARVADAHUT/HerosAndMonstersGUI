@@ -7,7 +7,7 @@ using HerosAndMostersGUI.CharacterCode;
 
 namespace DesignPatterns___DC_Design
 {
-    public abstract class AttackFactory
+    public class AttackFactory
     {
         public DungeonCharacter RegisteredDC { private set; get; }
         private static Random _random = new Random();
@@ -22,8 +22,53 @@ namespace DesignPatterns___DC_Design
             var value = atkType.Value;
             switch (value)
             {
-                
+                case 0:
+                    BuildStrong(targets);
+                    break;
+                case 1:
+                    BuildWeak(targets);
+                    break;
+                case 2:
+                    BuildPitifulHeal(targets);
+                    break;
+                case 3:
+                    BuildFireball(targets);
+                    break;
+                case 4:
+                    BuildIceCone(targets);
+                    break;
+                case 5:
+                    BuildLightningBolt(targets);
+                    break;
+                case 6:
+                    BuildHyperBeam(targets);
+                    break;
             }
+        }
+
+        private void BuildLightningBolt(Target targets)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildHyperBeam(Target targets)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildIceCone(Target targets)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildFireball(Target targets)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildPitifulHeal(Target targets)
+        {
+            throw new NotImplementedException();
         }
 
         private void BuildStrong(Target targets)
@@ -53,14 +98,5 @@ namespace DesignPatterns___DC_Design
             cmd.RegisterCommand();
         }
 
-        private void BuildDefend(Target targets)
-        {
-            
-        }
-
-        private void BuildHeal(Target targets)
-        {
-            
-        }
     }
 }

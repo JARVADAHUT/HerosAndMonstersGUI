@@ -92,7 +92,9 @@ namespace DesignPatterns___DC_Design
         
         public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames!",3);
         public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of ice","Freezes the opponent and surrounding opponents.",4);
-        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper beam","Unleashes a beam of pure energy upon the enemy.",5);
+        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning bolt","Shocks the target for extreme ammounts of damage.",5);
+        
+        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper beam","Unleashes a beam of pure energy upon the enemy.",6);
 
 
         private EnumAttacks(string name, string description, int value)
