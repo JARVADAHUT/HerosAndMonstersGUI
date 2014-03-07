@@ -59,5 +59,15 @@ namespace HerosAndMostersGUI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] intro {
+            get {
+                object obj = ResourceManager.GetObject("intro", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

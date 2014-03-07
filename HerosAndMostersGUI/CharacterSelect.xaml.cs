@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,11 +18,13 @@ using MazeTest;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
 
+
 namespace HerosAndMostersGUI
 {
     /// <summary>
     /// Interaction logic for CharacterSelect.xaml
     /// </summary>
+    
     public partial class CharacterSelect : Window
     {
 
@@ -39,6 +43,7 @@ namespace HerosAndMostersGUI
         private List<EnumAttacks> attacks = new List<EnumAttacks>();
         private List<EnumAttacks> allAttacks = new List<EnumAttacks>();
 
+        
         public CharacterSelect()
         {
             SourceInitialized += MainWindow_SourceInitialized;
@@ -46,7 +51,8 @@ namespace HerosAndMostersGUI
 
             #region Music Stuff
 
-            var uri = new Uri(@"pack://application:,,,/Resources/intro.mp3");
+            
+            var uri = new Uri("HeroesAndMonstersGUI;/Resources/intro.mp3",UriKind.Relative);
             var player = new MediaPlayer();
             player.Open(uri);
             player.Play();
