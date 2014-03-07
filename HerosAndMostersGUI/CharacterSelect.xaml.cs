@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace HerosAndMostersGUI
         private List<EnumAttacks> attacks = new List<EnumAttacks>();
         private List<EnumAttacks> allAttacks = new List<EnumAttacks>();
 
-        
+        private MediaPlayer _player;
         public CharacterSelect()
         {
             SourceInitialized += MainWindow_SourceInitialized;
@@ -51,12 +52,12 @@ namespace HerosAndMostersGUI
 
             #region Music Stuff
 
+            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+            var uri = new Uri(basePath , "Resources/intro.mp3");
+            _player = new MediaPlayer();
+            _player.Open(uri); //Maybe this can be placed somewhere else?
+            _player.Play();
             
-            var uri = new Uri("HeroesAndMonstersGUI;/Resources/intro.mp3",UriKind.Relative);
-            var player = new MediaPlayer();
-            player.Open(uri);
-            player.Play();
-
             #endregion
 
             #region Other Startup Things
