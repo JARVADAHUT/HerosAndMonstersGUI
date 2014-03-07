@@ -63,9 +63,59 @@ namespace HerosAndMostersGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] IM2Minutes {
+            get {
+                object obj = ResourceManager.GetObject("IM2Minutes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] IMFearOfTheDark {
+            get {
+                object obj = ResourceManager.GetObject("IMFearOfTheDark", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] IMTrooper {
+            get {
+                object obj = ResourceManager.GetObject("IMTrooper", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] intro {
             get {
                 object obj = ResourceManager.GetObject("intro", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] JPHardAsIron {
+            get {
+                object obj = ResourceManager.GetObject("JPHardAsIron", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] JPHellion {
+            get {
+                object obj = ResourceManager.GetObject("JPHellion", resourceCulture);
                 return ((byte[])(obj));
             }
         }
