@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("charactercode/characterattacks.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/intro.mp3")]
 
 

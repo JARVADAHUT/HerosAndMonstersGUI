@@ -105,3 +105,4 @@ C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\CharacterSelect.baml
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\CharacterSelect.g.cs
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI.csprojResolveAssemblyReference.cache
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs

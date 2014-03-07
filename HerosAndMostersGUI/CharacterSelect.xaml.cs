@@ -44,6 +44,15 @@ namespace HerosAndMostersGUI
             SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
 
+            #region Music Stuff
+
+            var uri = new Uri(@"pack://application:,,,/Resources/intro.mp3");
+            var player = new MediaPlayer();
+            player.Open(uri);
+            player.Play();
+
+            #endregion
+
             #region Other Startup Things
 
             allAttacks.AddRange(EnumAttacks.AttacksList);
