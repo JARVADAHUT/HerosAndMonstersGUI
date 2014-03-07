@@ -2,6 +2,8 @@
 using MazeTest;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +15,13 @@ namespace HerosAndMostersGUI.CharacterCode
     {
         SolidColorBrush _color;
         EnumItemType _type;
+        public String Description { set; get; }
 
         public Dye(SolidColorBrush color)
         {
             _color = color;
+            System.Drawing.Color thisColor = GetColorFromHex(_color.Color.ToString());
+            this.Description = thisColor.Name;
         }
 
         public bool Use()
@@ -26,8 +31,8 @@ namespace HerosAndMostersGUI.CharacterCode
         }
 
         public string GetDescription()
-        {
-            return "Dye yourself " + _color.ToString();
+        {      
+            return "Color: " + this.Description;
         }
 
         public List<EffectInformation> GetProperties()
@@ -53,6 +58,18 @@ namespace HerosAndMostersGUI.CharacterCode
         public string GetName()
         {
             return _color.ToString() + " dye";
+        }
+
+        // http://stackoverflow.com/questions/7791710/convert-hex-code-to-color-name
+        private System.Drawing.Color GetColorFromHex(String hexString)
+        {
+            return ColorTranslator.FromHtml(hexString);
+        }
+
+        public override String ToString()
+        {
+
+            return this.Description + " Dye";
         }
     }
 }

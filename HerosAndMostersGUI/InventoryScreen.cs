@@ -324,9 +324,9 @@ namespace HerosAndMostersGUI
 
         private void SetCurAndTradeoffForDye(InventoryItems selectedItem)
         {
-            // WILL HAVE LOGIC HERE TO DETERMINE WHAT TYPE OF COLOR DYE EFFECTS
+            Dye selectedDye = (Dye)selectedItem;
 
-            CurSelectStrLabel.Text = "Dye Color: Not Implemented";
+            CurSelectStrLabel.Text = selectedDye.GetDescription();
             CurSelectAgiLabel.Text = "";
             CurSelectIntLabel.Text = "";
             CurSelectDefLabel.Text = "";
