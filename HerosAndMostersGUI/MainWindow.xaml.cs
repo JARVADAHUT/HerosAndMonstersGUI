@@ -34,7 +34,7 @@ namespace HerosAndMostersGUI
         private int _constantPixelSize = 10;
         private const int _tickSpeed = 200;
         private const int _firstMazeSize = 62;
-        private const int _frameSize = 1000;
+        private const int _frameSize = 750;
 
         #endregion 
 
