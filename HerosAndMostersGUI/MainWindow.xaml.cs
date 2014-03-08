@@ -31,9 +31,9 @@ namespace HerosAndMostersGUI
         #region Constant Game Properties
 
         private int _pixelSize;
-        private int _constantPixelSize = 100;
+        private int _constantPixelSize = 10;
         private const int _tickSpeed = 200;
-        private const int _firstMazeSize = 12;
+        private const int _firstMazeSize = 62;
         private const int _frameSize = 1000;
 
         #endregion 
@@ -134,7 +134,7 @@ namespace HerosAndMostersGUI
 
         private void FitToFrame(int size)
         {
-            _pixelSize = ((_frameSize - 38) / size) + 1;
+            _pixelSize = ((_frameSize - 38) / size);
 
             screen.Height = _frameSize;
             screen.Width = _frameSize - 16;

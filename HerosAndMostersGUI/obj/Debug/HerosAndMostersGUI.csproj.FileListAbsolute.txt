@@ -113,3 +113,6 @@ N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\CharacterSelect.bam
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\CharacterSelect.g.cs
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\soundtrack.mp3
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\intro.mp3
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\soundtrack.mp3
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs

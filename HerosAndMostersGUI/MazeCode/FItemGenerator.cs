@@ -81,7 +81,7 @@ namespace HerosAndMostersGUI.MazeCode
 
         private static InventoryItems GenerateDye()
         {
-            int dyeColor = rnd.Next(10);
+            int dyeColor = rnd.Next(19);
             Dye theDye;
             switch (dyeColor)
             {
@@ -115,8 +115,35 @@ namespace HerosAndMostersGUI.MazeCode
                 case 9:
                     theDye = new Dye(Brushes.OldLace);
                     break;
+                case 10:
+                    theDye = new Dye(Brushes.Cyan);
+                    break;
+                case 11:
+                    theDye = new Dye(Brushes.LightCyan);
+                    break;
+                case 12:
+                    theDye = new Dye(Brushes.CornflowerBlue);
+                    break;
+                case 13:
+                    theDye = new Dye(Brushes.BurlyWood);
+                    break;
+                case 14:
+                    theDye = new Dye(Brushes.AliceBlue);
+                    break;
+                case 15:
+                    theDye = new Dye(Brushes.Chocolate);
+                    break;
+                case 16:
+                    theDye = new Dye(Brushes.LimeGreen);
+                    break;
+                case 17:
+                    theDye = new Dye(Brushes.Peru);
+                    break;
+                case 18:
+                    theDye = new Dye(Brushes.Turquoise);
+                    break;
                 default:
-                    theDye = new Dye(Brushes.LightYellow);
+                    theDye = new Dye(Brushes.Transparent);
                     break;
             }
 
