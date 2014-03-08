@@ -1,17 +1,17 @@
 ﻿<Window x:Class="HerosAndMostersGUI.BattleWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BattleWindow" Height="370
+        Title="Battle Arena" Height="370
         " Width="600" WindowStartupLocation="CenterScreen">
     <Canvas Margin="0,0,0,0">
         <!--Players rectangle-->
         <Rectangle Name="playersRec" Height="50" Width="50" Canvas.Left="132" Canvas.Top="100" Fill="LawnGreen" Stroke="Blue" StrokeThickness="3"/>
         
         <!--Player Buttons-->
-        <Button Name="btnAbility1" Content="Button" Canvas.Left="10" Canvas.Top="85" Width="100" Height="30"/>
-        <Button Name="btnAbility2" Content="Button" Canvas.Left="10" Canvas.Top="135" Width="100" Height="30"/>
-        <Button Name="btnAbility3" Content="Button" Canvas.Left="10" Canvas.Top="185" Width="100" Height="30"/>
-        <Button Name="btnAbility4" Content="Button" Canvas.Left="10" Canvas.Top="235" Width="100" Height="30"/>
+        <Button Name="btnAbility1" Content="Button" Canvas.Left="10" Canvas.Top="85" Width="100" Height="30" Click="btnAbility1_Click"/>
+        <Button Name="btnAbility2" Content="Button" Canvas.Left="10" Canvas.Top="135" Width="100" Height="30" Click="btnAbility2_Click"/>
+        <Button Name="btnAbility3" Content="Button" Canvas.Left="10" Canvas.Top="185" Width="100" Height="30" Click="btnAbility3_Click"/>
+        <Button Name="btnAbility4" Content="Button" Canvas.Left="10" Canvas.Top="235" Width="100" Height="30" Click="btnAbility4_Click"/>
         
         <!--Player Bars-->
         <ProgressBar Name="pbPlayerHealth" Height="15" Canvas.Left="132" Canvas.Top="155" Width="100" Value="50" Background="DarkRed" Foreground="Red"/>

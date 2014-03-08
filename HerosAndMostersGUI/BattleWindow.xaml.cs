@@ -21,8 +21,11 @@ namespace HerosAndMostersGUI
     /// </summary>
     public partial class BattleWindow : Window
     {
-        private List<Rectangle> _targetList = new List<Rectangle>();
+        private List<Rectangle> _shapeTargetList = new List<Rectangle>();
+        private List<DungeonCharacter> _targetList = new List<DungeonCharacter>();
+
         private int _currentTarget;
+        List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
 
         private SolidColorBrush STROKE_COLOR = Brushes.Blue;
 
@@ -39,35 +42,43 @@ namespace HerosAndMostersGUI
             btnAbility3.Content = playersAttacks.ElementAt<EnumAttacks>(2).Name;
             btnAbility4.Content = playersAttacks.ElementAt<EnumAttacks>(3).Name;
 
-            ShowMonsters(MonsterInformation.Count);
-            _targetList.Add(playersRec);
+            ShowMonsters(MonsterInformation.Count + 2);
+
+            _targetList.Add(Hero.GetInstance());
+            _shapeTargetList.Add(playersRec);
+
+
+            //MAKE MONSTERS HERE
+
+
             TargetMonsters(MonsterInformation.Count);
             _currentTarget = 0;
 
-
+            
         }
 
         private void TargetMonsters(int p)
         {
+            //NEED TO ADD MONSTERS TO DC TARGET LIST
             switch (p)
             {
                 case 1:
-                    _targetList.Add(monster1Rec);
+                    _shapeTargetList.Add(monster1Rec);
                     break;
                 case 2:
-                    _targetList.Add(monster1Rec);
-                    _targetList.Add(monster2Rec);
+                    _shapeTargetList.Add(monster1Rec);
+                    _shapeTargetList.Add(monster2Rec);
                     break;
                 case 3:
-                    _targetList.Add(monster1Rec);
-                    _targetList.Add(monster2Rec);
-                    _targetList.Add(monster3Rec);
+                    _shapeTargetList.Add(monster1Rec);
+                    _shapeTargetList.Add(monster2Rec);
+                    _shapeTargetList.Add(monster3Rec);
                     break;
                 case 4:
-                    _targetList.Add(monster4Rec);
-                    _targetList.Add(monster1Rec);
-                    _targetList.Add(monster2Rec);
-                    _targetList.Add(monster3Rec);
+                    _shapeTargetList.Add(monster4Rec);
+                    _shapeTargetList.Add(monster1Rec);
+                    _shapeTargetList.Add(monster2Rec);
+                    _shapeTargetList.Add(monster3Rec);
                     break;
             }
         }
@@ -76,18 +87,18 @@ namespace HerosAndMostersGUI
         {
             switch (e.Key)
             {
-                case Key.Up:
-                    _targetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
+                case Key.W:
+                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
                     _currentTarget = (_currentTarget - 1);
                     if (_currentTarget < 0)
-                        _currentTarget = _targetList.Count - 1;
-                    _targetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
+                        _currentTarget = _shapeTargetList.Count - 1;
+                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
                     break;
 
-                case Key.Down:
-                    _targetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
-                    _currentTarget = (_currentTarget + 1) % _targetList.Count;
-                    _targetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
+                case Key.S:
+                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
+                    _currentTarget = (_currentTarget + 1) % _shapeTargetList.Count;
+                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
                     break;
 
             }
@@ -110,6 +121,26 @@ namespace HerosAndMostersGUI
                 monster4Rec.Fill = Brushes.Tomato;
                 pbMonster4Health.Visibility = Visibility.Visible;
             }
+        }
+
+        private void btnAbility1_Click(object sender, RoutedEventArgs e)
+        {
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target( _targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+        }
+
+        private void btnAbility2_Click(object sender, RoutedEventArgs e)
+        {
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+        }
+
+        private void btnAbility3_Click(object sender, RoutedEventArgs e)
+        {
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+        }
+
+        private void btnAbility4_Click(object sender, RoutedEventArgs e)
+        {
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
     }
 }
