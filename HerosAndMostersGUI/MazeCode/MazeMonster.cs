@@ -70,6 +70,11 @@ namespace MazeTest
             return _monsterParty.Count;
         }
 
+        public List<int> GetParty()
+        {
+            return _monsterParty;
+        }
+
         public override void Hook()
         {
             if (_moveWeight[(int)(this.GetLastMove())] == MaxWeight)
@@ -122,7 +127,11 @@ namespace MazeTest
             else if(!Dead)
             {
                 //enter battle arena
+                BattleWindow theBattle = new BattleWindow(_monsterParty);
 
+                MainWindow.PauseHive();
+                theBattle.ShowDialog();
+                MainWindow.StartHive();
                 //exit BA
 
                 creature.TakeLoot(_creatureInventory.GetItems());

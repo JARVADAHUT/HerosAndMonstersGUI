@@ -46,6 +46,11 @@ namespace MazeTest
             
         }
 
+        public List<EnumAttacks> GetAttacks()
+        {
+            return _attacks;
+        }
+
         public override void Exit()
         {
             Maze maze = Maze.GetInstance();
@@ -99,9 +104,18 @@ namespace MazeTest
 
         public override void Interact(LivingCreature lc)
         {
+            //if you are interacting with the player you are a monster
+            MazeMonster monsterParty = (MazeMonster) lc;
+
             //Battle
             if (!lc.Dead)
             {
+                BattleWindow theBattle = new BattleWindow(monsterParty.GetParty());
+
+                MainWindow.PauseHive();
+                theBattle.ShowDialog();
+                MainWindow.StartHive();
+
                 this.GetInventory().AddItemList(lc.GetInventory());
                 lc.Die();
             }

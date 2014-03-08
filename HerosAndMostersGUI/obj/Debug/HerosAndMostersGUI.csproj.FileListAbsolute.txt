@@ -116,3 +116,5 @@ N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\soundtrac
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\intro.mp3
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\soundtrack.mp3
 C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.baml
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.g.cs

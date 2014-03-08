@@ -25,7 +25,7 @@ namespace HerosAndMostersGUI
     /// </summary>
     public partial class MainWindow : Window, IMazeDisplay
     {
-        private DispatcherTimer _hive = new DispatcherTimer();
+        private static DispatcherTimer _hive = new DispatcherTimer();
         private MediaPlayer _mediaPlayer;
 
         #region Constant Game Properties
@@ -100,7 +100,7 @@ namespace HerosAndMostersGUI
                     break;
                     
                 case Key.I:
-                    _hive.IsEnabled = false;
+                    PauseHive();
                     InvScr = new InventoryScreen(_hive, "tabPage1");
                     InvScr.ShowDialog();
                     //SetSelectedScreen(_hive, InvScr, "tabPage1");
@@ -128,6 +128,16 @@ namespace HerosAndMostersGUI
             else
                 InvScr.EquippedInventory.Focus();
             InvScr.ShowDialog();
+        }
+
+        public static void PauseHive()
+        {
+            _hive.IsEnabled = false;
+        }
+
+        public static void StartHive()
+        {
+            _hive.IsEnabled = true;
         }
 
         #region IMazeDisplay
