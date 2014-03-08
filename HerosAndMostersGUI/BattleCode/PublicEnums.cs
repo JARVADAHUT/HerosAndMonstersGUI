@@ -86,15 +86,15 @@ namespace DesignPatterns___DC_Design
 
         private static readonly List<EnumAttacks> _attacksList; 
 
-        public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong attack","Performs a strong attack against a selected opponent.",0);
-        public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak attack","Performs a weak attack against an opponent.",1);
-        public static readonly EnumAttacks PitifulHeal = new EnumAttacks("Pitiful heal","Performs a minute heal on selected character.",2);
+        public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong Attack","Performs a strong attack against a selected opponent.",0);
+        public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak Attack","Performs a weak attack against an opponent.",1);
+        public static readonly EnumAttacks PitifulHeal = new EnumAttacks("Pitiful Heal","Performs a minute heal on selected character.",2);
         
         public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames!",3);
-        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of ice","Freezes the opponent and surrounding opponents.",4);
-        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning bolt","Shocks the target for extreme ammounts of damage.",5);
+        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of Ice","Freezes the opponent and surrounding opponents.",4);
+        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning Bolt","Shocks the target for extreme ammounts of damage.",5);
         
-        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper beam","Unleashes a beam of pure energy upon the enemy.",6);
+        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper Beam","Unleashes a beam of pure energy upon the enemy.",6);
 
 
         private EnumAttacks(string name, string description, int value)

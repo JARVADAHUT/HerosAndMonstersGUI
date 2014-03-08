@@ -42,7 +42,7 @@ namespace HerosAndMostersGUI
             btnAbility3.Content = playersAttacks.ElementAt<EnumAttacks>(2).Name;
             btnAbility4.Content = playersAttacks.ElementAt<EnumAttacks>(3).Name;
 
-            ShowMonsters(MonsterInformation.Count + 2);
+            ShowMonsters(MonsterInformation.Count);
 
             _targetList.Add(Hero.GetInstance());
             _shapeTargetList.Add(playersRec);
@@ -130,17 +130,17 @@ namespace HerosAndMostersGUI
 
         private void btnAbility2_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(1), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
 
         private void btnAbility3_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(2), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
 
         private void btnAbility4_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
     }
 }

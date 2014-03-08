@@ -24,11 +24,11 @@ namespace HerosAndMostersGUI.BattleCode
 
         private static readonly List<string> SuffixNames = new List<string>()
                                                    {
-                                                       " the destroyer",
-                                                       " the unstopable",
+                                                       " the Destroyer",
+                                                       " the Unstopable",
                                                        " of the Night",
                                                        " for the Horde",
-                                                       " the badass"
+                                                       " the Badass"
                                                    }; 
 
         private static readonly Dictionary<string,Dictionary<string,List<string>>> _names = new Dictionary<string,Dictionary<string,List<string>>>();
