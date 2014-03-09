@@ -14,11 +14,11 @@ namespace HerosAndMostersGUI.BattleCode
 
             if (new Random().Next(100) < 70)
             {
-                monster.Attack(EnumAttacks.IceCone, new Target(Hero.GetInstance()));
+                monster.Attack(EnumAttacks.StrongAttack, new Target(Hero.GetInstance()));
             }
             else
             {
-                monster.Attack(EnumAttacks.Fireball, new Target(Hero.GetInstance()));
+                monster.Attack(EnumAttacks.WeakAttack, new Target(Hero.GetInstance()));
             }
         }
     }

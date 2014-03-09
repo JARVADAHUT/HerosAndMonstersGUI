@@ -11,7 +11,7 @@ namespace HerosAndMostersGUI.BattleCode
     {
         public void TakeTurn(Monster monster)
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

@@ -23,55 +23,72 @@ namespace HerosAndMostersGUI
     /// </summary>
     public partial class BattleWindow : Window
     {
+
+        #region Privates
+
         private List<Rectangle> _shapeTargetList = new List<Rectangle>();
         private List<DungeonCharacter> _targetList = new List<DungeonCharacter>();
         private static DispatcherTimer _barTick = new DispatcherTimer();
         private const int _tickSpeed = 50;
 
         private int _currentTarget;
-        List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
+        private List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
 
         private SolidColorBrush STROKE_COLOR = Brushes.Blue;
+
+        #endregion
 
         public BattleWindow(List<int> MonsterInformation)
         {
             InitializeComponent();
+
             this.KeyDown += new KeyEventHandler(HandleKey);
-
             playersRec.Fill = Player.GetInstance().GetColor();
-            List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
+            
+            #region Fill Out Buttons
 
+            List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
             btnAbility1.Content = playersAttacks.ElementAt<EnumAttacks>(0).Name;
             btnAbility2.Content = playersAttacks.ElementAt<EnumAttacks>(1).Name;
             btnAbility3.Content = playersAttacks.ElementAt<EnumAttacks>(2).Name;
             btnAbility4.Content = playersAttacks.ElementAt<EnumAttacks>(3).Name;
 
-            ShowMonsters(MonsterInformation.Count);
+            #endregion
+
+            #region Create Target Lists
 
             _targetList.Add(Hero.GetInstance());
             _shapeTargetList.Add(playersRec);
 
             BattleBuilder monsterMaker = new BattleBuilder();
-            
-            //MAKE MONSTERS HERE
             List<Monster> monsterList = monsterMaker.AddMonsters(MonsterInformation);
 
             TargetMonsters(MonsterInformation.Count, monsterList);
+            ShowMonsters(MonsterInformation.Count);
+
             _currentTarget = 0;
+
+            #endregion
+
+            #region Set Up Tick Event
 
             _barTick.Tick += new EventHandler(OnTick);
             _barTick.Interval = new TimeSpan(0, 0, 0, 0, _tickSpeed);
             _barTick.IsEnabled = true;
 
-            SetBars();
-        }
+            #endregion
 
-        private void SetBars()
-        {
+            #region Set Up Player "Bars"
+
             pbPlayerHealth.Maximum = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
             pbPlayerMana.Maximum = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
 
+            #endregion
+
+            //monsterMaker.StartBattle();
+
         }
+
 
         private void OnTick(object sender, EventArgs e)
         {
@@ -99,7 +116,8 @@ namespace HerosAndMostersGUI
                     theMonster.Stroke = Brushes.Transparent;
                     theMonster.Fill = Brushes.White;
                     RemoveHealthBar(theMonster.Name);
-                    _currentTarget = -1;
+                    _currentTarget = 0;
+                    SetTarget(1);
                 }
                 else
                     SetHealthBar(theMonster.Name, monsterHp);
@@ -110,6 +128,8 @@ namespace HerosAndMostersGUI
                 this.Close();
             
         }
+
+        #region Monster Switches
 
         private void SetHealthBar(string theMonster, int hp)
         {
@@ -185,47 +205,62 @@ namespace HerosAndMostersGUI
             }
         }
 
+        private void ShowMonsters(int p)
+        {
+            pbMonster1Health.Maximum = _targetList.ElementAt<DungeonCharacter>(1).DCStats.GetStat(StatsType.MaxHp);
+
+            if (p >= 2)
+            {
+                monster2Rec.Fill = Brushes.Tomato;
+                pbMonster2Health.Maximum = _targetList.ElementAt<DungeonCharacter>(2).DCStats.GetStat(StatsType.MaxHp);
+                pbMonster2Health.Visibility = Visibility.Visible;
+            }
+            if (p >= 3)
+            {
+                monster3Rec.Fill = Brushes.Tomato;
+                pbMonster3Health.Maximum = _targetList.ElementAt<DungeonCharacter>(3).DCStats.GetStat(StatsType.MaxHp);
+                pbMonster3Health.Visibility = Visibility.Visible;
+            }
+            if (p == 4)
+            {
+                monster4Rec.Fill = Brushes.Tomato;
+                pbMonster4Health.Maximum = _targetList.ElementAt<DungeonCharacter>(4).DCStats.GetStat(StatsType.MaxHp);
+                pbMonster4Health.Visibility = Visibility.Visible;
+            }
+        }
+
+        #endregion
+
+        private void SetTarget(int targChange)
+        {
+            if (_currentTarget >= 0 && _currentTarget < _targetList.Count)
+            {
+                _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
+
+                _currentTarget = (_currentTarget + targChange) % _targetList.Count;
+                if (_currentTarget < 0)
+                    _currentTarget = _shapeTargetList.Count - 1;
+
+                _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
+            }
+        }
+
         private void HandleKey(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
                 case Key.W:
-                    if(_currentTarget >= 0)
-                        _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
-                    _currentTarget = (_currentTarget - 1);
-                    if (_currentTarget < 0)
-                        _currentTarget = _shapeTargetList.Count - 1;
-                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
+                    SetTarget(1);
                     break;
 
                 case Key.S:
-                    if (_currentTarget >= 0)
-                        _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
-                    _currentTarget = (_currentTarget + 1) % _shapeTargetList.Count;
-                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
+                    SetTarget(-1);
                     break;
 
             }
         }
 
-        private void ShowMonsters(int p)
-        {
-            if (p >= 2)
-            {
-                monster2Rec.Fill = Brushes.Tomato;
-                pbMonster2Health.Visibility = Visibility.Visible;
-            }
-            if(p >= 3)
-            {
-                monster3Rec.Fill = Brushes.Tomato;
-                pbMonster3Health.Visibility = Visibility.Visible;
-            }
-            if(p == 4)
-            {
-                monster4Rec.Fill = Brushes.Tomato;
-                pbMonster4Health.Visibility = Visibility.Visible;
-            }
-        }
+        
 
         private void btnAbility1_Click(object sender, RoutedEventArgs e)
         {

@@ -48,27 +48,27 @@ namespace DesignPatterns___DC_Design
 
         private void BuildLightningBolt(Target targets)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void BuildHyperBeam(Target targets)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void BuildIceCone(Target targets)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void BuildFireball(Target targets)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void BuildPitifulHeal(Target targets)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void BuildStrong(Target targets)
