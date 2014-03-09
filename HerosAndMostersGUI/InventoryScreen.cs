@@ -29,10 +29,12 @@ namespace HerosAndMostersGUI
 
         public InventoryScreen(DispatcherTimer hive, String tabPage)
         {
+            // basic construction
             this.KeyPreview = true;
             _hive = hive;
 
             InitializeComponent();
+            InitializeWindowFormat();
 
             this.ControlBox = false;
             GenerateLists();
@@ -41,20 +43,22 @@ namespace HerosAndMostersGUI
             if (invItems.Count < 1)
                 GenerateDefaultLabels();
             
+            // initializiation methods
             SetCurEquippedSelectedLabels(null, null);
             setInventory();
             setCurSelectedBox();
             SetEquippedInventory();
             SetEquippedSelectedBox();
             UpdateCharacterStats(null, null);
-
+            SetProgressColors();
 
             // EVENTS
-            //this.Inventory.DrawItem += new System.Windows.Forms.DrawItemEventHandler(Inventory_DrawItem); //<--- allows variable font and text color
+            //this.Inventory.DrawItem += new System.Windows.Forms.DrawItemEventHandler(InventoryDrawItem); //<--- InventoryDrawItem needs work
             this.Inventory.SelectedIndexChanged += new EventHandler(setCurSelectedandTradeoffLabels);
             this.EquippedInventory.SelectedIndexChanged += new EventHandler(SetCurEquippedSelectedLabels);
             this.tabControl1.Selected += new TabControlEventHandler(UpdateCharacterStats);
             this.KeyDown += new KeyEventHandler(CheckIfKeyToClose);
+            this.Inventory.MouseDoubleClick += new MouseEventHandler(UseDoubleClickedItem);
 
             // final initialization
             setCurSelectedandTradeoffLabels(null, null);
@@ -71,6 +75,22 @@ namespace HerosAndMostersGUI
         }
 
         // INITIALIZATION METHODS --------------------------------------------------------------------------------------------------------------------
+
+        private void InitializeWindowFormat()
+        {
+            // make window unscalable
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // make window load to center of screen
+            this.CenterToScreen();
+        }
+
+        private void SetProgressColors()
+        {
+            healthpbar.ForeColor = Color.FromName("Red");
+            manapbar.ForeColor = Color.FromName("Blue");
+            globalcdpbar.ForeColor = Color.FromName("Green");
+        }
 
         private void setInventory()
         {
@@ -147,7 +167,7 @@ namespace HerosAndMostersGUI
 
         private void InventoryScreen_Load(object sender, EventArgs e)
         {
-
+            // do nothing
         }
 
         private void Swap_Click(object sender, EventArgs e)
@@ -183,7 +203,7 @@ namespace HerosAndMostersGUI
         {
             if (this.Inventory.Items.Count > 0)
             {
-                InventoryItems itemSelected = (InventoryItems)this.Inventory.SelectedItem;        // <---------- MAY CHANGE BACK TO EQUIPABLE TYPE  
+                InventoryItems itemSelected = (InventoryItems)this.Inventory.SelectedItem;    
                 Player.GetInstance().GetInventory().Use(itemSelected);
                 GenerateLists();
                 GenerateListPage2();
@@ -191,6 +211,52 @@ namespace HerosAndMostersGUI
         }
 
         // EVENT METHODS ----------------------------------------------------------------------------------
+
+        private void InventoryDrawItem(object sender, DrawItemEventArgs e)
+        {
+            InventoryItems itemTODraw = (InventoryItems)sender;
+            if (itemTODraw.GetType() == EnumItemType.Equipable)
+            {
+                Equipable item = (Equipable)itemTODraw;
+                if (item.Name.Contains("Basic"))
+                {
+                    //e.ForeColor = Color.FromName("DarkSlateGray"); <-- Can't do this because e is readonly
+                }
+                else if (item.Name.Contains("Common"))
+                {
+
+                }
+                else if (item.Name.Contains("Uncommon"))
+                {
+
+                }
+                else if (item.Name.Contains("Rare"))
+                {
+                   
+                }
+                else if (item.Name.Contains("Epic"))
+                {
+                    
+                }
+                else if (item.Name.Contains("Legendary"))
+                {
+                   
+                }
+            }
+            else if (itemTODraw.GetType() == EnumItemType.Consumable)
+            {
+                // do something
+            }
+            else if (itemTODraw.GetType() == EnumItemType.Dye)
+            {
+                // do something
+            }
+        }
+
+        private void UseDoubleClickedItem(object sender, MouseEventArgs e)
+        {
+            Equip_Click(sender, e);
+        }
 
         private void CheckIfKeyToClose(object sender, KeyEventArgs e) // <--- LEFT AND RIGHT KEYPRESS LOGIC WILL NEED TO CHANGE IF TABS > 2
         {
@@ -232,6 +298,25 @@ namespace HerosAndMostersGUI
             CharacterMHPLabel.Text = "Bonus HP: " + charMHP;
             CharacterMMPLabel.Text = "Bonus MP: " + charMMP;
 
+            int healthVal = Hero.GetInstance().DCStats.GetStat(StatsType.CurHp);
+            int manaVal = Hero.GetInstance().DCStats.GetStat(StatsType.CurResources);
+            int cdVal = 2; // <-------------- THIS WILL NEED TO BE CALCULATED BASED OFF CURRENT AGILITY
+            int maxHealth = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
+            int maxMana = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
+            int maxGlobalCD = 2;
+
+            healthpbar.Maximum = maxHealth;
+            manapbar.Maximum = maxMana;
+            globalcdpbar.Maximum = maxGlobalCD;
+
+            healthpbar.Value = healthVal;
+            manapbar.Value = manaVal;
+            globalcdpbar.Value = cdVal;
+
+            healthlabel.Text = "Health: " + healthVal + " / " + maxHealth;
+            manalabel.Text = "Mana: " + manaVal + " / " + maxMana;
+            cdlabel.Text = "Global Cooldown: " + cdVal + " / " + maxGlobalCD;
+
         }
 
         private void setCurSelectedandTradeoffLabels(object sender, EventArgs e) 
@@ -246,6 +331,8 @@ namespace HerosAndMostersGUI
                     //tradeoff calculations
                     if (selectedItem.GetType() == EnumItemType.Equipable) //<---DEBUG----DEBUG : Get rid of this when potion tab is implemented ------DEBUG-----DEBUG-------DEBUG----------DEBUG----------DEBUG-------DEBUG-----------
                     {
+                        Equipable item = (Equipable)(selectedItem);
+                        EquipedGear.SelectedIndex = (int)item.Slot;
                         SetCurAndTradeoffForEquipable(selectedItem);
                     }
                     else if (selectedItem.GetType() == EnumItemType.Consumable)

@@ -67,6 +67,12 @@ namespace HerosAndMostersGUI
             this.CurSelectedEquipAgi = new System.Windows.Forms.Label();
             this.CurSelectedEquipStr = new System.Windows.Forms.Label();
             this.EquippedInventory = new System.Windows.Forms.ListBox();
+            this.healthpbar = new System.Windows.Forms.ProgressBar();
+            this.globalcdpbar = new System.Windows.Forms.ProgressBar();
+            this.manapbar = new System.Windows.Forms.ProgressBar();
+            this.healthlabel = new System.Windows.Forms.Label();
+            this.manalabel = new System.Windows.Forms.Label();
+            this.cdlabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -291,6 +297,12 @@ namespace HerosAndMostersGUI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cdlabel);
+            this.tabPage2.Controls.Add(this.manalabel);
+            this.tabPage2.Controls.Add(this.healthlabel);
+            this.tabPage2.Controls.Add(this.manapbar);
+            this.tabPage2.Controls.Add(this.globalcdpbar);
+            this.tabPage2.Controls.Add(this.healthpbar);
             this.tabPage2.Controls.Add(this.Tab2ExitBtn);
             this.tabPage2.Controls.Add(this.CharacterStats);
             this.tabPage2.Controls.Add(this.ItemStats);
@@ -456,8 +468,56 @@ namespace HerosAndMostersGUI
             this.EquippedInventory.FormattingEnabled = true;
             this.EquippedInventory.Location = new System.Drawing.Point(7, 7);
             this.EquippedInventory.Name = "EquippedInventory";
-            this.EquippedInventory.Size = new System.Drawing.Size(549, 290);
+            this.EquippedInventory.Size = new System.Drawing.Size(549, 225);
             this.EquippedInventory.TabIndex = 0;
+            // 
+            // healthpbar
+            // 
+            this.healthpbar.Location = new System.Drawing.Point(7, 266);
+            this.healthpbar.Name = "healthpbar";
+            this.healthpbar.Size = new System.Drawing.Size(150, 23);
+            this.healthpbar.TabIndex = 4;
+            // 
+            // globalcdpbar
+            // 
+            this.globalcdpbar.Location = new System.Drawing.Point(406, 266);
+            this.globalcdpbar.Name = "globalcdpbar";
+            this.globalcdpbar.Size = new System.Drawing.Size(150, 23);
+            this.globalcdpbar.TabIndex = 5;
+            // 
+            // manapbar
+            // 
+            this.manapbar.Location = new System.Drawing.Point(206, 266);
+            this.manapbar.Name = "manapbar";
+            this.manapbar.Size = new System.Drawing.Size(150, 23);
+            this.manapbar.TabIndex = 6;
+            // 
+            // healthlabel
+            // 
+            this.healthlabel.AutoSize = true;
+            this.healthlabel.Location = new System.Drawing.Point(36, 235);
+            this.healthlabel.Name = "healthlabel";
+            this.healthlabel.Size = new System.Drawing.Size(36, 13);
+            this.healthlabel.TabIndex = 7;
+            this.healthlabel.Text = "0/100";
+            // 
+            // manalabel
+            // 
+            this.manalabel.AutoSize = true;
+            this.manalabel.Location = new System.Drawing.Point(236, 235);
+            this.manalabel.Name = "manalabel";
+            this.manalabel.Size = new System.Drawing.Size(36, 13);
+            this.manalabel.TabIndex = 8;
+            this.manalabel.Text = "0/100";
+            // 
+            // cdlabel
+            // 
+            this.cdlabel.AutoSize = true;
+            this.cdlabel.Location = new System.Drawing.Point(420, 235);
+            this.cdlabel.Name = "cdlabel";
+            this.cdlabel.Size = new System.Drawing.Size(36, 13);
+            this.cdlabel.TabIndex = 9;
+            this.cdlabel.Text = "0/100";
             // 
             // InventoryScreen
             // 
@@ -475,6 +535,7 @@ namespace HerosAndMostersGUI
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.CharacterStats.ResumeLayout(false);
             this.CharacterStats.PerformLayout();
             this.ItemStats.ResumeLayout(false);
@@ -523,6 +584,12 @@ namespace HerosAndMostersGUI
         private System.Windows.Forms.Button Tab2ExitBtn;
         public System.Windows.Forms.ListBox Inventory;
         public System.Windows.Forms.ListBox EquippedInventory;
+        private System.Windows.Forms.ProgressBar manapbar;
+        private System.Windows.Forms.ProgressBar globalcdpbar;
+        private System.Windows.Forms.ProgressBar healthpbar;
+        private System.Windows.Forms.Label cdlabel;
+        private System.Windows.Forms.Label manalabel;
+        private System.Windows.Forms.Label healthlabel;
 
     }
 }
