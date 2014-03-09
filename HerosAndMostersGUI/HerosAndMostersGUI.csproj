@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BattleCode\AttackFactory.cs" />
-    <Compile Include="BattleCode\BattleArena.cs" />
     <Compile Include="BattleCode\BattleBuilder.cs" />
     <Compile Include="BattleCode\MonsterFactory.cs" />
     <Compile Include="BattleCode\MonsterTurnAIAgressive.cs" />

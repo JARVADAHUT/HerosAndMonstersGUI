@@ -73,12 +73,12 @@ namespace DesignPatterns___DC_Design
 
         private void BuildStrong(Target targets)
         {
-            int damage = _random.Next(25 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
+            int damage = _random.Next(RegisteredDC.DCStats.GetStat(StatsType.Strength) - 15, 25 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
             var cmd = new StatAugmentCommand();
             foreach (var target in targets)
             {
-                int appliedDamage = damage - _random.Next(5 + target.DCStats.GetStat(StatsType.Defense));
-                cmd.AddEffect(new EffectInformation(StatsType.CurHp, appliedDamage), target);
+                int appliedDamage = damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);//damage - _random.Next(target.DCStats.GetStat(StatsType.Defense) - 5, 5 + target.DCStats.GetStat(StatsType.Defense));
+                cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
             }
             cmd.AddEffect(new EffectInformation(StatsType.Agility, 10,0,15), RegisteredDC);
             cmd.AddEffect(new EffectInformation(StatsType.CurResources,-5), RegisteredDC);
@@ -87,12 +87,12 @@ namespace DesignPatterns___DC_Design
 
         private void BuildWeak(Target targets)
         {
-            int damage = _random.Next(15 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
+            int damage = _random.Next(15, 5 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
             var cmd = new StatAugmentCommand();
             foreach (var target in targets)
             {
-                int appliedDamage = damage - _random.Next(5 + target.DCStats.GetStat(StatsType.Defense));
-                cmd.AddEffect(new EffectInformation(StatsType.CurHp, appliedDamage), target);
+                int appliedDamage = damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);// damage - _random.Next(5 + target.DCStats.GetStat(StatsType.Defense));
+                cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
             }
             cmd.AddEffect(new EffectInformation(StatsType.CurResources, 5), RegisteredDC);
             cmd.RegisterCommand();

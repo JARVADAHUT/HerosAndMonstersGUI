@@ -1,4 +1,5 @@
 ﻿using DesignPatterns___DC_Design;
+using HerosAndMostersGUI.BattleCode;
 using MazeTest;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HerosAndMostersGUI
 {
@@ -23,6 +25,8 @@ namespace HerosAndMostersGUI
     {
         private List<Rectangle> _shapeTargetList = new List<Rectangle>();
         private List<DungeonCharacter> _targetList = new List<DungeonCharacter>();
+        private static DispatcherTimer _barTick = new DispatcherTimer();
+        private const int _tickSpeed = 50;
 
         private int _currentTarget;
         List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
@@ -47,38 +51,136 @@ namespace HerosAndMostersGUI
             _targetList.Add(Hero.GetInstance());
             _shapeTargetList.Add(playersRec);
 
-
+            BattleBuilder monsterMaker = new BattleBuilder();
+            
             //MAKE MONSTERS HERE
+            List<Monster> monsterList = monsterMaker.AddMonsters(MonsterInformation);
 
-
-            TargetMonsters(MonsterInformation.Count);
+            TargetMonsters(MonsterInformation.Count, monsterList);
             _currentTarget = 0;
 
+            _barTick.Tick += new EventHandler(OnTick);
+            _barTick.Interval = new TimeSpan(0, 0, 0, 0, _tickSpeed);
+            _barTick.IsEnabled = true;
+
+            SetBars();
+        }
+
+        private void SetBars()
+        {
+            pbPlayerHealth.Maximum = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
+            pbPlayerMana.Maximum = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
+
+        }
+
+        private void OnTick(object sender, EventArgs e)
+        {
+            int playerHp = Hero.GetInstance().DCStats.GetStat(StatsType.CurHp);
+            int playerMp = Hero.GetInstance().DCStats.GetStat(StatsType.CurResources);
+
+            pbPlayerHealth.Value = playerHp;
+            pbPlayerMana.Value = playerMp;
+
+            if (playerHp <= 0)
+            {
+                this.Close();
+            }
+
+            for (int x = 1; x < _targetList.Count; x++)
+            {
+                int monsterHp = _targetList.ElementAt<DungeonCharacter>(x).DCStats.GetStat(StatsType.CurHp);
+                Rectangle theMonster = _shapeTargetList.ElementAt<Rectangle>(x);
+
+                if (monsterHp <= 0)
+                {
+                    _targetList.RemoveAt(x);
+                    _shapeTargetList.RemoveAt(x);
+                    x--;
+                    theMonster.Stroke = Brushes.Transparent;
+                    theMonster.Fill = Brushes.White;
+                    RemoveHealthBar(theMonster.Name);
+                    _currentTarget = -1;
+                }
+                else
+                    SetHealthBar(theMonster.Name, monsterHp);
+                
+            }
+
+            if (_targetList.Count <= 1)
+                this.Close();
             
         }
 
-        private void TargetMonsters(int p)
+        private void SetHealthBar(string theMonster, int hp)
+        {
+            switch (theMonster)
+            {
+                case "monster1Rec":
+                    pbMonster1Health.Value = hp;
+                    break;
+                case "monster2Rec":
+                    pbMonster2Health.Value = hp;
+                    break;
+                case "monster3Rec":
+                    pbMonster3Health.Value = hp;
+                    break;
+                case "monster4Rec":
+                    pbMonster4Health.Value = hp;
+                    break;
+            }
+        }
+
+        private void RemoveHealthBar(string x)
+        {
+            switch (x)
+            {
+                case "monster1Rec":
+                    pbMonster1Health.Visibility = Visibility.Hidden;
+                    break;
+                case "monster2Rec":
+                    pbMonster2Health.Visibility = Visibility.Hidden;
+                    break;
+                case "monster3Rec":
+                    pbMonster3Health.Visibility = Visibility.Hidden;
+                    break;
+                case "monster4Rec":
+                    pbMonster4Health.Visibility = Visibility.Hidden;
+                    break;
+            }
+        }
+
+        private void TargetMonsters(int p, List<Monster> monsterList)
         {
             //NEED TO ADD MONSTERS TO DC TARGET LIST
             switch (p)
             {
                 case 1:
                     _shapeTargetList.Add(monster1Rec);
+                    _targetList.Add(monsterList.ElementAt<Monster>(0));
                     break;
                 case 2:
                     _shapeTargetList.Add(monster1Rec);
                     _shapeTargetList.Add(monster2Rec);
+                    _targetList.Add(monsterList.ElementAt<Monster>(0));
+                    _targetList.Add(monsterList.ElementAt<Monster>(1));
                     break;
                 case 3:
                     _shapeTargetList.Add(monster1Rec);
                     _shapeTargetList.Add(monster2Rec);
                     _shapeTargetList.Add(monster3Rec);
+                    _targetList.Add(monsterList.ElementAt<Monster>(0));
+                    _targetList.Add(monsterList.ElementAt<Monster>(1));
+                    _targetList.Add(monsterList.ElementAt<Monster>(2));
                     break;
                 case 4:
                     _shapeTargetList.Add(monster4Rec);
                     _shapeTargetList.Add(monster1Rec);
                     _shapeTargetList.Add(monster2Rec);
                     _shapeTargetList.Add(monster3Rec);
+                    _targetList.Add(monsterList.ElementAt<Monster>(3));
+                    _targetList.Add(monsterList.ElementAt<Monster>(0));
+                    _targetList.Add(monsterList.ElementAt<Monster>(1));
+                    _targetList.Add(monsterList.ElementAt<Monster>(2));
                     break;
             }
         }
@@ -88,7 +190,8 @@ namespace HerosAndMostersGUI
             switch (e.Key)
             {
                 case Key.W:
-                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
+                    if(_currentTarget >= 0)
+                        _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
                     _currentTarget = (_currentTarget - 1);
                     if (_currentTarget < 0)
                         _currentTarget = _shapeTargetList.Count - 1;
@@ -96,7 +199,8 @@ namespace HerosAndMostersGUI
                     break;
 
                 case Key.S:
-                    _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
+                    if (_currentTarget >= 0)
+                        _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = Brushes.Transparent;
                     _currentTarget = (_currentTarget + 1) % _shapeTargetList.Count;
                     _shapeTargetList.ElementAt<Rectangle>(_currentTarget).Stroke = STROKE_COLOR;
                     break;
@@ -125,22 +229,26 @@ namespace HerosAndMostersGUI
 
         private void btnAbility1_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target( _targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target( _targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
 
         private void btnAbility2_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(1), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(1), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
 
         private void btnAbility3_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(2), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(2), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
 
         private void btnAbility4_Click(object sender, RoutedEventArgs e)
         {
-            Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
     }
 }

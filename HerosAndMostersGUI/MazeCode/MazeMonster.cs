@@ -112,30 +112,35 @@ namespace MazeTest
 
         public override void Interact(LivingCreature creature)
         {
-            if (creature.GetInteractionType() == EnumMazeObject.Monster)
+            if (!Dead)
             {
-                MazeMonster killer = (MazeMonster)creature;
 
-                if (killer.PartySize() + this.PartySize() <= MaxPartySize)
+                if (creature.GetInteractionType() == EnumMazeObject.Monster)
                 {
-                    killer.AddMonsters(_monsterParty);
-                    killer.TakeLoot(_creatureInventory.GetItems());
+                    MazeMonster killer = (MazeMonster)creature;
+
+                    if (killer.PartySize() + this.PartySize() <= MaxPartySize)
+                    {
+                        killer.AddMonsters(_monsterParty);
+                        killer.TakeLoot(_creatureInventory.GetItems());
+                        this.Die();
+                    }
+                }
+
+                else
+                {
+                    //enter battle arena
+                    BattleWindow theBattle = new BattleWindow(_monsterParty);
+
+                    MainWindow.PauseHive();
+                    theBattle.ShowDialog();
+                    MainWindow.StartHive();
+                    //exit BA
+
+                    creature.TakeLoot(_creatureInventory.GetItems());
                     this.Die();
                 }
-            }
 
-            else if(!Dead)
-            {
-                //enter battle arena
-                BattleWindow theBattle = new BattleWindow(_monsterParty);
-
-                MainWindow.PauseHive();
-                theBattle.ShowDialog();
-                MainWindow.StartHive();
-                //exit BA
-
-                creature.TakeLoot(_creatureInventory.GetItems());
-                this.Die();
             }
         }
 

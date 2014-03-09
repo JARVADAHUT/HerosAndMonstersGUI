@@ -18,7 +18,7 @@ namespace HerosAndMostersGUI.BattleCode
             _monsterTurnManager = new MonsterTurnManager();
         }
 
-        public void AddMonsters(IEnumerable<int> monsterList)
+        public List<Monster> AddMonsters(IEnumerable<int> monsterList)
         {
             foreach (var x in monsterList)
             {
@@ -26,7 +26,8 @@ namespace HerosAndMostersGUI.BattleCode
             }
 
             _monsterTurnManager.RegisterMonsters(_monsterList);
-            
+
+            return _monsterList;
         }
 
         public void StartBattle()

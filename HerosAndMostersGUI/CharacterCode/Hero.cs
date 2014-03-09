@@ -36,7 +36,7 @@ namespace DesignPatterns___DC_Design
 
         private static string BuildName()
         {
-            return "stephen";
+            return "Stephen";
         }
 
         public Inventory GetInventory()
@@ -46,7 +46,7 @@ namespace DesignPatterns___DC_Design
 
         public override void Attack(EnumAttacks type, Target target)
         {
-            throw new NotImplementedException();
+            AttackFactory.Attack(type, target);
         }
     }
 }
