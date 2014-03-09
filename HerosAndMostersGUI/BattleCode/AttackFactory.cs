@@ -9,6 +9,18 @@ namespace DesignPatterns___DC_Design
 {
     public class AttackFactory
     {
+        #region Attack Costs
+
+        //positive values generate mana
+        private const int STRONG_COST = -5;
+        private const int WEAK_COST = 5;
+        private const int FIREBALL_COST = 5;
+        private const int LIGHTNING_BOLT_COST = 5;
+        private const int ICE_CONE_COST = 5;
+        private const int HYPER_BEAM_COST = 5;
+
+        #endregion
+
         public DungeonCharacter RegisteredDC { private set; get; }
         private static Random _random = new Random();
 
@@ -80,8 +92,8 @@ namespace DesignPatterns___DC_Design
                 int appliedDamage = damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);//damage - _random.Next(target.DCStats.GetStat(StatsType.Defense) - 5, 5 + target.DCStats.GetStat(StatsType.Defense));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
             }
-            cmd.AddEffect(new EffectInformation(StatsType.Agility, 10,0,15), RegisteredDC);
-            cmd.AddEffect(new EffectInformation(StatsType.CurResources,-5), RegisteredDC);
+            cmd.AddEffect(new EffectInformation(StatsType.Agility, 10, 0, 15), RegisteredDC);
+            cmd.AddEffect(new EffectInformation(StatsType.CurResources, STRONG_COST), RegisteredDC);
             cmd.RegisterCommand();
         }
 
@@ -94,7 +106,7 @@ namespace DesignPatterns___DC_Design
                 int appliedDamage = damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);// damage - _random.Next(5 + target.DCStats.GetStat(StatsType.Defense));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
             }
-            cmd.AddEffect(new EffectInformation(StatsType.CurResources, 5), RegisteredDC);
+            cmd.AddEffect(new EffectInformation(StatsType.CurResources, WEAK_COST), RegisteredDC);
             cmd.RegisterCommand();
         }
 

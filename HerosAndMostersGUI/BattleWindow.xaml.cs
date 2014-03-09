@@ -26,15 +26,15 @@ namespace HerosAndMostersGUI
 
         #region Privates
 
+        private const int _tickSpeed = 100;
+        private SolidColorBrush STROKE_COLOR = Brushes.Blue;
+
+
         private List<Rectangle> _shapeTargetList = new List<Rectangle>();
         private List<DungeonCharacter> _targetList = new List<DungeonCharacter>();
         private static DispatcherTimer _barTick = new DispatcherTimer();
-        private const int _tickSpeed = 50;
-
         private int _currentTarget;
         private List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
-
-        private SolidColorBrush STROKE_COLOR = Brushes.Blue;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace HerosAndMostersGUI
 
             this.KeyDown += new KeyEventHandler(HandleKey);
             playersRec.Fill = Player.GetInstance().GetColor();
-            
+
             #region Fill Out Buttons
 
             List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
@@ -58,6 +58,7 @@ namespace HerosAndMostersGUI
             #region Create Target Lists
 
             _targetList.Add(Hero.GetInstance());
+            playersRec.MouseDown += playersRec_MouseDown;
             _shapeTargetList.Add(playersRec);
 
             BattleBuilder monsterMaker = new BattleBuilder();
@@ -85,10 +86,10 @@ namespace HerosAndMostersGUI
 
             #endregion
 
+            SetTarget(1);
             //monsterMaker.StartBattle();
 
         }
-
 
         private void OnTick(object sender, EventArgs e)
         {
@@ -121,12 +122,12 @@ namespace HerosAndMostersGUI
                 }
                 else
                     SetHealthBar(theMonster.Name, monsterHp);
-                
+
             }
 
             if (_targetList.Count <= 1)
                 this.Close();
-            
+
         }
 
         #region Monster Switches
@@ -176,11 +177,14 @@ namespace HerosAndMostersGUI
             {
                 case 1:
                     _shapeTargetList.Add(monster1Rec);
+                    monster1Rec.MouseDown += monster1Rec_MouseDown;
                     _targetList.Add(monsterList.ElementAt<Monster>(0));
                     break;
                 case 2:
                     _shapeTargetList.Add(monster1Rec);
                     _shapeTargetList.Add(monster2Rec);
+                    monster1Rec.MouseDown += monster1Rec_MouseDown;
+                    monster2Rec.MouseDown += monster2Rec_MouseDown;
                     _targetList.Add(monsterList.ElementAt<Monster>(0));
                     _targetList.Add(monsterList.ElementAt<Monster>(1));
                     break;
@@ -188,6 +192,9 @@ namespace HerosAndMostersGUI
                     _shapeTargetList.Add(monster1Rec);
                     _shapeTargetList.Add(monster2Rec);
                     _shapeTargetList.Add(monster3Rec);
+                    monster1Rec.MouseDown += monster1Rec_MouseDown;
+                    monster2Rec.MouseDown += monster2Rec_MouseDown;
+                    monster3Rec.MouseDown += monster3Rec_MouseDown;
                     _targetList.Add(monsterList.ElementAt<Monster>(0));
                     _targetList.Add(monsterList.ElementAt<Monster>(1));
                     _targetList.Add(monsterList.ElementAt<Monster>(2));
@@ -197,6 +204,10 @@ namespace HerosAndMostersGUI
                     _shapeTargetList.Add(monster1Rec);
                     _shapeTargetList.Add(monster2Rec);
                     _shapeTargetList.Add(monster3Rec);
+                    monster1Rec.MouseDown += monster1Rec_MouseDown;
+                    monster2Rec.MouseDown += monster2Rec_MouseDown;
+                    monster3Rec.MouseDown += monster3Rec_MouseDown;
+                    monster4Rec.MouseDown += monster4Rec_MouseDown;
                     _targetList.Add(monsterList.ElementAt<Monster>(3));
                     _targetList.Add(monsterList.ElementAt<Monster>(0));
                     _targetList.Add(monsterList.ElementAt<Monster>(1));
@@ -231,6 +242,40 @@ namespace HerosAndMostersGUI
 
         #endregion
 
+        #region Rectangle Click Events
+
+        private void monster4Rec_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EventTargetSet(_shapeTargetList.IndexOf(monster4Rec));
+        }
+
+        private void monster3Rec_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EventTargetSet(_shapeTargetList.IndexOf(monster3Rec));
+        }
+
+        private void monster2Rec_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EventTargetSet(_shapeTargetList.IndexOf(monster2Rec));
+        }
+
+        private void monster1Rec_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EventTargetSet(_shapeTargetList.IndexOf(monster1Rec));
+        }
+
+        private void playersRec_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EventTargetSet(_shapeTargetList.IndexOf(playersRec));
+        }
+
+        private void EventTargetSet(int targ)
+        {
+            SetTarget(targ - _currentTarget);
+        }
+
+        #endregion
+
         private void SetTarget(int targChange)
         {
             if (_currentTarget >= 0 && _currentTarget < _targetList.Count)
@@ -260,12 +305,12 @@ namespace HerosAndMostersGUI
             }
         }
 
-        
+        #region Player Ability Buttons
 
         private void btnAbility1_Click(object sender, RoutedEventArgs e)
         {
             if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target( _targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
 
         private void btnAbility2_Click(object sender, RoutedEventArgs e)
@@ -285,5 +330,8 @@ namespace HerosAndMostersGUI
             if (_currentTarget < _targetList.Count && _currentTarget >= 0)
                 Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
         }
+
+        #endregion
+
     }
 }
