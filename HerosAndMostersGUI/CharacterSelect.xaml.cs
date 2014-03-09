@@ -52,6 +52,8 @@ namespace HerosAndMostersGUI
             SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
 
+            AblSelect.SelectionChanged += AblSelect_SelectionChanged;
+
             #region Music Stuff
 
             var basePath = new Uri(Assembly.GetEntryAssembly().Location);
@@ -76,6 +78,12 @@ namespace HerosAndMostersGUI
             #endregion
 
 
+        }
+
+        private void AblSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(AblSelect.SelectedIndex > -1)
+                txtDescriptions.Text = allAttacks.ElementAt<EnumAttacks>(AblSelect.SelectedIndex).Description;
         }
 
         void MainWindow_SourceInitialized(object sender, EventArgs e)
