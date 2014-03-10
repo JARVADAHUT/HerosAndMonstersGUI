@@ -28,5 +28,7 @@ namespace DesignPatterns___DC_Design
         {
             base.AttackFactory.Attack(type,target);
         }
+
+
     }
 }

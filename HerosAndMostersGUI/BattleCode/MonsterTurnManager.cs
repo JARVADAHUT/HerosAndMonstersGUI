@@ -41,7 +41,7 @@ namespace DesignPatterns___DC_Design
         private class QueueThread
         {
             private Queue<Monster> _queue;
-
+            private int _killThread;
 
 
             internal QueueThread(Queue<Monster> queue)
@@ -52,12 +52,19 @@ namespace DesignPatterns___DC_Design
 
             internal void ThreadStart(Object state)
             {
-                while (_queue.Count > 0)
+                _killThread = _queue.Count;
+
+                while (_killThread > 0)//_queue.Count > 0)
                 {
-                    var monster = _queue.Dequeue();
-                    var mThread = new MonsterThread(monster);
-                    ThreadPool.QueueUserWorkItem(mThread.ThreadStart, this);
+                    if (_queue.Count != 0)
+                    {
+                        var monster = _queue.Dequeue();
+                        var mThread = new MonsterThread(monster);
+                        ThreadPool.QueueUserWorkItem(mThread.ThreadStart, this);
+                    }
                 }
+
+
 
             }
 
@@ -70,6 +77,10 @@ namespace DesignPatterns___DC_Design
                     {
                         _queue.Enqueue(monster);
                     }
+                }
+                else
+                {
+                    _killThread--;
                 }
             }
 
@@ -93,7 +104,10 @@ namespace DesignPatterns___DC_Design
             internal void ThreadStart(Object obj)
             {
                 var queue = (QueueThread)obj;
-                Thread.Sleep(2000 - 100 * _monster.DCStats.GetStat(StatsType.Agility));
+
+                int sleepTime = 2000 - 10*_monster.DCStats.GetStat(StatsType.Agility);
+
+                Thread.Sleep(sleepTime > 500 ? sleepTime: 500);
                 _monster.TakeTurn();
                 queue.EnqueueMonster(_monster);
             }

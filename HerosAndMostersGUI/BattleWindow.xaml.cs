@@ -87,7 +87,7 @@ namespace HerosAndMostersGUI
             #endregion
 
             SetTarget(1);
-            //monsterMaker.StartBattle();
+            monsterMaker.StartBattle();
 
         }
 
@@ -111,6 +111,8 @@ namespace HerosAndMostersGUI
 
                 if (monsterHp <= 0)
                 {
+                    ((Monster) _targetList.ElementAt(x)).IsDead = true;
+                    
                     _targetList.RemoveAt(x);
                     _shapeTargetList.RemoveAt(x);
                     x--;

@@ -105,7 +105,7 @@ namespace DesignPatterns___DC_Design
         private void BuildLesserHeal(Target targets)
         {
             int mainTargetIndex = 0;
-            int heal = _random.Next(20, 5 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
+            int heal = _random.Next(5, 5 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
             var cmd = new StatAugmentCommand();
 
             cmd.AddEffect(new EffectInformation(StatsType.CurHp, heal), targets.ElementAt(mainTargetIndex));
@@ -134,7 +134,7 @@ namespace DesignPatterns___DC_Design
         private void BuildWeak(Target targets)
         {
             int mainTargetIndex = 0;
-            int damage = _random.Next(15, 5 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
+            int damage = _random.Next(5, 6 + RegisteredDC.DCStats.GetStat(StatsType.Strength));
             var cmd = new StatAugmentCommand();
 
             int appliedDamage = damage / ((int)(targets.ElementAt(mainTargetIndex).DCStats.GetStat(StatsType.Defense) * 0.1) + 1);// damage - _random.Next(5 + target.DCStats.GetStat(StatsType.Defense));

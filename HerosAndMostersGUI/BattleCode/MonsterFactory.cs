@@ -75,25 +75,24 @@ namespace HerosAndMostersGUI.BattleCode
 
         private static IMonsterTurnAI GetAI(int level, out string AItype)
         {
-            switch (level)
-            {
-                case 1:
-                    switch (_random.Next(3) + 1)
-                    {
-                        case 1:
-                            AItype = "Agressive";
-                            return new MonsterTurnAIAgressive();
-                        case 2:
-                            AItype = "Passive";
-                            return new MonsterTurnAIPassive();
-                        case 3:
-                            AItype = "Healer";
-                            return new MonsterTurnAIHealer();
-                    }
-                    break;
-            }
-            AItype = "This is not working... yet";
-            return null;
+            AItype = "Agressive";
+            return new MonsterTurnAIAgressive();
+            //switch (_random.Next(3) + 1)
+            //{
+            //    case 1:
+            //        AItype = "Agressive";
+            //        return new MonsterTurnAIAgressive();
+            //    case 2:
+            //        AItype = "Passive";
+            //        return new MonsterTurnAIPassive();
+            //    case 3:
+            //        AItype = "Healer";
+            //        return new MonsterTurnAIHealer();
+            //}
+                    
+            
+            //AItype = "This is not working... yet";
+            //return null;
         }
 
         private static string GetName(string aiType)

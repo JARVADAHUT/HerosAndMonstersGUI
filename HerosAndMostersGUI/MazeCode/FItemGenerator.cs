@@ -81,7 +81,7 @@ namespace HerosAndMostersGUI.MazeCode
 
         private static InventoryItems GenerateDye()
         {
-            int dyeColor = rnd.Next(19);
+            int dyeColor = rnd.Next(20);
             Dye theDye;
             switch (dyeColor)
             {
@@ -143,7 +143,7 @@ namespace HerosAndMostersGUI.MazeCode
                     theDye = new Dye(Brushes.Turquoise);
                     break;
                 default:
-                    theDye = new Dye(Brushes.Transparent);
+                    theDye = new Dye(Brushes.Purple);
                     break;
             }
 
