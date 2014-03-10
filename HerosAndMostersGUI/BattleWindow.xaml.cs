@@ -307,28 +307,50 @@ namespace HerosAndMostersGUI
 
         #region Player Ability Buttons
 
+        private List<DungeonCharacter> GetTargets()
+        {
+            List<DungeonCharacter> targets = new List<DungeonCharacter>();
+
+            targets.Add(_targetList.ElementAt<DungeonCharacter>(_currentTarget));
+
+            if (_currentTarget == 0)
+                return targets;
+
+            if (_currentTarget + 1 < _targetList.Count)
+                targets.Add(_targetList.ElementAt<DungeonCharacter>(_currentTarget + 1));
+
+            if (_currentTarget - 1 > 0)
+                targets.Add(_targetList.ElementAt<DungeonCharacter>(_currentTarget - 1));
+
+            return targets;
+        }
+
         private void btnAbility1_Click(object sender, RoutedEventArgs e)
         {
+            List<DungeonCharacter> targets = GetTargets();
             if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(targets));
         }
 
         private void btnAbility2_Click(object sender, RoutedEventArgs e)
         {
+            List<DungeonCharacter> targets = GetTargets();
             if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(1), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(1), new Target(targets));
         }
 
         private void btnAbility3_Click(object sender, RoutedEventArgs e)
         {
+            List<DungeonCharacter> targets = GetTargets();
             if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(2), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(2), new Target(targets));
         }
 
         private void btnAbility4_Click(object sender, RoutedEventArgs e)
         {
+            List<DungeonCharacter> targets = GetTargets();
             if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(_targetList.ElementAt<DungeonCharacter>(_currentTarget)));
+                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(targets));
         }
 
         #endregion

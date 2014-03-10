@@ -7,24 +7,24 @@
         <RadioButton Name="rb1" Content="Kip Springfield" HorizontalAlignment="Left" Margin="15,42,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton Name="rb2" Content="Tom Wilde" HorizontalAlignment="Left" Margin="15,80,0,0" VerticalAlignment="Top"/>
         <RadioButton Name="rb3" Content="El Benatar" HorizontalAlignment="Left" Margin="15,118,0,0" VerticalAlignment="Top"/>
-       
+
         <Rectangle Height="30" Width="30" Fill="LawnGreen" Margin="124,39,247,301"/>
         <Rectangle Height="30" Width="30" Fill="Red" Margin="124,77,247,263"/>
         <Rectangle Height="30" Width="30" Fill="Purple" Margin="124,115,247,225"/>
-              
+
         <ListBox Name ="AblSelect" HorizontalAlignment="Left" Height="176" Margin="15,184,0,0" VerticalAlignment="Top" Width="172"/>
         <ListBox Name="CharAbl"  HorizontalAlignment="Left" Height="100" Margin="221,184,0,0" VerticalAlignment="Top" Width="170" />
-        
+
         <Button Name ="btnAdd" Content="&gt;" HorizontalAlignment="Left" Margin="192,201,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_Add"/>
         <Button Name="btnRemove" Content="&lt;" HorizontalAlignment="Left" Margin="192,246,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_Remove"/>
         <Button Name="btnReady" Content="Ready" HorizontalAlignment="Left" Margin="308,333,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click_Ready" Height="27"/>
-        
+
         <Label Content="Character Select:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <Label Content="Ability Select:" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top"/>
         <Label Content="Characters Abilities:" HorizontalAlignment="Left" Margin="215,153,0,0" VerticalAlignment="Top"/>
-        
-        <TextBox Name="txtDescriptions" HorizontalAlignment="Left" Height="66" Margin="221,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="170" Background="White" IsEnabled="False"/>
-        <Label Content="Ability Description:" HorizontalAlignment="Left" Margin="215,49,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtDescriptions" HorizontalAlignment="Left" Height="110" Margin="221,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="170" Background="White" IsEnabled="False"/>
+        <Label Content="Ability Description:" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

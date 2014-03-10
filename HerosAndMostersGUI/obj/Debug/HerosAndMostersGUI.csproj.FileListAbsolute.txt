@@ -123,3 +123,8 @@ C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.baml
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.g.cs
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs
+N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\intro.mp3
+N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\soundtrack.mp3
+N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.baml
+N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.g.cs
+N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs

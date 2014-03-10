@@ -88,13 +88,15 @@ namespace DesignPatterns___DC_Design
 
         public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong Attack","Performs a strong attack against a selected opponent.",0);
         public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak Attack","Performs a weak attack against an opponent.",1);
-        public static readonly EnumAttacks PitifulHeal = new EnumAttacks("Pitiful Heal","Performs a minute heal on selected character.",2);
+        public static readonly EnumAttacks LesserHeal = new EnumAttacks("Lesser Heal","Small heal with a small cost that slightly buffs defence for 6 seconds",2);
         
         public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames!",3);
-        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of Ice","Freezes the opponent and surrounding opponents.",4);
-        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning Bolt","Shocks the target for extreme ammounts of damage.",5);
+        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of Ice","Low damage that affects target and surrounding targets and lowers their agility for 6 seconds",4);
+        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning Bolt","Large amount of damage, but increases targets agility for 6 seconds",5);
         
         public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper Beam","Unleashes a beam of pure energy upon the enemy.",6);
+
+        public static readonly EnumAttacks GreaterHeal = new EnumAttacks("Greater Heal", "Large heal with a large cost that slightly buffs agility for 6 seconds", 7);
 
 
         private EnumAttacks(string name, string description, int value)
