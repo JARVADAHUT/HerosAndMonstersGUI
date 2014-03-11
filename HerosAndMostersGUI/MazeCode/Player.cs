@@ -43,7 +43,7 @@ namespace MazeTest
 
         public override void Die()
         {
-            
+            Dead = true;
         }
 
         public List<EnumAttacks> GetAttacks()
@@ -114,6 +114,12 @@ namespace MazeTest
 
                 MainWindow.PauseHive();
                 theBattle.ShowDialog();
+
+                if (this.Dead)
+                {
+                    Restart();
+                }
+
                 MainWindow.StartHive();
 
                 this.GetInventory().AddItemList(lc.GetInventory());

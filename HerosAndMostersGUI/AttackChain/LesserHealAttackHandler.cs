@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns___DC_Design;
 using HerosAndMostersGUI.CharacterCode;
+using HerosAndMostersGUI.BattleCode;
 
 namespace HerosAndMostersGUI.AttackChain
 {
@@ -18,17 +19,23 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.LesserHeal))
             {
-                int mainTargetIndex = 0;
-                int heal = _random.Next(5, 10 + attacker.DCStats.GetStat(StatsType.Strength));
+                int str = StatAlgorithms.ScaleStrength(attacker);
+                int heal = _random.Next(5, 10 + str);
                 var cmd = new StatAugmentCommand();
 
-                cmd.AddEffect(new EffectInformation(StatsType.CurHp, heal), targets.ElementAt(mainTargetIndex));
+                cmd.AddEffect(new EffectInformation(StatsType.CurHp, heal), targets.ElementAt(DEFAULT_INDEX));
 
                 int magnitude = (int)(attacker.DCStats.GetStat(StatsType.Defense) * 0.1);
-                cmd.AddEffect(new EffectInformation(StatsType.Defense, magnitude, 0, 6), attacker);
+
+                cmd.AddEffect(ModifyStatBy(StatsType.Defense, targets.ElementAt(DEFAULT_INDEX), magnitude, 6), attacker);
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }
+            else
+            {
+                NextLink.HandleAttack(attack, targets, attacker);
+            }
         }
+
     }
 }

@@ -65,7 +65,7 @@ namespace HerosAndMostersGUI.BattleCode
 
         private static int GetHpValue(int level)
         {
-            return _random.Next(40 + (5*level), 50 + (5*level));
+            return _random.Next(40 + (3*level), 50 + (3*level));
         }
 
         private static int GetStatValue(int level)

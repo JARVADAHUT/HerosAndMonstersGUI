@@ -40,6 +40,13 @@ namespace HerosAndMostersGUI
         [DllImport("user32.dll")]
         private extern static int GetWindowLong(IntPtr hwnd, int index);
 
+        private void MainWindow_SourceInitialized(object sender, EventArgs e)
+        {
+            WindowInteropHelper wih = new WindowInteropHelper(this);
+            int style = GetWindowLong(wih.Handle, GWL_STYLE);
+            SetWindowLong(wih.Handle, GWL_STYLE, style & ~WS_SYSMENU);
+        }
+
         #endregion
 
         private List<EnumAttacks> attacks = new List<EnumAttacks>();
@@ -77,7 +84,6 @@ namespace HerosAndMostersGUI
 
             #endregion
 
-
         }
 
         private void AblSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,13 +91,7 @@ namespace HerosAndMostersGUI
             if(AblSelect.SelectedIndex > -1)
                 txtDescriptions.Text = allAttacks.ElementAt<EnumAttacks>(AblSelect.SelectedIndex).Description;
         }
-
-        void MainWindow_SourceInitialized(object sender, EventArgs e)
-        {
-            WindowInteropHelper wih = new WindowInteropHelper(this);
-            int style = GetWindowLong(wih.Handle, GWL_STYLE);
-            SetWindowLong(wih.Handle, GWL_STYLE, style & ~WS_SYSMENU);
-        }
+        
 
         private void Key_Down(object sender, KeyEventArgs e)
         {

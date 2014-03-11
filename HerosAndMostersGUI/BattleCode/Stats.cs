@@ -77,6 +77,18 @@ namespace DesignPatterns___DC_Design
                         magnitude = _stats[StatsType.MaxResources];
                     }
                     break;
+                case (StatsType.MaxResources):
+                    if (magnitude < _stats[StatsType.CurResources])
+                    {
+                        _stats[StatsType.CurResources] = magnitude;
+                    }
+                    break;
+                case (StatsType.MaxHp):
+                    if (magnitude < _stats[StatsType.CurHp])
+                    {
+                        _stats[StatsType.CurHp] = magnitude;
+                    }
+                    break;
             }
             if (magnitude < 0)
                 magnitude = 0;

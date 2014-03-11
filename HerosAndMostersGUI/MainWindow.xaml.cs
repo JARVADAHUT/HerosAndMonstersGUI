@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Forms;
 
 namespace HerosAndMostersGUI
 {
@@ -25,8 +26,21 @@ namespace HerosAndMostersGUI
     /// </summary>
     public partial class MainWindow : Window, IMazeDisplay
     {
-        private static DispatcherTimer _hive = new DispatcherTimer();
-        private MediaPlayer _mediaPlayer;
+
+
+        #region Close The Window
+
+        private static MainWindow _thisWindow;
+        
+        public static void CloseMainWindow()
+        {
+            _thisWindow.Close();
+            _mediaPlayer.Stop();
+            _hive.Stop();
+
+        }
+
+        #endregion
 
         #region Constant Game Properties
 
@@ -34,13 +48,19 @@ namespace HerosAndMostersGUI
         private int _constantPixelSize = 10;
         private const int _tickSpeed = 200;
         private const int _firstMazeSize = 12;
-        private const int _frameSize = 750;
+        private int _frameSize = (int)(Screen.PrimaryScreen.Bounds.Height / 1.2);
 
-        #endregion 
+        #endregion
+
+        private static DispatcherTimer _hive = new DispatcherTimer();
+        private static MediaPlayer _mediaPlayer;
+
+         
 
         public MainWindow()
         {
             InitializeComponent();
+            _thisWindow = this;
 
             CharacterSelect selectScreen = new CharacterSelect();
 
@@ -67,13 +87,13 @@ namespace HerosAndMostersGUI
             maze.Display();
 
 
-            this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
+            this.KeyDown += new System.Windows.Input.KeyEventHandler(OnButtonKeyDown);
             _hive.Tick += new EventHandler(HiveMind.GetInstance().MoveMinions);
             _hive.Interval = new TimeSpan(0, 0, 0, 0, _tickSpeed);
             _hive.IsEnabled = true;
         }
 
-        private void OnButtonKeyDown(object sender, KeyEventArgs e)
+        private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             InventoryScreen InvScr;
 
@@ -269,6 +289,8 @@ namespace HerosAndMostersGUI
         }
 
         #endregion
+
+        
 
     }
 }

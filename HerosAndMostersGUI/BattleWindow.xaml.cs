@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -25,6 +27,25 @@ namespace HerosAndMostersGUI
     /// </summary>
     public partial class BattleWindow : Window
     {
+
+        #region Get Rid Of Controlbox
+
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x00080000;
+
+        [DllImport("user32.dll")]
+        private extern static int SetWindowLong(IntPtr hwnd, int index, int value);
+        [DllImport("user32.dll")]
+        private extern static int GetWindowLong(IntPtr hwnd, int index);
+
+        private void MainWindow_SourceInitialized(object sender, EventArgs e)
+        {
+            WindowInteropHelper wih = new WindowInteropHelper(this);
+            int style = GetWindowLong(wih.Handle, GWL_STYLE);
+            SetWindowLong(wih.Handle, GWL_STYLE, style & ~WS_SYSMENU);
+        }
+
+        #endregion
 
         #region Privates
 
@@ -45,6 +66,7 @@ namespace HerosAndMostersGUI
 
         public BattleWindow(List<int> MonsterInformation)
         {
+            SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
 
             #region Setting Privates
@@ -109,6 +131,8 @@ namespace HerosAndMostersGUI
 
         }
 
+        
+
         private void OnTick(object sender, EventArgs e)
         {
 
@@ -120,7 +144,7 @@ namespace HerosAndMostersGUI
             pbPlayerHealth.Value = playerHp;
             pbPlayerMana.Value = playerMp;
 
-            double maxCD = StatAlgorithms.ConvertAgilityToMiliseconds();
+            double maxCD = StatAlgorithms.ConvertAgilityToMiliseconds(Hero.GetInstance());
             double curCD = _playerGCDTicker.ElapsedMilliseconds;
 
             pbPlayerGCD.Maximum = maxCD;
@@ -135,6 +159,7 @@ namespace HerosAndMostersGUI
             //player died
             if (playerHp <= 0)
             {
+                Player.GetInstance().Die();
                 CloseBattle();
             }
 
@@ -215,47 +240,31 @@ namespace HerosAndMostersGUI
 
         private void TargetMonsters(int p, List<Monster> monsterList)
         {
-            //NEED TO ADD MONSTERS TO DC TARGET LIST
-            switch (p)
+            //4 is on top if there is 4 monsters
+            if (p == 4)
             {
-                case 1:
-                    _shapeTargetList.Add(monster1Rec);
-                    monster1Rec.MouseDown += monster1Rec_MouseDown;
-                    _targetList.Add(monsterList.ElementAt<Monster>(0));
-                    break;
-                case 2:
-                    _shapeTargetList.Add(monster1Rec);
-                    _shapeTargetList.Add(monster2Rec);
-                    monster1Rec.MouseDown += monster1Rec_MouseDown;
-                    monster2Rec.MouseDown += monster2Rec_MouseDown;
-                    _targetList.Add(monsterList.ElementAt<Monster>(0));
-                    _targetList.Add(monsterList.ElementAt<Monster>(1));
-                    break;
-                case 3:
-                    _shapeTargetList.Add(monster1Rec);
-                    _shapeTargetList.Add(monster2Rec);
-                    _shapeTargetList.Add(monster3Rec);
-                    monster1Rec.MouseDown += monster1Rec_MouseDown;
-                    monster2Rec.MouseDown += monster2Rec_MouseDown;
-                    monster3Rec.MouseDown += monster3Rec_MouseDown;
-                    _targetList.Add(monsterList.ElementAt<Monster>(0));
-                    _targetList.Add(monsterList.ElementAt<Monster>(1));
-                    _targetList.Add(monsterList.ElementAt<Monster>(2));
-                    break;
-                case 4:
-                    _shapeTargetList.Add(monster4Rec);
-                    _shapeTargetList.Add(monster1Rec);
-                    _shapeTargetList.Add(monster2Rec);
-                    _shapeTargetList.Add(monster3Rec);
-                    monster1Rec.MouseDown += monster1Rec_MouseDown;
-                    monster2Rec.MouseDown += monster2Rec_MouseDown;
-                    monster3Rec.MouseDown += monster3Rec_MouseDown;
-                    monster4Rec.MouseDown += monster4Rec_MouseDown;
-                    _targetList.Add(monsterList.ElementAt<Monster>(3));
-                    _targetList.Add(monsterList.ElementAt<Monster>(0));
-                    _targetList.Add(monsterList.ElementAt<Monster>(1));
-                    _targetList.Add(monsterList.ElementAt<Monster>(2));
-                    break;
+                _shapeTargetList.Add(monster4Rec);
+                monster4Rec.MouseDown += monster4Rec_MouseDown;
+                _targetList.Add(monsterList.ElementAt<Monster>(3));
+            }
+
+            //always do
+            _shapeTargetList.Add(monster1Rec);
+            monster1Rec.MouseDown += monster1Rec_MouseDown;
+            _targetList.Add(monsterList.ElementAt<Monster>(0));
+
+            if (p > 1)
+            {
+                _shapeTargetList.Add(monster2Rec);
+                monster2Rec.MouseDown += monster2Rec_MouseDown;
+                _targetList.Add(monsterList.ElementAt<Monster>(1));
+            }
+
+            if (p > 2)
+            {
+                _shapeTargetList.Add(monster3Rec);
+                monster3Rec.MouseDown += monster3Rec_MouseDown;
+                _targetList.Add(monsterList.ElementAt<Monster>(2));
             }
         }
 
@@ -400,7 +409,7 @@ namespace HerosAndMostersGUI
 
         private bool CheckGCD()
         {
-            _playerGCD = StatAlgorithms.ConvertAgilityToMiliseconds();
+            _playerGCD = StatAlgorithms.ConvertAgilityToMiliseconds(Hero.GetInstance());
             if (_playerGCDTicker.ElapsedMilliseconds > _playerGCD)
                 return true;
             return false;

@@ -26,10 +26,10 @@ namespace DesignPatterns___DC_Design
                     {StatsType.CurHp, 100},
                     {StatsType.MaxResources, 100},
                     {StatsType.CurResources, 100},
-                    {StatsType.Agility, 0},
-                    {StatsType.Defense, 0},
-                    {StatsType.Intelegence, 0},
-                    {StatsType.Strength, 0}
+                    {StatsType.Agility, 10},
+                    {StatsType.Defense, 10},
+                    {StatsType.Intelegence, 10},
+                    {StatsType.Strength, 10}
                 });
             return result;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns___DC_Design;
+using HerosAndMostersGUI.CharacterCode;
 
 namespace HerosAndMostersGUI.AttackChain
 {
@@ -11,6 +12,9 @@ namespace HerosAndMostersGUI.AttackChain
     {
         protected AttackHandler NextLink { get; set; }
         protected static Random _random = new Random();
+
+        protected const int DEFAULT_INDEX = 0;
+
         public AttackHandler(AttackHandler nextLink)
         {
             NextLink = nextLink;
@@ -38,5 +42,17 @@ namespace HerosAndMostersGUI.AttackChain
 
             return result;
         }
+
+        protected int ApplyDefence(int damage, DungeonCharacter target)
+        {
+            return damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);
+        }
+
+        protected EffectInformation ModifyStatBy(StatsType stat, DungeonCharacter target, double percent, int duration)
+        {
+            return new EffectInformation(stat, (int)(target.DCStats.GetStat(stat) * percent), 0, duration);
+        }
+
+        
     }
 }

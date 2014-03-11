@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns___DC_Design;
 using HerosAndMostersGUI.CharacterCode;
+using HerosAndMostersGUI.BattleCode;
 
 namespace HerosAndMostersGUI.AttackChain
 {
@@ -18,15 +19,16 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Name.Equals("Strong Attack"))
             {
-                int mainTargetIndex = 0;
-                int str = attacker.DCStats.GetStat(StatsType.Strength);
+                int str = StatAlgorithms.ScaleStrength(attacker);
+
+
                 int damage = _random.Next(str + 5, 25 + str);
                 var cmd = new StatAugmentCommand();
 
-                int appliedDamage = damage / ((int)(targets.ElementAt(mainTargetIndex).DCStats.GetStat(StatsType.Defense) * 0.1) + 1);//damage - _random.Next(target.DCStats.GetStat(StatsType.Defense) - 5, 5 + target.DCStats.GetStat(StatsType.Defense));
-                cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(mainTargetIndex));
+                int appliedDamage = ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
+                cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
 
-                cmd.AddEffect(new EffectInformation(StatsType.Agility, 10, 0, 15), attacker);
+                cmd.AddEffect(ModifyStatBy(StatsType.Agility, attacker, 0.1, 15), attacker);
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }

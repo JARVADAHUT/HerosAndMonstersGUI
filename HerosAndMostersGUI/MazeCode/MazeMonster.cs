@@ -134,6 +134,12 @@ namespace MazeTest
 
                     MainWindow.PauseHive();
                     theBattle.ShowDialog();
+
+                    if (creature.Dead)
+                    {
+                        Restart();
+                    }
+
                     MainWindow.StartHive();
                     //exit BA
 
@@ -143,6 +149,8 @@ namespace MazeTest
 
             }
         }
+
+        
 
         public override SolidColorBrush GetColor()
         {

@@ -23,6 +23,13 @@ namespace MazeTest
             Dead = false;
         }
 
+        protected void Restart()//just kills the game
+        {
+            GameOver gameOverScreen = new GameOver();
+            gameOverScreen.ShowDialog();
+            MainWindow.CloseMainWindow();
+        }
+
         public void Interact(EnumDirection dir)
         {
             this.SetLastMove(dir);

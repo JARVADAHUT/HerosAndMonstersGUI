@@ -23,8 +23,11 @@ namespace DesignPatterns___DC_Design
             {
                 foreach (var effect in cmd.Effects[key])
                 {
-                    var sacThread = new StatAugmentCommandThread(effect,key);
-                    ThreadPool.QueueUserWorkItem(sacThread.ThreadStart);
+                    if (effect.Magnitude != 0)
+                    {
+                        var sacThread = new StatAugmentCommandThread(effect, key);
+                        ThreadPool.QueueUserWorkItem(sacThread.ThreadStart);
+                    }
                 }
             }
             //var t = new Thread(new ThreadStart(sacThread.ThreadStart));

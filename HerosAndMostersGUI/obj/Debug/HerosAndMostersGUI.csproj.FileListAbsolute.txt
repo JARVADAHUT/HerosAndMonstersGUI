@@ -128,3 +128,5 @@ N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resou
 N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.baml
 N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.g.cs
 N:\HEROSANDMONSTERS AHHHH\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\HerosAndMostersGUI_Content.g.cs
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\GameOver.baml
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\GameOver.g.cs

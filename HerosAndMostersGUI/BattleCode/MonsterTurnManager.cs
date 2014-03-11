@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HerosAndMostersGUI.BattleCode;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -105,9 +106,10 @@ namespace DesignPatterns___DC_Design
             {
                 var queue = (QueueThread)obj;
 
-                int sleepTime = 2000 - 10*_monster.DCStats.GetStat(StatsType.Agility);
+                int sleepTime = (int)StatAlgorithms.ConvertAgilityToMiliseconds(_monster);
 
-                Thread.Sleep(sleepTime > 500 ? sleepTime: 500);
+                Thread.Sleep(sleepTime);
+
                 _monster.TakeTurn();
                 queue.EnqueueMonster(_monster);
             }

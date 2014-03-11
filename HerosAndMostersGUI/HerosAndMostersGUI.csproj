@@ -94,6 +94,9 @@
     <Compile Include="CharacterSelect.xaml.cs">
       <DependentUpon>CharacterSelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameOver.xaml.cs">
+      <DependentUpon>GameOver.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InventoryScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CharacterSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameOver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
