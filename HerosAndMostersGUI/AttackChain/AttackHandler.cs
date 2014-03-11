@@ -19,10 +19,22 @@ namespace HerosAndMostersGUI.AttackChain
 
         public static AttackHandler GetAttackHandlerChain()
         {
-            var result = new WeakAttackHandler(
-                new StrongAttackHandler(
-                    new LightningBoltAttackHandler(
-                        new NullAttackHandler(null))));
+            var result = new WeakAttackHandler
+            (
+                new StrongAttackHandler
+                (
+                    new LightningBoltAttackHandler
+                    (
+                        new IceConeAttackHandler
+                        (
+                            new LesserHealAttackHandler
+                            (
+                                new NullAttackHandler(null)
+                            )
+                        )
+                    )
+                )
+            );
 
             return result;
         }

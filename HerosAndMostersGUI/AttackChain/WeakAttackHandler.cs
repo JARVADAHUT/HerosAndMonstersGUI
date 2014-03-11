@@ -27,7 +27,7 @@ namespace HerosAndMostersGUI.AttackChain
                                      1); // damage - _random.Next(5 + target.DCStats.GetStat(StatsType.Defense));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(mainTargetIndex));
 
-                cmd.AddEffect(new EffectInformation(StatsType.CurResources, 5), attacker);
+                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }
             else

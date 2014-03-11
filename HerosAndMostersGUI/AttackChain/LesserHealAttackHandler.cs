@@ -19,14 +19,14 @@ namespace HerosAndMostersGUI.AttackChain
             if (attack.Equals(EnumAttacks.LesserHeal))
             {
                 int mainTargetIndex = 0;
-                int heal = _random.Next(5, 5 + attacker.DCStats.GetStat(StatsType.Strength));
+                int heal = _random.Next(5, 10 + attacker.DCStats.GetStat(StatsType.Strength));
                 var cmd = new StatAugmentCommand();
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, heal), targets.ElementAt(mainTargetIndex));
 
                 int magnitude = (int)(attacker.DCStats.GetStat(StatsType.Defense) * 0.1);
                 cmd.AddEffect(new EffectInformation(StatsType.Defense, magnitude, 0, 6), attacker);
-                cmd.AddEffect(new EffectInformation(StatsType.CurResources, -5), attacker);
+                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }
         }

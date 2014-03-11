@@ -28,7 +28,7 @@ namespace HerosAndMostersGUI.AttackChain
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(mainTargetIndex));
                 cmd.AddEffect(new EffectInformation(StatsType.Agility, agiMag, 0, 6), targets.ElementAt(mainTargetIndex));
 
-                cmd.AddEffect(new EffectInformation(StatsType.CurResources, -10), attacker);
+                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }
             else

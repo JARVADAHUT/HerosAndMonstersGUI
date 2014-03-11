@@ -24,12 +24,12 @@ namespace HerosAndMostersGUI.AttackChain
                 foreach (var target in targets)
                 {
                     int appliedDamage = damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);//damage - _random.Next(target.DCStats.GetStat(StatsType.Defense) - 5, 5 + target.DCStats.GetStat(StatsType.Defense));
-                    int agiMag = (int)(target.DCStats.GetStat(StatsType.Agility) * 0.5);
+                    int agiMag = (int)(target.DCStats.GetStat(StatsType.Agility) * 0.7);
 
                     cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
                     cmd.AddEffect(new EffectInformation(StatsType.Agility, -agiMag, 0, 6), target);
                 }
-                cmd.AddEffect(new EffectInformation(StatsType.CurResources, -10), attacker);
+                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }
             else

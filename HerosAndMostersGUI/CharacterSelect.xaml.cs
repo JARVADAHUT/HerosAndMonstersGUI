@@ -147,11 +147,11 @@ namespace HerosAndMostersGUI
                 }
                 if ((bool)rb2.IsChecked)
                 {
-                    Player.MakePlayer("Tom Wilde", Brushes.Red, attacks);
+                    Player.MakePlayer("Tom Wilde", Brushes.Green, attacks);
                 }
                 if ((bool)rb3.IsChecked)
                 {
-                    Player.MakePlayer("El Benatar", Brushes.Purple, attacks);
+                    Player.MakePlayer("El Benatar", Brushes.GreenYellow, attacks);
                 }
 
                 for (double i = .5; i > 0.0; i -= .03)
@@ -159,7 +159,9 @@ namespace HerosAndMostersGUI
                     Thread.Sleep(100);
                     _mediaPlayer.Volume = i;
                 }
+
                 _mediaPlayer.Stop();
+
                 this.Close();
             }
             else

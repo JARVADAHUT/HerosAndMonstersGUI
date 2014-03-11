@@ -20,14 +20,14 @@ namespace HerosAndMostersGUI.AttackChain
             {
                 int mainTargetIndex = 0;
                 int str = attacker.DCStats.GetStat(StatsType.Strength);
-                int damage = _random.Next(str - 15, 25 + str);
+                int damage = _random.Next(str + 5, 25 + str);
                 var cmd = new StatAugmentCommand();
 
                 int appliedDamage = damage / ((int)(targets.ElementAt(mainTargetIndex).DCStats.GetStat(StatsType.Defense) * 0.1) + 1);//damage - _random.Next(target.DCStats.GetStat(StatsType.Defense) - 5, 5 + target.DCStats.GetStat(StatsType.Defense));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(mainTargetIndex));
 
                 cmd.AddEffect(new EffectInformation(StatsType.Agility, 10, 0, 15), attacker);
-                cmd.AddEffect(new EffectInformation(StatsType.CurResources, -5), attacker);
+                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }
             else

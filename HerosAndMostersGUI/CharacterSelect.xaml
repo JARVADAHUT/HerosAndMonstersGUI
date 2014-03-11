@@ -9,8 +9,8 @@
         <RadioButton Name="rb3" Content="El Benatar" HorizontalAlignment="Left" Margin="15,118,0,0" VerticalAlignment="Top"/>
 
         <Rectangle Height="30" Width="30" Fill="LawnGreen" Margin="124,39,247,301"/>
-        <Rectangle Height="30" Width="30" Fill="Red" Margin="124,77,247,263"/>
-        <Rectangle Height="30" Width="30" Fill="Purple" Margin="124,115,247,225"/>
+        <Rectangle Height="30" Width="30" Fill="Green" Margin="124,77,247,263"/>
+        <Rectangle Height="30" Width="30" Fill="GreenYellow" Margin="124,115,247,225"/>
 
         <ListBox Name ="AblSelect" HorizontalAlignment="Left" Height="176" Margin="15,184,0,0" VerticalAlignment="Top" Width="172"/>
         <ListBox Name="CharAbl"  HorizontalAlignment="Left" Height="100" Margin="221,184,0,0" VerticalAlignment="Top" Width="170" />
