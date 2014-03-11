@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HerosAndMostersGUI;
+using HerosAndMostersGUI.AttackChain;
 
 namespace DesignPatterns___DC_Design
 {
@@ -10,7 +11,7 @@ namespace DesignPatterns___DC_Design
         public string Name { get; set; }
 
 
-        public AttackFactory AttackFactory { private set; get; }
+        public AttackHandler AttackChain { private set; get; }
 
         public Stats DCStats
         {
@@ -21,7 +22,7 @@ namespace DesignPatterns___DC_Design
         {
             this.Name = name;
             this._dcStats = stats;
-            AttackFactory = new AttackFactory(this);
+            AttackChain = AttackHandler.GetAttackHandlerChain();
         }
 
         public abstract void Attack(EnumAttacks type, Target target);

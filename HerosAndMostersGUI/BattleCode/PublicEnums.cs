@@ -116,5 +116,15 @@ namespace DesignPatterns___DC_Design
         {
             return Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType().Equals(typeof (EnumAttacks)))
+            {
+                var that = (EnumAttacks) obj;
+                return (that.Name.Equals(this.Name) && that.Description.Equals(this.Description));
+            }
+            return false;
+        }
     }
 }

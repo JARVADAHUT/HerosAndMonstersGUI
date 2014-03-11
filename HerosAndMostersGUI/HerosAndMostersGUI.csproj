@@ -55,7 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BattleCode\AttackFactory.cs" />
+    <Compile Include="AttackChain\AttackHandler.cs" />
+    <Compile Include="AttackChain\IceConeAttackHandler.cs" />
+    <Compile Include="AttackChain\LesserHealAttackHandler.cs" />
+    <Compile Include="AttackChain\LightningBoltAttackHandler.cs" />
+    <Compile Include="AttackChain\NullAttackHandler.cs" />
+    <Compile Include="AttackChain\StrongAttackHandler.cs" />
+    <Compile Include="AttackChain\WeakAttackHandler.cs" />
     <Compile Include="BattleCode\BattleBuilder.cs" />
     <Compile Include="BattleCode\MonsterFactory.cs" />
     <Compile Include="BattleCode\MonsterTurnAIAgressive.cs" />
@@ -175,6 +181,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

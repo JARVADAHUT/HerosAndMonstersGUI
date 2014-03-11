@@ -46,7 +46,7 @@ namespace DesignPatterns___DC_Design
 
         public override void Attack(EnumAttacks type, Target target)
         {
-            AttackFactory.Attack(type, target);
+            AttackChain.HandleAttack(type, target, this);
         }
     }
 }
