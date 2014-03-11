@@ -1,5 +1,6 @@
 ﻿using DesignPatterns___DC_Design;
 using HerosAndMostersGUI.BattleCode;
+using HerosAndMostersGUI.CharacterCode;
 using MazeTest;
 using System;
 using System.Collections.Generic;
@@ -121,7 +122,7 @@ namespace HerosAndMostersGUI
             //player died
             if (playerHp <= 0)
             {
-                this.Close();
+                CloseBattle();
             }
 
             #region Setting Monster "Bars" or Killing Them
@@ -153,7 +154,9 @@ namespace HerosAndMostersGUI
 
             //all monsters died
             if (_targetList.Count <= 1)
-                this.Close();
+            {
+                CloseBattle();
+            }
 
         }
 
@@ -330,6 +333,16 @@ namespace HerosAndMostersGUI
                     break;
 
             }
+        }
+
+        private void CloseBattle() // <----------------------- NEWLY ADDED
+        {
+            StatAugmentCommand cmd = new StatAugmentCommand();
+            Hero hero = Hero.GetInstance();
+            cmd.AddEffect(new EffectInformation(StatsType.CurResources, hero.DCStats.GetStat(StatsType.MaxResources) - hero.DCStats.GetStat(StatsType.CurResources), 0, 0), hero);
+            StatAugmentManager.GetInstance().OfferCommand(cmd);
+            //_barTick.IsEnabled = false; // <------------------------- THIS IS NOT WORKING
+            Close();
         }
 
         #region Player Ability Buttons
