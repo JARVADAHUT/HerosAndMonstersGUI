@@ -62,6 +62,7 @@
     <Compile Include="BattleCode\MonsterTurnAIHealer.cs" />
     <Compile Include="BattleCode\MonsterTurnAIPassive.cs" />
     <Compile Include="BattleCode\MonsterTurnManager.cs" />
+    <Compile Include="BattleCode\StatAlgorithms.cs" />
     <Compile Include="BattleWindow.xaml.cs">
       <DependentUpon>BattleWindow.xaml</DependentUpon>
     </Compile>

@@ -3,6 +3,7 @@ using HerosAndMostersGUI.BattleCode;
 using MazeTest;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,9 @@ namespace HerosAndMostersGUI
         private static DispatcherTimer _barTick = new DispatcherTimer();
         private int _currentTarget;
         private List<EnumAttacks> playersAttacks = Player.GetInstance().GetAttacks();
+
+        private double _playerGCD;// = TimeSpan.FromMilliseconds(0);
+        private Stopwatch _playerGCDTicker = new Stopwatch();
 
         #endregion
 
@@ -88,21 +92,39 @@ namespace HerosAndMostersGUI
 
             SetTarget(1);
             monsterMaker.StartBattle();
-
+            _playerGCDTicker.Start();
         }
 
         private void OnTick(object sender, EventArgs e)
         {
+
+            #region Setting Player "Bars"
+
             int playerHp = Hero.GetInstance().DCStats.GetStat(StatsType.CurHp);
             int playerMp = Hero.GetInstance().DCStats.GetStat(StatsType.CurResources);
 
             pbPlayerHealth.Value = playerHp;
             pbPlayerMana.Value = playerMp;
+            
+            double maxCD = StatAlgorithms.ConvertAgilityToMiliseconds();
+            double curCD = _playerGCDTicker.ElapsedMilliseconds;
 
+            pbPlayerGCD.Maximum = maxCD;
+
+            if (curCD <= maxCD)
+                pbPlayerGCD.Value = curCD;
+            else
+                pbPlayerGCD.Value = maxCD;
+
+            #endregion
+
+            //player died
             if (playerHp <= 0)
             {
                 this.Close();
             }
+
+            #region Setting Monster "Bars" or Killing Them
 
             for (int x = 1; x < _targetList.Count; x++)
             {
@@ -127,6 +149,9 @@ namespace HerosAndMostersGUI
 
             }
 
+            #endregion
+
+            //all monsters died
             if (_targetList.Count <= 1)
                 this.Close();
 
@@ -327,32 +352,52 @@ namespace HerosAndMostersGUI
             return targets;
         }
 
+        private bool CheckGCD()
+        {
+            _playerGCD = StatAlgorithms.ConvertAgilityToMiliseconds();
+            if (_playerGCDTicker.ElapsedMilliseconds > _playerGCD)
+                return true;
+            return false;
+        }
+
+        private bool CheckResource()
+        {
+            return true;
+        }
+
+        private void DoAttack(int index)
+        {
+            _playerGCDTicker.Stop();
+            if (CheckResource() && CheckGCD())
+            {
+                List<DungeonCharacter> targets = GetTargets();
+                if (_currentTarget < _targetList.Count && _currentTarget >= 0)
+                {
+                    Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(index), new Target(targets));
+                    _playerGCDTicker = new Stopwatch();
+                }
+            }
+            _playerGCDTicker.Start();
+        }
+
         private void btnAbility1_Click(object sender, RoutedEventArgs e)
         {
-            List<DungeonCharacter> targets = GetTargets();
-            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(0), new Target(targets));
+            DoAttack(0);
         }
 
         private void btnAbility2_Click(object sender, RoutedEventArgs e)
         {
-            List<DungeonCharacter> targets = GetTargets();
-            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(1), new Target(targets));
+            DoAttack(1);
         }
 
         private void btnAbility3_Click(object sender, RoutedEventArgs e)
         {
-            List<DungeonCharacter> targets = GetTargets();
-            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(2), new Target(targets));
+            DoAttack(2);
         }
 
         private void btnAbility4_Click(object sender, RoutedEventArgs e)
         {
-            List<DungeonCharacter> targets = GetTargets();
-            if (_currentTarget < _targetList.Count && _currentTarget >= 0)
-                Hero.GetInstance().Attack(playersAttacks.ElementAt<EnumAttacks>(3), new Target(targets));
+            DoAttack(3);
         }
 
         #endregion
