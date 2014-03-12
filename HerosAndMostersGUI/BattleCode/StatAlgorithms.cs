@@ -18,6 +18,7 @@ namespace HerosAndMostersGUI.BattleCode
             return y;
         }
 
+        // No need for this method in its current state. Will change when further str logic is needed, or comment out. 
         public static int GetPercentStrength(DungeonCharacter dc, double percent)
         {
             return (int)(dc.DCStats.GetStat(StatsType.Strength) * percent);

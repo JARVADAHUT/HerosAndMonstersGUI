@@ -21,11 +21,11 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Name.Equals("Strong Attack"))
             {
-                Hero hero = Hero.GetInstance();
-
+                int str = (int)(attacker.DCStats.GetStat(StatsType.Strength));
                 // calculate raw damage
                 // Strength Weight -> Each Str point = .8% - 1.2% damage increase of BaseDamage. FOR EXAMPLE: 100 Raw Str = 180%-220% * BaseDamage, OR 38-42 damage.
-                int damage = _random.Next(BaseDamage * (1 + (StatAlgorithms.GetPercentStrength(hero, 0.8) / 100)), BaseDamage * (1 + (StatAlgorithms.GetPercentStrength(hero, 1.2) / 100)));
+                int damage = _random.Next(BaseDamage * (1 + ((int)(str * .8) / 100)), BaseDamage * (1 + ((int)(str * 1.2) / 100)));
+
                 var cmd = new StatAugmentCommand();
 
                 // Apply defense reduction
