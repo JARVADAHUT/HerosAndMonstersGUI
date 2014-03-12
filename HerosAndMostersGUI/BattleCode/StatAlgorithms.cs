@@ -11,24 +11,33 @@ namespace HerosAndMostersGUI.BattleCode
     {
         public static double ConvertAgilityToMiliseconds(DungeonCharacter dc)
         {
-            int x = dc.DCStats.GetStat(StatsType.Agility);
+            //int Agi = dc.DCStats.GetStat(StatsType.Agility);
+            int agi = Hero.GetInstance().DCStats.GetStat(StatsType.Agility);
 
-            //double y = 2000.0 - (  (1250.0 * x) / (0.75 * x + 200.0)  );
-            double y = 1800.0 - ((1250.0 * x) / (0.75 * x + 200.0));
+            double y = 500 + (1500 * Math.Pow(1.008, -.5 * agi));
             return y;
         }
 
-        public static int ScaleStrength(DungeonCharacter dc)
+        public static int GetPercentStrength(DungeonCharacter dc, double percent)
         {
-            return dc.DCStats.GetStat(StatsType.Strength);
+            return (int)(dc.DCStats.GetStat(StatsType.Strength) * percent);
         }
 
-        public static double ConvertAgilityToMiliseconds2()
+        public static  int ApplyDefence(int damage, DungeonCharacter target)
         {
-            int x = Hero.GetInstance().DCStats.GetStat(StatsType.Agility);
-            double y = 2000.0 - ((1250.0 * x) / (0.75 * x + 200.0));
-            return y;
+            double damageReduction = 25 + (75 * Math.Pow(1.0105, -.5 * target.DCStats.GetStat(StatsType.Defense)));
+
+            return (int)(damage * (damageReduction/100));
         }
+
+        /*
+public static double ConvertAgilityToMiliseconds2()
+{
+    int x = Hero.GetInstance().DCStats.GetStat(StatsType.Agility);
+    double y = 2000.0 - ((1250.0 * x) / (0.75 * x + 200.0));
+    return y;
+}
+*/
 
     }
 }

@@ -19,12 +19,12 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.LightningBolt))
             {
-                int str = StatAlgorithms.ScaleStrength(attacker);
+                int str = StatAlgorithms.GetPercentStrength(attacker, 1);
 
                 int damage = _random.Next(str + 25, 55 + str);
                 var cmd = new StatAugmentCommand();
 
-                int appliedDamage = ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX)); 
+                int appliedDamage = StatAlgorithms.ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX)); 
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
                 cmd.AddEffect(ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), 2.0, 7), targets.ElementAt(DEFAULT_INDEX));

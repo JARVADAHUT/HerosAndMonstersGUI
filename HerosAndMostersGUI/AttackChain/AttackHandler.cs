@@ -43,11 +43,6 @@ namespace HerosAndMostersGUI.AttackChain
             return result;
         }
 
-        protected int ApplyDefence(int damage, DungeonCharacter target)
-        {
-            return damage / ((int)(target.DCStats.GetStat(StatsType.Defense) * 0.1) + 1);
-        }
-
         protected EffectInformation ModifyStatBy(StatsType stat, DungeonCharacter target, double percent, int duration)
         {
             return new EffectInformation(stat, (int)(target.DCStats.GetStat(stat) * percent), 0, duration);

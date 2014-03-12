@@ -19,13 +19,13 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.IceCone))
             {
-                int str = StatAlgorithms.ScaleStrength(attacker);
+                int str = StatAlgorithms.GetPercentStrength(attacker, 1);
                 int damage = _random.Next(5, str - (int)(str * 0.3));
 
                 var cmd = new StatAugmentCommand();
                 foreach (var target in targets)
                 {
-                    int appliedDamage = ApplyDefence(damage, target);
+                    int appliedDamage = StatAlgorithms.ApplyDefence(damage, target);
 
                     cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
 

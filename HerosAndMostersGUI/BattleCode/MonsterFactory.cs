@@ -65,12 +65,15 @@ namespace HerosAndMostersGUI.BattleCode
 
         private static int GetHpValue(int level)
         {
-            return _random.Next(40 + (3*level), 50 + (3*level));
+            return _random.Next(20 + (int)(3.5*level), 35 + (int)(3.5*level));
         }
 
         private static int GetStatValue(int level)
         {
-            return _random.Next(5 + (level * 2), 10 + (level * 2));
+            if (level < 5) // to reduce difficulty on earlier levels
+                return _random.Next(0 + (int)(level * 1.5), 2 + (int)(level * 1.5));
+            else
+                return _random.Next(0 + (int)(level * 2.5), 2 + (int)(level * 2.5));
         }
 
         private static IMonsterTurnAI GetAI(int level, out string AItype)

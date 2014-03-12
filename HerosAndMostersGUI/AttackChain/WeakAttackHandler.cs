@@ -19,13 +19,13 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Name.Equals("Weak Attack"))
             {
-                int str = StatAlgorithms.ScaleStrength(attacker);
+                int str = StatAlgorithms.GetPercentStrength(attacker, 1);
 
                 int damage = _random.Next(5, 6 + str);
 
                 var cmd = new StatAugmentCommand();
 
-                int appliedDamage = ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
+                int appliedDamage = StatAlgorithms.ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);

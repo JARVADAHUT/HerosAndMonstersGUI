@@ -19,7 +19,7 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.LesserHeal))
             {
-                int str = StatAlgorithms.ScaleStrength(attacker);
+                int str = StatAlgorithms.GetPercentStrength(attacker, 1);
                 int heal = _random.Next(5, 10 + str);
                 var cmd = new StatAugmentCommand();
 

@@ -11,6 +11,8 @@ namespace HerosAndMostersGUI.AttackChain
 {
     class StrongAttackHandler : AttackHandler
     {
+        private const int BaseDamage = 20;
+
         public StrongAttackHandler(AttackHandler nextLink) : base(nextLink)
         {
         }
@@ -19,13 +21,15 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Name.Equals("Strong Attack"))
             {
-                int str = StatAlgorithms.ScaleStrength(attacker);
+                Hero hero = Hero.GetInstance();
 
-
-                int damage = _random.Next(str + 5, 25 + str);
+                // calculate raw damage
+                // Strength Weight -> Each Str point = .8% - 1.2% damage increase of BaseDamage. FOR EXAMPLE: 100 Raw Str = 180%-220% * BaseDamage, OR 38-42 damage.
+                int damage = _random.Next(BaseDamage * (1 + (StatAlgorithms.GetPercentStrength(hero, 0.8) / 100)), BaseDamage * (1 + (StatAlgorithms.GetPercentStrength(hero, 1.2) / 100)));
                 var cmd = new StatAugmentCommand();
 
-                int appliedDamage = ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
+                // Apply defense reduction
+                int appliedDamage = StatAlgorithms.ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
 
                 cmd.AddEffect(ModifyStatBy(StatsType.Agility, attacker, 0.1, 15), attacker);

@@ -1,4 +1,5 @@
 ﻿using DesignPatterns___DC_Design;
+using HerosAndMostersGUI.BattleCode;
 using HerosAndMostersGUI.CharacterCode;
 using MazeTest;
 using System;
@@ -212,7 +213,7 @@ namespace HerosAndMostersGUI
 
         // EVENT METHODS ----------------------------------------------------------------------------------
 
-        private void InventoryDrawItem(object sender, DrawItemEventArgs e)
+        private void InventoryDrawItem(object sender, DrawItemEventArgs e) // <--------------- NOT IMPLEMENTED
         {
             InventoryItems itemTODraw = (InventoryItems)sender;
             if (itemTODraw.GetType() == EnumItemType.Equipable)
@@ -300,10 +301,10 @@ namespace HerosAndMostersGUI
 
             int healthVal = Hero.GetInstance().DCStats.GetStat(StatsType.CurHp);
             int manaVal = Hero.GetInstance().DCStats.GetStat(StatsType.CurResources);
-            int cdVal = 2; // <-------------- THIS WILL NEED TO BE CALCULATED BASED OFF CURRENT AGILITY
+            double cdVal = StatAlgorithms.ConvertAgilityToMiliseconds(Hero.GetInstance())/1000; 
             int maxHealth = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
             int maxMana = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
-            int maxGlobalCD = 2;
+            int maxGlobalCD = 200;
 
             healthpbar.Maximum = maxHealth;
             manapbar.Maximum = maxMana;
@@ -311,11 +312,12 @@ namespace HerosAndMostersGUI
 
             healthpbar.Value = healthVal;
             manapbar.Value = manaVal;
-            globalcdpbar.Value = cdVal;
+            cdVal = decimal.ToDouble(decimal.Round(new decimal(cdVal), 2, MidpointRounding.AwayFromZero));
+            globalcdpbar.Value = (int)(cdVal*100);
 
             healthlabel.Text = "Health: " + healthVal + " / " + maxHealth;
             manalabel.Text = "Mana: " + manaVal + " / " + maxMana;
-            cdlabel.Text = "Global Cooldown: " + cdVal + " / " + maxGlobalCD;
+            cdlabel.Text = "Global Cooldown: " + cdVal + " / " + (maxGlobalCD/100);
 
         }
 
