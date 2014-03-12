@@ -28,7 +28,7 @@ namespace HerosAndMostersGUI
 
         private void btnOkay_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

@@ -19,9 +19,9 @@ namespace HerosAndMostersGUI.BattleCode
         }
 
         // No need for this method in its current state. Will change when further str logic is needed, or comment out. 
-        public static int GetPercentStrength(DungeonCharacter dc, double percent)
+        public static double GetPercentStrength(int strength, double percent)
         {
-            return (int)(dc.DCStats.GetStat(StatsType.Strength) * percent);
+            return 1 + (strength * percent) / 50;
         }
 
         public static  int ApplyDefence(int damage, DungeonCharacter target)
