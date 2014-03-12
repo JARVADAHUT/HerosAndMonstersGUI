@@ -7,6 +7,18 @@ namespace DesignPatterns___DC_Design
     {
         private List<DungeonCharacter> _targets;
 
+        public DungeonCharacter this[int i]
+        {
+            get
+            {
+                return _targets[i];
+            }
+            set
+            {
+                _targets[i] = value;
+            }
+        }
+
         public Target()
         {
             _targets = new List<DungeonCharacter>();
@@ -22,6 +34,11 @@ namespace DesignPatterns___DC_Design
             _targets = new List<DungeonCharacter>(characters);
         }
 
+        public int Count()
+        {
+            return _targets.Count;
+        }
+        
         public void AddTarget(DungeonCharacter target)
         {
             this._targets.Add(target);

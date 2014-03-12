@@ -100,6 +100,7 @@ namespace HerosAndMostersGUI
             List<Monster> monsterList = monsterMaker.AddMonsters(MonsterInformation);
 
             TargetMonsters(MonsterInformation.Count, monsterList);
+
             ShowMonsters(MonsterInformation.Count);
 
             _currentTarget = 0;

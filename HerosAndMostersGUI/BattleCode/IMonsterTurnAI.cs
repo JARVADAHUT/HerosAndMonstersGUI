@@ -8,6 +8,6 @@ namespace DesignPatterns___DC_Design
 {
     public interface IMonsterTurnAI
     {
-        void TakeTurn(Monster monster);
+        void TakeTurn(Monster monster,Target targets);
     }
 }

@@ -31,7 +31,7 @@ namespace HerosAndMostersGUI.BattleCode
                                                        " the Badass"
                                                    }; 
 
-        private static readonly Dictionary<string,Dictionary<string,List<string>>> _names = new Dictionary<string,Dictionary<string,List<string>>>();
+        //private static readonly Dictionary<string,Dictionary<string,List<string>>> _names = new Dictionary<string,Dictionary<string,List<string>>>();
 
         private MonsterFactory()
         {
@@ -78,24 +78,22 @@ namespace HerosAndMostersGUI.BattleCode
 
         private static IMonsterTurnAI GetAI(int level, out string AItype)
         {
-            AItype = "Agressive";
-            return new MonsterTurnAIAgressive();
-            //switch (_random.Next(3) + 1)
-            //{
-            //    case 1:
-            //        AItype = "Agressive";
-            //        return new MonsterTurnAIAgressive();
-            //    case 2:
-            //        AItype = "Passive";
-            //        return new MonsterTurnAIPassive();
-            //    case 3:
-            //        AItype = "Healer";
-            //        return new MonsterTurnAIHealer();
-            //}
-                    
-            
-            //AItype = "This is not working... yet";
-            //return null;
+            switch (_random.Next(3) + 1)
+            {
+                case 1:
+                    AItype = "Agressive";
+                    return new MonsterTurnAIAgressive();
+                case 2:
+                    AItype = "Passive";
+                    return new MonsterTurnAIPassive();
+                case 3:
+                    AItype = "Healer";
+                    return new MonsterTurnAIHealer();
+            }
+
+
+            AItype = "This is not working... yet";
+            return null;
         }
 
         private static string GetName(string aiType)

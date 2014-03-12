@@ -20,6 +20,7 @@ namespace HerosAndMostersGUI.BattleCode
 
         public List<Monster> AddMonsters(IEnumerable<int> monsterList)
         {
+            
             foreach (var x in monsterList)
             {
                 _monsterList.Add(MonsterFactory.GetInstance().GetMonster(x));

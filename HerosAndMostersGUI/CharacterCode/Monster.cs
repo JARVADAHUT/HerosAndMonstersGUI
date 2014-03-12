@@ -19,9 +19,9 @@ namespace DesignPatterns___DC_Design
             IsDead = false;
         }
 
-        public void TakeTurn()
+        public void TakeTurn(Target targets)
         {
-            monsterAI.TakeTurn(this);
+            monsterAI.TakeTurn(this,targets);
         }
 
         public override void Attack(EnumAttacks type, Target target)

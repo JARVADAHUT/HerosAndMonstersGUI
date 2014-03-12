@@ -19,7 +19,7 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Name.Equals("Weak Attack"))
             {
-                int str = StatAlgorithms.GetPercentStrength(attacker, 1);
+                int str = (int)StatAlgorithms.GetPercentStrength(attacker.DCStats.GetStat(StatsType.Strength), 1);
 
                 int damage = _random.Next(5, 6 + str);
 

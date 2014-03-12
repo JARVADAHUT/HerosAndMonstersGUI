@@ -13,7 +13,7 @@ namespace DesignPatterns___DC_Design
     class MonsterTurnManager
     {
         private Queue<Monster> _monsterQueue;
-
+        private Target _monsterTargets;
 
         public MonsterTurnManager()
         {
@@ -28,13 +28,16 @@ namespace DesignPatterns___DC_Design
 
         public void RegisterMonsters(IEnumerable<Monster> monsters)
         {
-            foreach(var m in monsters)
+            foreach (var m in monsters)
+            {
                 _monsterQueue.Enqueue(m);
+                _monsterTargets.AddTarget(m);
+            }
         }
 
         public void Start()
         {
-            var queueThread = new QueueThread(_monsterQueue);
+            var queueThread = new QueueThread(_monsterQueue, _monsterTargets);
             ThreadPool.QueueUserWorkItem(queueThread.ThreadStart);
         }
 
@@ -43,9 +46,9 @@ namespace DesignPatterns___DC_Design
         {
             private Queue<Monster> _queue;
             private int _killThread;
+            private Target _targets;
 
-
-            internal QueueThread(Queue<Monster> queue)
+            internal QueueThread(Queue<Monster> queue,Target targets)
             {
                 _queue = queue;
             }
@@ -60,7 +63,7 @@ namespace DesignPatterns___DC_Design
                     if (_queue.Count != 0)
                     {
                         var monster = _queue.Dequeue();
-                        var mThread = new MonsterThread(monster);
+                        var mThread = new MonsterThread(monster,_targets);
                         ThreadPool.QueueUserWorkItem(mThread.ThreadStart, this);
                     }
                 }
@@ -82,6 +85,7 @@ namespace DesignPatterns___DC_Design
                 else
                 {
                     _killThread--;
+                    _targets.RemoveTarget(monster);
                 }
             }
 
@@ -94,11 +98,12 @@ namespace DesignPatterns___DC_Design
         private class MonsterThread
         {
             private readonly Monster _monster;
+            private readonly Target _targets;
 
-
-            internal MonsterThread(Monster monster)
+            internal MonsterThread(Monster monster,Target targets)
             {
                 _monster = monster;
+                _targets = targets;
             }
 
 
@@ -106,11 +111,11 @@ namespace DesignPatterns___DC_Design
             {
                 var queue = (QueueThread)obj;
 
-                int sleepTime = (int)StatAlgorithms.ConvertAgilityToMiliseconds(_monster);
+                var sleepTime = (int)StatAlgorithms.ConvertAgilityToMiliseconds(_monster);
 
                 Thread.Sleep(sleepTime);
 
-                _monster.TakeTurn();
+                _monster.TakeTurn(_targets);
                 queue.EnqueueMonster(_monster);
             }
         }

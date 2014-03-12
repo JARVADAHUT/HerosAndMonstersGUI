@@ -19,8 +19,8 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.IceCone))
             {
-                int str = StatAlgorithms.GetPercentStrength(attacker, 1);
-                int damage = _random.Next(5, str - (int)(str * 0.3));
+                var str = (int)StatAlgorithms.GetPercentStrength(attacker.DCStats.GetStat(StatsType.Strength), 1);
+                var damage = _random.Next(5, str - (int)(str * 0.3));
 
                 var cmd = new StatAugmentCommand();
                 foreach (var target in targets)

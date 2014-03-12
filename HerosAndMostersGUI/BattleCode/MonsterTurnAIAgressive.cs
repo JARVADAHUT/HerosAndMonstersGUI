@@ -9,17 +9,10 @@ namespace HerosAndMostersGUI.BattleCode
 {
     public class MonsterTurnAIAgressive : IMonsterTurnAI
     {
-        public void TakeTurn(Monster monster)
+        public void TakeTurn(Monster monster,Target targets)
         {
-
-            if (new Random().Next(100) < 70)
-            {
-                monster.Attack(EnumAttacks.StrongAttack, new Target(Hero.GetInstance()));
-            }
-            else
-            {
-                monster.Attack(EnumAttacks.WeakAttack, new Target(Hero.GetInstance()));
-            }
+            monster.Attack(new Random().Next(100) < 30 ? EnumAttacks.WeakAttack : EnumAttacks.StrongAttack,
+                new Target(Hero.GetInstance()));
         }
     }
 }
