@@ -181,6 +181,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\BattleMusic.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\intro.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

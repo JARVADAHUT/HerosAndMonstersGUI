@@ -73,14 +73,16 @@ namespace HerosAndMostersGUI
             #region Media Player Stuff
 
             var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            var uri = new Uri(basePath, "Resources/battle.mp3");
+            var uri = new Uri(basePath, "Resources/BattleMusic.mp3");
 
             var mediaPlayer = MainWindow.BackgroundMusicPlayer;
             mediaPlayer.Stop();
-            //mediaPlayer.open(uri);
-            //mediaPlayer.play();
+            mediaPlayer.Volume = .5;
+            mediaPlayer.Open(uri);
+            mediaPlayer.Play();
 
             #endregion
+
             #region Setting Privates
 
             _playerGCDTicker = new Stopwatch();
@@ -397,6 +399,15 @@ namespace HerosAndMostersGUI
             StatAugmentManager.GetInstance().OfferCommand(cmd);
 
             _barTick.IsEnabled = false;
+
+            #region Music Player Stuff
+            MainWindow.BackgroundMusicPlayer.Stop();
+            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+            var uri = new Uri(basePath, "Resources/soundtrack.mp3");
+            MainWindow.BackgroundMusicPlayer.Open(uri);
+            MainWindow.BackgroundMusicPlayer.Play();
+            #endregion
+
             this.Close();
         }
 
