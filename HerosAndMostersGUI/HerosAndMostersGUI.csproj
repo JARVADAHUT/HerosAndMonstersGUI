@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AttackChain\AttackHandler.cs" />
+    <Compile Include="AttackChain\GreaterHealAttackHandler.cs" />
     <Compile Include="AttackChain\IceConeAttackHandler.cs" />
     <Compile Include="AttackChain\LesserHealAttackHandler.cs" />
     <Compile Include="AttackChain\LightningBoltAttackHandler.cs" />

@@ -33,7 +33,10 @@ namespace HerosAndMostersGUI.AttackChain
                         (
                             new LesserHealAttackHandler
                             (
-                                new NullAttackHandler(null)
+                                new GreaterHealAttackHandler
+                                (
+                                    new NullAttackHandler(null)
+                                )
                             )
                         )
                     )

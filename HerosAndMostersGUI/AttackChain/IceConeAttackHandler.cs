@@ -11,6 +11,11 @@ namespace HerosAndMostersGUI.AttackChain
 {
     class IceConeAttackHandler:AttackHandler
     {
+
+        private const int BaseDamage = 5;
+        private const double LowPercent = .7;
+        private const double HighPercent = .9;
+
         public IceConeAttackHandler(AttackHandler nextLink) : base(nextLink)
         {
         }
@@ -19,8 +24,8 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.IceCone))
             {
-                var str = (int)StatAlgorithms.GetPercentStrength(attacker.DCStats.GetStat(StatsType.Strength), 1);
-                var damage = _random.Next(5, str - (int)(str * 0.3));
+                int str = (attacker.DCStats.GetStat(StatsType.Strength));
+                var damage = _random.Next((int)(BaseDamage * StatAlgorithms.GetPercentStrength(str, LowPercent)), (int)(BaseDamage * StatAlgorithms.GetPercentStrength(str, HighPercent)));
 
                 var cmd = new StatAugmentCommand();
                 foreach (var target in targets)
@@ -29,7 +34,7 @@ namespace HerosAndMostersGUI.AttackChain
 
                     cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), target);
 
-                    cmd.AddEffect(ModifyStatBy(StatsType.Agility, target, -0.7, 6), target);
+                    cmd.AddEffect(ModifyStatBy(StatsType.Agility, target, -0.8, 3), target);
                 }
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();

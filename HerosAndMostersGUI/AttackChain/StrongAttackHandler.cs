@@ -11,7 +11,7 @@ namespace HerosAndMostersGUI.AttackChain
 {
     class StrongAttackHandler : AttackHandler
     {
-        private const int BaseDamage = 20;
+        private const int BaseDamage = 15;
         private const double LowPercent = .8;
         private const double HighPercent = 1.2;
 

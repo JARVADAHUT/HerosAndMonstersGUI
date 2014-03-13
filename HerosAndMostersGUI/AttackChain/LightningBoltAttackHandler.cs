@@ -11,6 +11,11 @@ namespace HerosAndMostersGUI.AttackChain
 {
     class LightningBoltAttackHandler:AttackHandler
     {
+
+        private const int BaseDamage = 10;
+        //private const double LowPercent = .8;
+        private const double HighPercent = 2.5;
+
         public LightningBoltAttackHandler(AttackHandler nextLink) : base(nextLink)
         {
         }
@@ -19,15 +24,15 @@ namespace HerosAndMostersGUI.AttackChain
         {
             if (attack.Equals(EnumAttacks.LightningBolt))
             {
-                int str = (int)StatAlgorithms.GetPercentStrength(attacker.DCStats.GetStat(StatsType.Strength), 1);
+                int str = (attacker.DCStats.GetStat(StatsType.Strength));
 
-                int damage = _random.Next(str + 25, 55 + str);
+                int damage = _random.Next(BaseDamage, (int)(BaseDamage * StatAlgorithms.GetPercentStrength(str, HighPercent)));
                 var cmd = new StatAugmentCommand();
 
                 int appliedDamage = StatAlgorithms.ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX)); 
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
-                cmd.AddEffect(ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), 2.0, 7), targets.ElementAt(DEFAULT_INDEX));
+                cmd.AddEffect(ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), 1.5, 5), targets.ElementAt(DEFAULT_INDEX));
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();

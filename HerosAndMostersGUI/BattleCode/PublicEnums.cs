@@ -83,7 +83,7 @@ namespace DesignPatterns___DC_Design
         private const int FIREBALL_COST = -5;
         private const int LESSER_HEAL_COST = -5;
         private const int HYPER_BEAM_COST = -5;
-        private const int GREATER_HEAL_COST = -5;
+        private const int GREATER_HEAL_COST = -20;
 
         #endregion
 
