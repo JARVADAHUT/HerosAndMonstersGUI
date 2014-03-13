@@ -18,12 +18,14 @@ namespace DesignPatterns___DC_Design
         public MonsterTurnManager()
         {
             _monsterQueue = new Queue<Monster>();
+            _monsterTargets = new Target();
         }
 
 
         public void RegisterMonster(Monster monster)
         {
             _monsterQueue.Enqueue(monster);
+            _monsterTargets.AddTarget(monster);
         }
 
         public void RegisterMonsters(IEnumerable<Monster> monsters)
@@ -51,6 +53,7 @@ namespace DesignPatterns___DC_Design
             internal QueueThread(Queue<Monster> queue,Target targets)
             {
                 _queue = queue;
+                _targets = targets;
             }
 
 

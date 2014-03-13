@@ -35,7 +35,7 @@ namespace HerosAndMostersGUI
         public static void CloseMainWindow()
         {
             _thisWindow.Close();
-            _mediaPlayer.Stop();
+            BackgroundMusicPlayer.Stop();
             _hive.Stop();
 
         }
@@ -53,7 +53,7 @@ namespace HerosAndMostersGUI
         #endregion
 
         private static DispatcherTimer _hive = new DispatcherTimer();
-        private static MediaPlayer _mediaPlayer;
+        public static MediaPlayer BackgroundMusicPlayer { private set; get; }
 
          
 
@@ -61,7 +61,7 @@ namespace HerosAndMostersGUI
         {
             InitializeComponent();
             _thisWindow = this;
-
+            BackgroundMusicPlayer = new MediaPlayer();
             CharacterSelect selectScreen = new CharacterSelect();
 
             selectScreen.ShowDialog();
@@ -70,9 +70,9 @@ namespace HerosAndMostersGUI
 
             var basePath = new Uri(Assembly.GetEntryAssembly().Location);
             var uri = new Uri(basePath, "Resources/soundtrack.mp3");
-            _mediaPlayer = new MediaPlayer();
-            _mediaPlayer.Open(uri); //Maybe this can be placed somewhere else?
-            _mediaPlayer.Play();
+            var mediaPlayer = BackgroundMusicPlayer;
+            mediaPlayer.Open(uri);
+            mediaPlayer.Play();
 
             #endregion
 

@@ -1,4 +1,5 @@
-﻿using DesignPatterns___DC_Design;
+﻿using System.Reflection;
+using DesignPatterns___DC_Design;
 using HerosAndMostersGUI.BattleCode;
 using HerosAndMostersGUI.CharacterCode;
 using MazeTest;
@@ -69,6 +70,17 @@ namespace HerosAndMostersGUI
             SourceInitialized += MainWindow_SourceInitialized;
             InitializeComponent();
 
+            #region Media Player Stuff
+
+            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+            var uri = new Uri(basePath, "Resources/battle.mp3");
+
+            var mediaPlayer = MainWindow.BackgroundMusicPlayer;
+            mediaPlayer.Stop();
+            //mediaPlayer.open(uri);
+            //mediaPlayer.play();
+
+            #endregion
             #region Setting Privates
 
             _playerGCDTicker = new Stopwatch();
