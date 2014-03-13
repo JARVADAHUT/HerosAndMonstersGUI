@@ -59,15 +59,7 @@ namespace HerosAndMostersGUI
 
             AblSelect.SelectionChanged += AblSelect_SelectionChanged;
 
-            #region Music Stuff
-
-            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            var uri = new Uri(basePath , "Resources/intro.mp3");
-            var mediaPlayer = MainWindow.BackgroundMusicPlayer;
-            mediaPlayer.Open(uri); //Maybe this can be placed somewhere else?
-            mediaPlayer.Play();
-            
-            #endregion
+            Thread.Sleep(2500);
 
             #region Other Startup Things
 

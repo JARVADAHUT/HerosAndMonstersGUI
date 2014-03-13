@@ -54,23 +54,34 @@ namespace HerosAndMostersGUI
 
         private static DispatcherTimer _hive = new DispatcherTimer();
         public static MediaPlayer BackgroundMusicPlayer { private set; get; }
+        public static TimeSpan BackgroundPosition { set; get; }
+        public static readonly Uri BasePath = new Uri(Assembly.GetEntryAssembly().Location);
 
         public MainWindow()
         {
             InitializeComponent();
             _thisWindow = this;
             BackgroundMusicPlayer = new MediaPlayer();
+
+            #region Music Stuff
+
+            var uri = new Uri(BasePath, "Resources/intro.mp3");
+            var mediaPlayer = MainWindow.BackgroundMusicPlayer;
+            mediaPlayer.Open(uri);
+            mediaPlayer.Play();
+
+            #endregion
+
             CharacterSelect selectScreen = new CharacterSelect();
 
             selectScreen.ShowDialog();
 
             #region Music Stuff
 
-            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            var uri = new Uri(basePath, "Resources/soundtrack.mp3");
-            var mediaPlayer = BackgroundMusicPlayer;
+            uri = new Uri(BasePath, "Resources/soundtrack.mp3");
             mediaPlayer.Open(uri);
             mediaPlayer.Play();
+            BackgroundPosition = mediaPlayer.Position;
 
             #endregion
 

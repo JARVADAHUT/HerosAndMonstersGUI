@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Battle Arena" Height="370
         " Width="600" WindowStartupLocation="CenterScreen">
-    <Canvas Margin="0,0,0,0">
+    <Canvas Name="screen" Margin="0,0,0,0">
         <!--Players rectangle-->
         <Rectangle Name="playersRec" Height="50" Width="50" Canvas.Left="132" Canvas.Top="100" Fill="LawnGreen" Stroke="Blue" StrokeThickness="3"/>
         

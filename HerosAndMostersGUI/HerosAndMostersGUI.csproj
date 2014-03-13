@@ -109,6 +109,9 @@
     <Compile Include="MazeCode\NullItem.cs" />
     <Compile Include="MazeCode\Position.cs" />
     <Compile Include="MazeCode\Surroundings.cs" />
+    <Compile Include="VictorySplash.xaml.cs">
+      <DependentUpon>VictorySplash.xaml</DependentUpon>
+    </Compile>
     <Page Include="BattleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,6 +144,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="VictorySplash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MazeCode\Maze.cs" />

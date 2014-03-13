@@ -66,7 +66,6 @@ namespace HerosAndMostersGUI
 
         #endregion
 
-        private MediaPlayer battlePlayer;
 
         public BattleWindow(List<int> MonsterInformation)
         {
@@ -75,16 +74,15 @@ namespace HerosAndMostersGUI
 
             #region Media Player Stuff
 
-            //MainWindow.BackgroundMusicPlayer.Pause();
+            MainWindow.BackgroundMusicPlayer.Pause();
+            MainWindow.BackgroundPosition = MainWindow.BackgroundMusicPlayer.Position;
 
-            //var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            //var uri = new Uri(basePath, "Resources/BattleMusic.mp3");
+            var uri = new Uri(MainWindow.BasePath, "Resources/BattleMusic.mp3");
+            var battlePlayer = MainWindow.BackgroundMusicPlayer;
 
-            //battlePlayer = new MediaPlayer();
-
-            //battlePlayer.Volume = .5;
-            //battlePlayer.Open(uri);
-            //battlePlayer.Play();
+            battlePlayer.Volume = .5;
+            battlePlayer.Open(uri);
+            battlePlayer.Play();
 
             #endregion
 
@@ -180,6 +178,18 @@ namespace HerosAndMostersGUI
             if (playerHp <= 0)
             {
                 Player.GetInstance().Die();
+
+                #region Music Player Stuff
+
+                MainWindow.BackgroundMusicPlayer.Stop();
+                var uri = new Uri(MainWindow.BasePath, "Resources/gameOver.mp3");
+
+                MainWindow.BackgroundMusicPlayer.Volume = .5;
+                MainWindow.BackgroundMusicPlayer.Open(uri);
+                MainWindow.BackgroundMusicPlayer.Play();
+
+                #endregion
+
                 CloseBattle();
             }
 
@@ -213,6 +223,39 @@ namespace HerosAndMostersGUI
             //all monsters died
             if (_targetList.Count <= 1)
             {
+                #region Music Player Stuff
+
+                MainWindow.BackgroundMusicPlayer.Stop();
+                var uri = new Uri(MainWindow.BasePath, "Resources/soundtrack.mp3");
+
+                MainWindow.BackgroundMusicPlayer.Volume = .5;
+                MainWindow.BackgroundMusicPlayer.Open(uri);
+                MainWindow.BackgroundMusicPlayer.Position = MainWindow.BackgroundPosition;
+
+                var victorySplash = new VictorySplash();
+                victorySplash.ShowDialog();
+
+                //this.screen.Children.Clear();
+                //Label l = new Label();
+                //l.Content = "VICTORY!";
+                //l.FontSize = 48;
+                //l.FontFamily = new System.Windows.Media.FontFamily("Lucida Handwriting");
+                //this.screen.Children.Add(l);
+
+                //Canvas.SetLeft(l, 10);
+                //Canvas.SetTop(l, 10);
+
+                //MainWindow.BackgroundMusicPlayer.Volume = 0.0;
+                //MainWindow.BackgroundMusicPlayer.Play();
+
+                //for (var v = 0.0; v <= .5; v += 0.03)
+                //{
+                //    MainWindow.BackgroundMusicPlayer.Volume = v;
+                //    Thread.Sleep(100);
+                //}
+
+                #endregion
+
                 CloseBattle();
             }
 
@@ -411,14 +454,6 @@ namespace HerosAndMostersGUI
             StatAugmentManager.GetInstance().OfferCommand(cmd);
 
             _barTick.IsEnabled = false;
-
-            #region Music Player Stuff
-
-            //battlePlayer.Stop();
-            //var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            //var uri = new Uri(basePath, "Resources/soundtrack.mp3");
-
-            #endregion
 
             this.Close();
         }

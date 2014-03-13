@@ -141,3 +141,11 @@ C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\BattleMusic.mp3
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\BattleMusic.mp3
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\gameOver.mp3
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\BattleMusic.mp3
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\gameOver.mp3
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.baml
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\GameOver.baml
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.g.cs
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\GameOver.g.cs
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.baml
+N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.g.cs
