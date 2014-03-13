@@ -138,3 +138,4 @@ C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\GameOver.baml
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\BattleWindow.g.cs
 C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\GameOver.g.cs
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\BattleMusic.mp3

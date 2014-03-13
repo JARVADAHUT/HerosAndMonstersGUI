@@ -174,6 +174,13 @@ namespace HerosAndMostersGUI
             //player died
             if (playerHp <= 0)
             {
+                #region Music Player Stuff
+                MainWindow.BackgroundMusicPlayer.Stop();
+                var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+                var uri = new Uri(basePath, "Resources/gameOver.mp3");
+                MainWindow.BackgroundMusicPlayer.Open(uri);
+                MainWindow.BackgroundMusicPlayer.Play();
+                #endregion
                 Player.GetInstance().Die();
                 CloseBattle();
             }
@@ -208,6 +215,13 @@ namespace HerosAndMostersGUI
             //all monsters died
             if (_targetList.Count <= 1)
             {
+                #region Music Player Stuff
+                MainWindow.BackgroundMusicPlayer.Stop();
+                var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+                var uri = new Uri(basePath, "Resources/soundtrack.mp3");
+                MainWindow.BackgroundMusicPlayer.Open(uri);
+                MainWindow.BackgroundMusicPlayer.Play();
+                #endregion
                 CloseBattle();
             }
 
@@ -400,13 +414,7 @@ namespace HerosAndMostersGUI
 
             _barTick.IsEnabled = false;
 
-            #region Music Player Stuff
-            MainWindow.BackgroundMusicPlayer.Stop();
-            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            var uri = new Uri(basePath, "Resources/soundtrack.mp3");
-            MainWindow.BackgroundMusicPlayer.Open(uri);
-            MainWindow.BackgroundMusicPlayer.Play();
-            #endregion
+            
 
             this.Close();
         }
