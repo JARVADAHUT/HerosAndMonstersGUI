@@ -31,7 +31,7 @@ namespace HerosAndMostersGUI
         #region Close The Window
 
         private static MainWindow _thisWindow;
-        
+
         public static void CloseMainWindow()
         {
             _thisWindow.Close();
@@ -55,8 +55,6 @@ namespace HerosAndMostersGUI
         private static DispatcherTimer _hive = new DispatcherTimer();
         public static MediaPlayer BackgroundMusicPlayer { private set; get; }
 
-         
-
         public MainWindow()
         {
             InitializeComponent();
@@ -76,7 +74,7 @@ namespace HerosAndMostersGUI
 
             #endregion
 
-            Start(); 
+            Start();
         }
 
         private void Start()
@@ -118,7 +116,7 @@ namespace HerosAndMostersGUI
                 case Key.K:
                     HiveMind.GetInstance().ClearHive();
                     break;
-                    
+
                 case Key.I:
                     PauseHive();
                     InvScr = new InventoryScreen(_hive, "tabPage1");
@@ -227,7 +225,7 @@ namespace HerosAndMostersGUI
                     mazeThing.Height = _pixelSize;
                     mazeThing.Width = _pixelSize;
                     mazeThing.Fill = displayRow.GetColor();
-                    
+
 
                     Canvas.SetLeft(mazeThing, leftRightPosition);
                     Canvas.SetTop(mazeThing, upDownPosition);
@@ -249,7 +247,7 @@ namespace HerosAndMostersGUI
             MazeObjectRefresh(refresher);
 
             //try to make very large maze's more efficient
-            if(refresher.GetLastMove() == EnumDirection.Left || refresher.GetLastMove() == EnumDirection.Right)
+            if (refresher.GetLastMove() == EnumDirection.Left || refresher.GetLastMove() == EnumDirection.Right)
             {
                 MazeObjectRefresh(refresher.getSurroundings().GetLeft());
                 MazeObjectRefresh(refresher.getSurroundings().GetRight());
@@ -290,7 +288,7 @@ namespace HerosAndMostersGUI
 
         #endregion
 
-        
+
 
     }
 }

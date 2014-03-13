@@ -16,7 +16,7 @@
         <!--Player Bars-->
         <ProgressBar Name="pbPlayerHealth" Height="15" Canvas.Left="132" Canvas.Top="155" Width="100" Value="50" Background="DarkRed" Foreground="Red"/>
         <ProgressBar Name="pbPlayerMana" Height="15" Canvas.Left="132" Canvas.Top="175" Width="100" Value="50" Background="DarkBlue" Foreground="Blue"/>
-        <ProgressBar Name="pbPlayerGCD" Height="15" Canvas.Left="132" Canvas.Top="195" Width="50" Value="50" Background="YellowGreen" Foreground="Yellow"/>
+        <ProgressBar Name="pbPlayerGCD" Height="15" Canvas.Left="132" Canvas.Top="80" Width="50" Value="50" Background="YellowGreen" Foreground="Yellow"/>
         
         <!--Monster rectangles-->
         <Rectangle Name="monster3Rec" Height="50" Width="50" Canvas.Left="440" Canvas.Top="260" Fill="White"  StrokeThickness="3"/>
@@ -30,10 +30,17 @@
         <ProgressBar Name="pbMonster2Health" Height="10" Canvas.Left="440" Canvas.Top="235" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
         <ProgressBar Name="pbMonster3Health" Height="10" Canvas.Left="440" Canvas.Top="315" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
         
-
-
-
-
-
+        <!--Static Labels-->
+        <Label Content="MP" Canvas.Left="229" Canvas.Top="169"/>
+        <Label Content="Attack Timer" Canvas.Left="119" Canvas.Top="58"/>
+        <Label Content="HP" Canvas.Left="229" Canvas.Top="149"/>
+        
+        <!--Monster Labels-->
+        <Label Name="lblMonster1" Content="HP" Canvas.Left="487" Canvas.Top="146"/>
+        <Label Name="lblMonster2" Content="HP" Canvas.Left="487" Canvas.Top="226" Visibility="Hidden"/>
+        <Label Name="lblMonster3" Content="HP" Canvas.Left="487" Canvas.Top="306" Visibility="Hidden"/>
+        <Label Name="lblMonster4" Content="HP" Canvas.Left="487" Canvas.Top="66" Visibility="Hidden"/>
+        
+        
     </Canvas>
 </Window>

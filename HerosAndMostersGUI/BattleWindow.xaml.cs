@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace HerosAndMostersGUI
 {
@@ -65,6 +66,8 @@ namespace HerosAndMostersGUI
 
         #endregion
 
+        private MediaPlayer battlePlayer;
+
         public BattleWindow(List<int> MonsterInformation)
         {
             SourceInitialized += MainWindow_SourceInitialized;
@@ -72,14 +75,16 @@ namespace HerosAndMostersGUI
 
             #region Media Player Stuff
 
-            var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-            var uri = new Uri(basePath, "Resources/BattleMusic.mp3");
+            //MainWindow.BackgroundMusicPlayer.Pause();
 
-            var mediaPlayer = MainWindow.BackgroundMusicPlayer;
-            mediaPlayer.Stop();
-            mediaPlayer.Volume = .5;
-            mediaPlayer.Open(uri);
-            mediaPlayer.Play();
+            //var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+            //var uri = new Uri(basePath, "Resources/BattleMusic.mp3");
+
+            //battlePlayer = new MediaPlayer();
+
+            //battlePlayer.Volume = .5;
+            //battlePlayer.Open(uri);
+            //battlePlayer.Play();
 
             #endregion
 
@@ -146,7 +151,7 @@ namespace HerosAndMostersGUI
 
         }
 
-        
+
 
         private void OnTick(object sender, EventArgs e)
         {
@@ -174,13 +179,6 @@ namespace HerosAndMostersGUI
             //player died
             if (playerHp <= 0)
             {
-                #region Music Player Stuff
-                MainWindow.BackgroundMusicPlayer.Stop();
-                var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-                var uri = new Uri(basePath, "Resources/gameOver.mp3");
-                MainWindow.BackgroundMusicPlayer.Open(uri);
-                MainWindow.BackgroundMusicPlayer.Play();
-                #endregion
                 Player.GetInstance().Die();
                 CloseBattle();
             }
@@ -215,13 +213,6 @@ namespace HerosAndMostersGUI
             //all monsters died
             if (_targetList.Count <= 1)
             {
-                #region Music Player Stuff
-                MainWindow.BackgroundMusicPlayer.Stop();
-                var basePath = new Uri(Assembly.GetEntryAssembly().Location);
-                var uri = new Uri(basePath, "Resources/soundtrack.mp3");
-                MainWindow.BackgroundMusicPlayer.Open(uri);
-                MainWindow.BackgroundMusicPlayer.Play();
-                #endregion
                 CloseBattle();
             }
 
@@ -254,15 +245,19 @@ namespace HerosAndMostersGUI
             {
                 case "monster1Rec":
                     pbMonster1Health.Visibility = Visibility.Hidden;
+                    lblMonster1.Visibility = Visibility.Hidden;
                     break;
                 case "monster2Rec":
                     pbMonster2Health.Visibility = Visibility.Hidden;
+                    lblMonster2.Visibility = Visibility.Hidden;
                     break;
                 case "monster3Rec":
                     pbMonster3Health.Visibility = Visibility.Hidden;
+                    lblMonster3.Visibility = Visibility.Hidden;
                     break;
                 case "monster4Rec":
                     pbMonster4Health.Visibility = Visibility.Hidden;
+                    lblMonster4.Visibility = Visibility.Hidden;
                     break;
             }
         }
@@ -306,18 +301,21 @@ namespace HerosAndMostersGUI
                 monster2Rec.Fill = Brushes.Tomato;
                 pbMonster2Health.Maximum = _targetList.ElementAt<DungeonCharacter>(2).DCStats.GetStat(StatsType.MaxHp);
                 pbMonster2Health.Visibility = Visibility.Visible;
+                lblMonster2.Visibility = Visibility.Visible;
             }
             if (p >= 3)
             {
                 monster3Rec.Fill = Brushes.Tomato;
                 pbMonster3Health.Maximum = _targetList.ElementAt<DungeonCharacter>(3).DCStats.GetStat(StatsType.MaxHp);
                 pbMonster3Health.Visibility = Visibility.Visible;
+                lblMonster3.Visibility = Visibility.Visible;
             }
             if (p == 4)
             {
                 monster4Rec.Fill = Brushes.Tomato;
                 pbMonster4Health.Maximum = _targetList.ElementAt<DungeonCharacter>(4).DCStats.GetStat(StatsType.MaxHp);
                 pbMonster4Health.Visibility = Visibility.Visible;
+                lblMonster4.Visibility = Visibility.Visible;
             }
         }
 
@@ -414,7 +412,13 @@ namespace HerosAndMostersGUI
 
             _barTick.IsEnabled = false;
 
-            
+            #region Music Player Stuff
+
+            //battlePlayer.Stop();
+            //var basePath = new Uri(Assembly.GetEntryAssembly().Location);
+            //var uri = new Uri(basePath, "Resources/soundtrack.mp3");
+
+            #endregion
 
             this.Close();
         }
@@ -449,7 +453,7 @@ namespace HerosAndMostersGUI
 
         private bool CheckResource(EnumAttacks chosenAttack)
         {
-            if(Hero.GetInstance().DCStats.GetStat(StatsType.CurResources) < -chosenAttack.Cost)
+            if (Hero.GetInstance().DCStats.GetStat(StatsType.CurResources) < -chosenAttack.Cost)
                 return false;
             return true;
         }
