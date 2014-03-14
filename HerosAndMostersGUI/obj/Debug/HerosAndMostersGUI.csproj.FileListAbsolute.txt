@@ -151,3 +151,7 @@ N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.baml
 N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.g.cs
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.baml
 C:\Users\Ryan\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.g.cs
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\BattleMusic.mp3
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\bin\Debug\Resources\gameOver.mp3
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.baml
+C:\Users\Bruce\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\VictorySplash.g.cs
