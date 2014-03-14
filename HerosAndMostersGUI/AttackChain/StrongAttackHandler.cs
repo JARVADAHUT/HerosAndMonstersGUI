@@ -11,6 +11,7 @@ namespace HerosAndMostersGUI.AttackChain
 {
     class StrongAttackHandler : AttackHandler
     {
+
         private const int BaseDamage = 15;
         private const double LowPercent = .8;
         private const double HighPercent = 1.2;
@@ -21,7 +22,7 @@ namespace HerosAndMostersGUI.AttackChain
 
         public override void HandleAttack(DesignPatterns___DC_Design.EnumAttacks attack, DesignPatterns___DC_Design.Target targets, DesignPatterns___DC_Design.DungeonCharacter attacker)
         {
-            if (attack.Name.Equals("Strong Attack"))
+            if (attack.Equals(EnumAttacks.StrongAttack))
             {
                 int str = (attacker.DCStats.GetStat(StatsType.Strength));
                 // calculate raw damage

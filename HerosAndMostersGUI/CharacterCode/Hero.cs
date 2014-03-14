@@ -24,8 +24,8 @@ namespace DesignPatterns___DC_Design
                 {
                     {StatsType.MaxHp, 100},
                     {StatsType.CurHp, 100},
-                    {StatsType.MaxResources, 50},
-                    {StatsType.CurResources, 50},
+                    {StatsType.MaxResources, 80},
+                    {StatsType.CurResources, 80},
                     {StatsType.Agility, 10},
                     {StatsType.Defense, 10},
                     {StatsType.Intelegence, 10},

@@ -14,9 +14,9 @@ namespace HerosAndMostersGUI.AttackChain
     class GreaterHealAttackHandler : AttackHandler
     {
 
-        private const int BaseHeal = 20;
-        private const double LowPercent = .6;
-        private const double HighPercent = .8;
+        private const int BaseHeal = 35;
+        private const double LowPercent = .8;
+        private const double HighPercent = 1;
 
         public GreaterHealAttackHandler(AttackHandler nextLink) : base(nextLink)
         {
@@ -32,9 +32,7 @@ namespace HerosAndMostersGUI.AttackChain
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, heal), targets.ElementAt(DEFAULT_INDEX));
 
-                int magnitude = (int)(attacker.DCStats.GetStat(StatsType.Agility) * 0.1);
-
-                cmd.AddEffect(ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), magnitude, 4), attacker);
+                cmd.AddEffect(ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), .2, 4), attacker);
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }

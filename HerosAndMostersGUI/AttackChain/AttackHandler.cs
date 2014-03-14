@@ -35,7 +35,13 @@ namespace HerosAndMostersGUI.AttackChain
                             (
                                 new GreaterHealAttackHandler
                                 (
-                                    new NullAttackHandler(null)
+                                    new FireballHandler
+                                    (
+                                        new HyperbeamHandler
+                                        (
+                                            new NullAttackHandler(null)
+                                        )
+                                    )
                                 )
                             )
                         )

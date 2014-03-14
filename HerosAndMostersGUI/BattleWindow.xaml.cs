@@ -446,12 +446,15 @@ namespace HerosAndMostersGUI
 
         #endregion
 
-        private void CloseBattle() // <----------------------- NEWLY ADDED
+        private void CloseBattle() 
         {
             StatAugmentCommand cmd = new StatAugmentCommand();
             Hero hero = Hero.GetInstance();
-            cmd.AddEffect(new EffectInformation(StatsType.CurResources, hero.DCStats.GetStat(StatsType.MaxResources) - hero.DCStats.GetStat(StatsType.CurResources), 0, 0), hero);
-            StatAugmentManager.GetInstance().OfferCommand(cmd);
+
+            cmd.AddEffect(new EffectInformation(StatsType.CurResources, hero.DCStats.GetStat(StatsType.MaxResources) - hero.DCStats.GetStat(StatsType.CurResources)), hero);
+            cmd.AddEffect(new EffectInformation(StatsType.CurHp, (int)(hero.DCStats.GetStat(StatsType.MaxHp) * .30)), hero); // <----------------------- NEWLY ADDED
+            //StatAugmentManager.GetInstance().OfferCommand(cmd);
+            cmd.RegisterCommand();
 
             _barTick.IsEnabled = false;
 

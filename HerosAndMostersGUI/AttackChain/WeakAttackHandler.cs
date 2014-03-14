@@ -11,17 +11,22 @@ namespace HerosAndMostersGUI.AttackChain
 {
     class WeakAttackHandler : AttackHandler
     {
+
+        private const int BaseDamage = 10;
+        private const double LowPercent = .5;
+        private const double HighPercent = .7;
+
         public WeakAttackHandler(AttackHandler nextLink) : base(nextLink)
         {
         }
 
         public override void HandleAttack(EnumAttacks attack, Target targets, DungeonCharacter attacker)
         {
-            if (attack.Name.Equals("Weak Attack"))
+            if (attack.Equals(EnumAttacks.WeakAttack))
             {
-                int str = (int)StatAlgorithms.GetPercentStrength(attacker.DCStats.GetStat(StatsType.Strength), 1);
+                int str = (attacker.DCStats.GetStat(StatsType.Strength));
 
-                int damage = _random.Next(5, 6 + str);
+                int damage = _random.Next((int)(BaseDamage * StatAlgorithms.GetPercentStrength(str, LowPercent)), (int)(BaseDamage * StatAlgorithms.GetPercentStrength(str, HighPercent)));
 
                 var cmd = new StatAugmentCommand();
 

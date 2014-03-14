@@ -12,9 +12,9 @@ namespace HerosAndMostersGUI.AttackChain
     class LesserHealAttackHandler:AttackHandler
     {
 
-        private const int BaseHeal = 10;
-        private const double LowPercent = .2;
-        private const double HighPercent = .4;
+        private const int BaseHeal = 15;
+        private const double LowPercent = .4;
+        private const double HighPercent = .6;
 
         public LesserHealAttackHandler(AttackHandler nextLink) : base(nextLink)
         {
