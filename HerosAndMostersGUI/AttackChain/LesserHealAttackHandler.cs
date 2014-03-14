@@ -30,9 +30,7 @@ namespace HerosAndMostersGUI.AttackChain
 
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, heal), targets.ElementAt(DEFAULT_INDEX));
 
-                int magnitude = (int)(attacker.DCStats.GetStat(StatsType.Defense) * 0.15);
-
-                cmd.AddEffect(ModifyStatBy(StatsType.Defense, targets.ElementAt(DEFAULT_INDEX), magnitude, 4), attacker);
+                cmd.AddEffect(ModifyStatBy(StatsType.Defense, targets.ElementAt(DEFAULT_INDEX), .15, 4), attacker);
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
                 cmd.RegisterCommand();
             }

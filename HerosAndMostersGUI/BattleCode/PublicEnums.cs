@@ -100,17 +100,17 @@ namespace DesignPatterns___DC_Design
 
         private static readonly List<EnumAttacks> _attacksList; 
 
-        public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong Attack","Performs a strong attack against a selected opponent and increases their agility for a short period of time..", STRONG_ATTACK_COST,0);
-        public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak Attack","Performs a weak attack against an opponent and generates mana.", WEAK_ATTACK_COST,1);
-        public static readonly EnumAttacks LesserHeal = new EnumAttacks("Lesser Heal","Small heal with a small cost that slightly buffs defence for 4 seconds", LESSER_HEAL_COST,2);
-        
-        public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball","Engulfs the target monster and surrounding monsters in flames.", FIREBALL_COST,3);
-        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of Ice","Low damage that affects target and surrounding targets and greatly lowers their agility for 4 seconds", ICE_CONE_COST,4);
-        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning Bolt","Large range of damage, but increases targets agility for 4 seconds", LIGHTNING_BOLT_COST,5);
-        
-        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper Beam","Unleashes a beam of pure energy upon the enemy reducing their combat effectivness.", HYPER_BEAM_COST,6);
+        public static readonly EnumAttacks StrongAttack = new EnumAttacks("Strong Attack","Performs a strong attack against a selected opponent and increases their agility for *4* seconds. Cost: 10", STRONG_ATTACK_COST,0);
+        public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak Attack", "Performs a weak attack against an opponent and generates *10* mana. Generate: 10", WEAK_ATTACK_COST, 1);
+        public static readonly EnumAttacks LesserHeal = new EnumAttacks("Lesser Heal", " Cast a small, mana-efficient heal that buffs your defence by *15%* for *4* seconds. Cost: 5", LESSER_HEAL_COST, 2);
 
-        public static readonly EnumAttacks GreaterHeal = new EnumAttacks("Greater Heal", "Large heal with a large cost that slightly buffs agility for 4 seconds", GREATER_HEAL_COST, 7);
+        public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball", "Engulf the target monster and surrounding monsters in flames dealing moderate moderate damage. Cost: 10", FIREBALL_COST, 3);
+        public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of Ice", "Spray ice shards at your enemies dealing low damage that lowers target and surrounding targets agility by *80%* for *4* seconds. Cost: 10", ICE_CONE_COST, 4);
+        public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning Bolt", "Strike your opponent with a large range of damage which increases targets agility by *150%* for *2* seconds. Cost: 10", LIGHTNING_BOLT_COST, 5);
+
+        public static readonly EnumAttacks HyperBeam = new EnumAttacks("Hyper Beam", "Unleashes a beam of pure energy upon the enemy dealing moderate damage and reducing their Strength, Agility, and Defense by *15%* for *4* seconds. Cost: 10", HYPER_BEAM_COST, 6);
+
+        public static readonly EnumAttacks GreaterHeal = new EnumAttacks("Greater Heal", "Cast a very Large, but mana-inefficient heal that buffs your agility by *20%* for *4* seconds. Cost: 20", GREATER_HEAL_COST, 7);
 
 
         private EnumAttacks(string name, string description, int cost, int value)
