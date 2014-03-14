@@ -19,28 +19,35 @@
         <ProgressBar Name="pbPlayerGCD" Height="15" Canvas.Left="132" Canvas.Top="80" Width="50" Value="50" Background="YellowGreen" Foreground="Yellow"/>
         
         <!--Monster rectangles-->
-        <Rectangle Name="monster3Rec" Height="50" Width="50" Canvas.Left="440" Canvas.Top="260" Fill="White"  StrokeThickness="3"/>
-        <Rectangle Name="monster4Rec" Height="50" Width="50" Canvas.Left="440" Canvas.Top="20" Fill="White"  StrokeThickness="3"/>
-        <Rectangle Name="monster1Rec" Height="50" Width="50" Canvas.Left="440" Canvas.Top="100" Fill="Tomato"  StrokeThickness="3"/>
-        <Rectangle Name="monster2Rec" Height="50" Width="50" Canvas.Left="440" Canvas.Top="180" Fill="White"  StrokeThickness="3"/>   
+        <Rectangle Name="monster3Rec" Height="50" Width="50" Canvas.Left="386" Canvas.Top="260" Fill="White"  StrokeThickness="3"/>
+        <Rectangle Name="monster4Rec" Height="50" Width="50" Canvas.Left="386" Canvas.Top="20" Fill="White"  StrokeThickness="3"/>
+        <Rectangle Name="monster1Rec" Height="50" Width="50" Canvas.Left="386" Canvas.Top="100" Fill="Tomato"  StrokeThickness="3"/>
+        <Rectangle Name="monster2Rec" Height="50" Width="50" Canvas.Left="386" Canvas.Top="180" Fill="White"  StrokeThickness="3"/>   
 
         <!--Monster Healthbars-->
-        <ProgressBar Name="pbMonster4Health" Height="10" Canvas.Left="440" Canvas.Top="75" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
-        <ProgressBar Name="pbMonster1Health" Height="10" Canvas.Left="440" Canvas.Top="155" Width="50" Background="DarkRed" Foreground="Red"/>
-        <ProgressBar Name="pbMonster2Health" Height="10" Canvas.Left="440" Canvas.Top="235" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
-        <ProgressBar Name="pbMonster3Health" Height="10" Canvas.Left="440" Canvas.Top="315" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
+        <ProgressBar Name="pbMonster4Health" Height="10" Canvas.Left="386" Canvas.Top="75" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden" />
+        <ProgressBar Name="pbMonster1Health" Height="10" Canvas.Left="386" Canvas.Top="155" Width="50" Background="DarkRed" Foreground="Red"/>
+        <ProgressBar Name="pbMonster2Health" Height="10" Canvas.Left="386" Canvas.Top="235" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
+        <ProgressBar Name="pbMonster3Health" Height="10" Canvas.Left="386" Canvas.Top="315" Width="50" Background="DarkRed" Foreground="Red" Visibility="Hidden"/>
         
         <!--Static Labels-->
         <Label Content="MP" Canvas.Left="229" Canvas.Top="169"/>
         <Label Content="Attack Timer" Canvas.Left="119" Canvas.Top="58"/>
         <Label Content="HP" Canvas.Left="229" Canvas.Top="149"/>
+        <Label Name="lblPlayerName" Content="Label" Canvas.Left="182" Canvas.Top="115" />
         
         <!--Monster Labels-->
-        <Label Name="lblMonster1" Content="HP" Canvas.Left="487" Canvas.Top="146"/>
-        <Label Name="lblMonster2" Content="HP" Canvas.Left="487" Canvas.Top="226" Visibility="Hidden"/>
-        <Label Name="lblMonster3" Content="HP" Canvas.Left="487" Canvas.Top="306" Visibility="Hidden"/>
-        <Label Name="lblMonster4" Content="HP" Canvas.Left="487" Canvas.Top="66" Visibility="Hidden"/>
+        <Label Name="lblMonster1" Content="HP" Canvas.Left="433" Canvas.Top="146"/>
+        <Label Name="lblMonster2" Content="HP" Canvas.Left="433" Canvas.Top="226" Visibility="Hidden"/>
+        <Label Name="lblMonster3" Content="HP" Canvas.Left="433" Canvas.Top="306" Visibility="Hidden"/>
+        <Label Name="lblMonster4" Content="HP" Canvas.Left="433" Canvas.Top="66" Visibility="Hidden"/>
         
+        <!--Monster Names-->
+        <Label Name="lblMonster1Name" Content="Label" Canvas.Left="435" Canvas.Top="115" />
+        <Label Name="lblMonster2Name" Content="Label" Canvas.Left="435" Canvas.Top="195" Visibility="Hidden"/>
+        <Label Name="lblMonster3Name" Content="Label" Canvas.Left="435" Canvas.Top="275" Visibility="Hidden"/>
+        <Label Name="lblMonster4Name" Content="Label" Canvas.Left="435" Canvas.Top="35" Visibility="Hidden"/>
         
+
     </Canvas>
 </Window>

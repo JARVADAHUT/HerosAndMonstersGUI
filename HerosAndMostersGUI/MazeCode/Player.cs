@@ -17,7 +17,7 @@ namespace MazeTest
         private static Player _thisPlayer = null;
         private Dictionary<EnumGearSlot, Equipable> equipedGear; // <------- NEWLY ADDED
         private SolidColorBrush _color;
-        private string _name;
+        public string Name { private set; get; }
         private List<EnumAttacks> _attacks; 
 
         private Player(string name, SolidColorBrush color, List<EnumAttacks> playerAttacks) : base()
@@ -26,7 +26,7 @@ namespace MazeTest
             equipedGear = new Dictionary<EnumGearSlot, Equipable>(); // <------- NEWLY ADDED
             GenerateBeginningEquipedGear();
             _color = color;
-            _name = name;
+            Name = name;
             _attacks = playerAttacks;
         }
         
@@ -99,7 +99,7 @@ namespace MazeTest
 
         public override string ToString()
         {
-            return _name;
+            return Name;
         }
 
         public override void Interact(LivingCreature lc)

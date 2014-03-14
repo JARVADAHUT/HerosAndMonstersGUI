@@ -135,6 +135,7 @@ namespace HerosAndMostersGUI
 
             pbPlayerHealth.Maximum = Hero.GetInstance().DCStats.GetStat(StatsType.MaxHp);
             pbPlayerMana.Maximum = Hero.GetInstance().DCStats.GetStat(StatsType.MaxResources);
+            lblPlayerName.Content = Player.GetInstance().Name;
 
             #endregion
 
@@ -289,18 +290,22 @@ namespace HerosAndMostersGUI
                 case "monster1Rec":
                     pbMonster1Health.Visibility = Visibility.Hidden;
                     lblMonster1.Visibility = Visibility.Hidden;
+                    lblMonster1Name.Visibility = Visibility.Hidden;
                     break;
                 case "monster2Rec":
                     pbMonster2Health.Visibility = Visibility.Hidden;
                     lblMonster2.Visibility = Visibility.Hidden;
+                    lblMonster2Name.Visibility = Visibility.Hidden;
                     break;
                 case "monster3Rec":
                     pbMonster3Health.Visibility = Visibility.Hidden;
                     lblMonster3.Visibility = Visibility.Hidden;
+                    lblMonster3Name.Visibility = Visibility.Hidden;
                     break;
                 case "monster4Rec":
                     pbMonster4Health.Visibility = Visibility.Hidden;
                     lblMonster4.Visibility = Visibility.Hidden;
+                    lblMonster4Name.Visibility = Visibility.Hidden;
                     break;
             }
         }
@@ -313,18 +318,21 @@ namespace HerosAndMostersGUI
                 _shapeTargetList.Add(monster4Rec);
                 monster4Rec.MouseDown += monster4Rec_MouseDown;
                 _targetList.Add(monsterList.ElementAt<Monster>(3));
+                lblMonster4Name.Content = monsterList.ElementAt<Monster>(3).Name;
             }
 
             //always do
             _shapeTargetList.Add(monster1Rec);
             monster1Rec.MouseDown += monster1Rec_MouseDown;
             _targetList.Add(monsterList.ElementAt<Monster>(0));
+            lblMonster1Name.Content = monsterList.ElementAt<Monster>(0).Name;
 
             if (p > 1)
             {
                 _shapeTargetList.Add(monster2Rec);
                 monster2Rec.MouseDown += monster2Rec_MouseDown;
                 _targetList.Add(monsterList.ElementAt<Monster>(1));
+                lblMonster2Name.Content = monsterList.ElementAt<Monster>(1).Name;
             }
 
             if (p > 2)
@@ -332,6 +340,7 @@ namespace HerosAndMostersGUI
                 _shapeTargetList.Add(monster3Rec);
                 monster3Rec.MouseDown += monster3Rec_MouseDown;
                 _targetList.Add(monsterList.ElementAt<Monster>(2));
+                lblMonster3Name.Content = monsterList.ElementAt<Monster>(2).Name;
             }
         }
 
@@ -344,21 +353,27 @@ namespace HerosAndMostersGUI
                 monster2Rec.Fill = Brushes.Tomato;
                 pbMonster2Health.Maximum = _targetList.ElementAt<DungeonCharacter>(2).DCStats.GetStat(StatsType.MaxHp);
                 pbMonster2Health.Visibility = Visibility.Visible;
+
                 lblMonster2.Visibility = Visibility.Visible;
+                lblMonster2Name.Visibility = Visibility.Visible;
             }
             if (p >= 3)
             {
                 monster3Rec.Fill = Brushes.Tomato;
                 pbMonster3Health.Maximum = _targetList.ElementAt<DungeonCharacter>(3).DCStats.GetStat(StatsType.MaxHp);
                 pbMonster3Health.Visibility = Visibility.Visible;
+
                 lblMonster3.Visibility = Visibility.Visible;
+                lblMonster3Name.Visibility = Visibility.Visible;
             }
             if (p == 4)
             {
                 monster4Rec.Fill = Brushes.Tomato;
                 pbMonster4Health.Maximum = _targetList.ElementAt<DungeonCharacter>(4).DCStats.GetStat(StatsType.MaxHp);
                 pbMonster4Health.Visibility = Visibility.Visible;
+
                 lblMonster4.Visibility = Visibility.Visible;
+                lblMonster4Name.Visibility = Visibility.Visible;
             }
         }
 
