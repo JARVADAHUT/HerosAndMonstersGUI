@@ -104,7 +104,7 @@ namespace DesignPatterns___DC_Design
         public static readonly EnumAttacks WeakAttack = new EnumAttacks("Weak Attack", "Performs a weak attack against an opponent and generates *10* mana. Generate: 10", WEAK_ATTACK_COST, 1);
         public static readonly EnumAttacks LesserHeal = new EnumAttacks("Lesser Heal", " Cast a small, mana-efficient heal that buffs your defence by *15%* for *4* seconds. Cost: 5", LESSER_HEAL_COST, 2);
 
-        public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball", "Engulf the target monster and surrounding monsters in flames dealing moderate moderate damage. Cost: 10", FIREBALL_COST, 3);
+        public static readonly EnumAttacks Fireball = new EnumAttacks("Fireball", "Engulf the target monster and surrounding monsters in flames dealing moderate damage. Cost: 10", FIREBALL_COST, 3);
         public static readonly EnumAttacks IceCone = new EnumAttacks("Cone of Ice", "Spray ice shards at your enemies dealing low damage that lowers target and surrounding targets agility by *80%* for *4* seconds. Cost: 10", ICE_CONE_COST, 4);
         public static readonly EnumAttacks LightningBolt = new EnumAttacks("Lightning Bolt", "Strike your opponent with a large range of damage which increases targets agility by *150%* for *2* seconds. Cost: 10", LIGHTNING_BOLT_COST, 5);
 
