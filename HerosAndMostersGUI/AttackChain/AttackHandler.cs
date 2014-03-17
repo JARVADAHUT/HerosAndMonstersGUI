@@ -15,10 +15,11 @@ namespace HerosAndMostersGUI.AttackChain
 
         protected const int DEFAULT_INDEX = 0;
 
-        public AttackHandler(AttackHandler nextLink)
+        protected AttackHandler(AttackHandler nextLink)
         {
             NextLink = nextLink;
         }
+
         public abstract void HandleAttack(EnumAttacks attack, Target targets, DungeonCharacter attacker);
 
         public static AttackHandler GetAttackHandlerChain()
@@ -52,10 +53,7 @@ namespace HerosAndMostersGUI.AttackChain
             return result;
         }
 
-        protected EffectInformation ModifyStatBy(StatsType stat, DungeonCharacter target, double percent, int duration)
-        {
-            return new EffectInformation(stat, (int)(target.DCStats.GetStat(stat) * percent), 0, duration);
-        }
+        
 
         
     }

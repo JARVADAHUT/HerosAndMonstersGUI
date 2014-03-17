@@ -35,13 +35,13 @@ namespace HerosAndMostersGUI.AttackChain
                 int appliedDamage = StatAlgorithms.ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
 
-                cmd.AddEffect(ModifyStatBy(StatsType.Agility, attacker, 0.1, 15), attacker);
+                cmd.AddEffect(StatAlgorithms.ModifyStatBy(StatsType.Agility, attacker, 0.1, 15), attacker);
                 cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
 
                 // reduce target combat effectivness (lower str, agi, def by 15%)
-                cmd.AddEffect(ModifyStatBy(StatsType.Strength, targets.ElementAt(DEFAULT_INDEX), -.15, 4), targets.ElementAt(DEFAULT_INDEX));
-                cmd.AddEffect(ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), -.15, 4), targets.ElementAt(DEFAULT_INDEX));
-                cmd.AddEffect(ModifyStatBy(StatsType.Defense, targets.ElementAt(DEFAULT_INDEX), -.15, 4), targets.ElementAt(DEFAULT_INDEX));
+                cmd.AddEffect(StatAlgorithms.ModifyStatBy(StatsType.Strength, targets.ElementAt(DEFAULT_INDEX), -.15, 4), targets.ElementAt(DEFAULT_INDEX));
+                cmd.AddEffect(StatAlgorithms.ModifyStatBy(StatsType.Agility, targets.ElementAt(DEFAULT_INDEX), -.15, 4), targets.ElementAt(DEFAULT_INDEX));
+                cmd.AddEffect(StatAlgorithms.ModifyStatBy(StatsType.Defense, targets.ElementAt(DEFAULT_INDEX), -.15, 4), targets.ElementAt(DEFAULT_INDEX));
 
                 cmd.RegisterCommand();
             }

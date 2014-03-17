@@ -24,11 +24,6 @@ namespace DesignPatterns___DC_Design
             monsterAI.TakeTurn(this,targets);
         }
 
-        public override void Attack(EnumAttacks type, Target target)
-        {
-            base.AttackChain.HandleAttack(type, target, this);
-        }
-
 
     }
 }

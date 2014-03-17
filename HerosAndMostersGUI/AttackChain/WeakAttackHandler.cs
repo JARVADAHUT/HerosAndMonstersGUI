@@ -33,7 +33,7 @@ namespace HerosAndMostersGUI.AttackChain
                 int appliedDamage = StatAlgorithms.ApplyDefence(damage, targets.ElementAt(DEFAULT_INDEX));
                 cmd.AddEffect(new EffectInformation(StatsType.CurHp, -appliedDamage), targets.ElementAt(DEFAULT_INDEX));
 
-                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost), attacker);
+                cmd.AddEffect(new EffectInformation(StatsType.CurResources, attack.Cost + (int)(.2578 * attacker.DCStats.GetStat(StatsType.Intelegence))), attacker);
                 cmd.RegisterCommand();
             }
             else

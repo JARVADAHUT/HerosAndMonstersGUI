@@ -51,6 +51,7 @@ namespace HerosAndMostersGUI.BattleCode
             tempStats.AddStat(StatsType.Defense, GetStatValue(level));
             tempStats.AddStat(StatsType.Strength, GetStatValue(level));
             tempStats.AddStat(StatsType.MaxResources, GetStatValue(level));
+            tempStats.AddStat(StatsType.Intelegence, GetStatValue(level));
 
             string AItype;
             IMonsterTurnAI tempAI = GetAI(level,out AItype);

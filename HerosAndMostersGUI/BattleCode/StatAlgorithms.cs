@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HerosAndMostersGUI.CharacterCode;
 
 namespace HerosAndMostersGUI.BattleCode
 {
@@ -29,6 +30,11 @@ namespace HerosAndMostersGUI.BattleCode
             double damageReduction = 25 + (75 * Math.Pow(1.0105, -.5 * target.DCStats.GetStat(StatsType.Defense)));
 
             return (int)(damage * (damageReduction/100));
+        }
+
+        public static EffectInformation ModifyStatBy(StatsType stat, DungeonCharacter target, double percent, int duration)
+        {
+            return new EffectInformation(stat, (int)(target.DCStats.GetStat(stat) * percent), 0, duration);
         }
 
         /*

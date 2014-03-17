@@ -25,6 +25,9 @@ namespace DesignPatterns___DC_Design
             AttackChain = AttackHandler.GetAttackHandlerChain();
         }
 
-        public abstract void Attack(EnumAttacks type, Target target);
+        public void Attack(EnumAttacks type, Target target)
+        {
+            AttackChain.HandleAttack(type,target,this);
+        }
     }
 }

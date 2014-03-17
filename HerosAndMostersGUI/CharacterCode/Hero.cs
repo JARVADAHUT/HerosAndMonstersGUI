@@ -44,9 +44,5 @@ namespace DesignPatterns___DC_Design
             return Player.GetInstance().GetInventory();
         }
 
-        public override void Attack(EnumAttacks type, Target target)
-        {
-            AttackChain.HandleAttack(type, target, this);
-        }
     }
 }
