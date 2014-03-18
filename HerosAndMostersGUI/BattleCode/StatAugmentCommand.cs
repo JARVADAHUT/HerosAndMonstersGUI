@@ -38,32 +38,6 @@ namespace DesignPatterns___DC_Design
             Effects[dc].AddRange(effects);
         }
 
-        /*
-        public void ApplyAugment()
-        {
-            foreach (var target in Targets)
-            {
-                foreach (var effect in Effects)
-                {
-                    target.DCStats.AugmentStat(effect.Stat, effect.Magnitude);
-                }
-            }
-                
-        }
-
-
-        public void RemoveAugment()
-        {
-            foreach (var target in Targets)
-            {
-                foreach (var effect in Effects)
-                {
-                    target.DCStats.AugmentStat(effect.Stat, effect.Magnitude * -1);
-                }
-            }
-        }
-        */
-
     }
 }
 
