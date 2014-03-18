@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\obj\Debug\
 HerosAndMostersGUI
 none
 false
 DEBUG;TRACE
-N:\GitStuff\HerosAndMonstersGUI\HerosAndMostersGUI\App.xaml
+C:\Users\mcandertoad\Documents\GitHub\HerosAndMonstersGUI\HerosAndMostersGUI\App.xaml
 5910971908
 4718142135
-73-365592839
+73-553451874
 141012385901
 BattleWindow.xaml;CharacterSelect.xaml;GameOver.xaml;MainWindow.xaml;VictorySplash.xaml;
 
