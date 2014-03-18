@@ -48,7 +48,7 @@ namespace HerosAndMostersGUI
         private int _constantPixelSize = 10;
         private const int _tickSpeed = 200;
         private const int _firstMazeSize = 12;
-        private int _frameSize = (int)(Screen.PrimaryScreen.Bounds.Height / 1.2);
+        private int _frameSize = (int)(Screen.PrimaryScreen.Bounds.Height / 1.1);
 
         #endregion
 

@@ -15,7 +15,7 @@ namespace HerosAndMostersGUI.MazeCode
     {
         private static int key = 0;
         private static Random rnd = new Random();
-        private const int _itemMax = 3;
+        private const int _itemMax = 2;
         private const int _statPoolPerLevel = 5;
         private const int _plusOrMinusToPool = 5;
 
@@ -157,11 +157,14 @@ namespace HerosAndMostersGUI.MazeCode
             StatsType whatStat = ChoosePotStat();
             int magnitude = rnd.Next( 10, ((Maze.GetInstance().MazeLevel + 1) * 10) + 1 ) + rnd.Next( -_plusOrMinusToPool, _plusOrMinusToPool );
             int duration;
-            
-            if(whatStat == StatsType.CurHp || whatStat == StatsType.CurResources)
+
+            if (whatStat == StatsType.CurHp || whatStat == StatsType.CurResources)
+            {
+                whatStat = StatsType.CurHp; // <------- THIS DISABLES MANA POTIONS
                 duration = 0;
+            }
             else
-                duration = rnd.Next(10, 30);
+                duration = rnd.Next(30, 70);
 
             List<EffectInformation> potionEffects = new List<EffectInformation>();
 

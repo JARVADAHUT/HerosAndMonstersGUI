@@ -40,7 +40,13 @@ namespace HerosAndMostersGUI.AttackChain
                                     (
                                         new HyperbeamHandler
                                         (
-                                            new NullAttackHandler(null)
+                                            new DemoralizingShoutAttack
+                                            (
+                                                new LifeTapAttack
+                                                (
+                                                    new NullAttackHandler(null)
+                                                )
+                                            )
                                         )
                                     )
                                 )

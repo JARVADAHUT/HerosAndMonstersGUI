@@ -162,6 +162,10 @@ namespace MazeTest
             //place monsters here--------------------------------------------------------
             Random rand = new Random();
             int placedCount = 0, monsterCount = (size / 3); // if 10, 3 monsters
+
+            if (Maze.GetInstance().MazeLevel >= 10)
+                monsterCount += (size / 8); // increases monster density after maze level 10
+
             int leftCoord, rightCoord;
 
             while (placedCount != monsterCount)

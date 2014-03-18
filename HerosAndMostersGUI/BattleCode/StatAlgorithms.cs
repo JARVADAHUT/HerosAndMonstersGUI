@@ -25,11 +25,18 @@ namespace HerosAndMostersGUI.BattleCode
             return 1 + (strength * percent) / 50;
         }
 
-        public static  int ApplyDefence(int damage, DungeonCharacter target)
+        public static int ApplyDefence(int damage, DungeonCharacter target)
         {
             double damageReduction = 25 + (75 * Math.Pow(1.0105, -.5 * target.DCStats.GetStat(StatsType.Defense)));
 
             return (int)(damage * (damageReduction/100));
+        }
+
+        public static double ApplyStrengthToStatReduction(double baseValue, int str)
+        {
+            double debuffPercent = Math.Log(.15 * str) / Math.Log(str);
+
+            return baseValue + (debuffPercent - .19);
         }
 
         public static EffectInformation ModifyStatBy(StatsType stat, DungeonCharacter target, double percent, int duration)

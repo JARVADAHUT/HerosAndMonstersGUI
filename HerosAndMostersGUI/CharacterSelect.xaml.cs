@@ -59,7 +59,7 @@ namespace HerosAndMostersGUI
 
             AblSelect.SelectionChanged += AblSelect_SelectionChanged;
 
-            Thread.Sleep(2500);
+            //Thread.Sleep(2500);
 
             #region Other Startup Things
 

@@ -42,8 +42,20 @@ namespace MazeTest
 
             _monsterParty = new List<int>();
             _monsterParty.Add( GetMonsterLevel() );
-
             Color = Brushes.Tomato;
+
+            if (Maze.GetInstance().MazeLevel > 5) // After level 5, possibly spawn groups of monsters (size 2)
+            {
+                Random rnd = new Random();
+                int num = rnd.Next(4);
+                if (num == 0)
+                {
+                    _monsterParty.Add(GetMonsterLevel());
+                    Color = Brushes.DeepPink;
+                }
+
+            }
+
         }
 
         public override void Die()
