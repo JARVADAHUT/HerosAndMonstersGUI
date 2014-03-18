@@ -296,8 +296,8 @@ namespace HerosAndMostersGUI
             CharacterAgiLabel.Text = "Agility: " + charAgi;
             CharacterDefLabel.Text = "Defense: " + charDef;
             CharacterIntLabel.Text = "Intelligence: " + charInt;
-            CharacterMHPLabel.Text = "Bonus HP: " + charMHP;
-            CharacterMMPLabel.Text = "Bonus MP: " + charMMP;
+            CharacterMHPLabel.Text = "Max HP: " + charMHP;
+            CharacterMMPLabel.Text = "Max MP: " + charMMP;
 
             int healthVal = Hero.GetInstance().DCStats.GetStat(StatsType.CurHp);
             int manaVal = Hero.GetInstance().DCStats.GetStat(StatsType.CurResources);
